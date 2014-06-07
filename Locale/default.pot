@@ -1,0 +1,932 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WM Tipp\n"
+"POT-Creation-Date: 2014-06-03 23:32+0200\n"
+"PO-Revision-Date: 2014-06-03 23:48+0100\n"
+"Last-Translator: Ralf Dannhauer <post@dannhauer.eu>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
+"X-Generator: Poedit 1.6.5\n"
+
+#: Controller/GroupsController.php:33;65;91
+msgid "Invalid group"
+msgstr "Ungültige Gruppe."
+
+#: Controller/GroupsController.php:48;69
+msgid "The group has been saved."
+msgstr "Gruppe gespeichert."
+
+#: Controller/GroupsController.php:51;72
+msgid "The group could not be saved. Please, try again."
+msgstr "Gruppe konnte nicht gespeichert werden."
+
+#: Controller/GroupsController.php:98
+msgid "The group has matches already."
+msgstr "Gruppe ist bereits Spielen zugeordnet."
+
+#: Controller/GroupsController.php:102
+msgid "The group has been deleted."
+msgstr "Gruppe wurde gelöscht."
+
+#: Controller/GroupsController.php:104
+msgid "The group could not be deleted. Please, try again."
+msgstr "Gruppe konnte nicht gelöscht werden."
+
+#: Controller/MatchesController.php:55;96;133
+msgid "Invalid match"
+msgstr "Ungültiges Spiel."
+
+#: Controller/MatchesController.php:75;105
+msgid "The match has been saved."
+msgstr "Spiel gespeichert."
+
+#: Controller/MatchesController.php:78;108;272
+msgid "The match could not be saved. Please, try again."
+msgstr "Spielte konnte nicht gespeichert werden."
+
+#: Controller/MatchesController.php:269
+msgid "The match has been saved and tipps have been calculated."
+msgstr "Ergebnis wurde gespeichert und Tipp-Ergebnisse wurde berechnet."
+
+#: Controller/QuestionsController.php:33;70;110
+msgid "Invalid question"
+msgstr "Ungültige Bonusfrage."
+
+#: Controller/QuestionsController.php:51;77
+msgid "The question has been saved."
+msgstr "Bonusfrage wurde gespeichert."
+
+#: Controller/QuestionsController.php:54;80
+msgid "The question could not be saved. Please, try again."
+msgstr "Bonusfrage konnte nicht gespeichert werden."
+
+#: Controller/QuestionsController.php:106
+msgid "The question has been tipped already."
+msgstr "Für diese Bonusfragen wurden bereits Tipps abgegeben."
+
+#: Controller/QuestionsController.php:114
+msgid "The question has been deleted."
+msgstr "Bonusfrage wurde gelöscht."
+
+#: Controller/QuestionsController.php:116
+msgid "The question could not be deleted. Please, try again."
+msgstr "Bonusfrage konnte nicht gelöscht werden."
+
+#: Controller/RoundsController.php:56;88;114
+msgid "Invalid round"
+msgstr "Ungültige Runde."
+
+#: Controller/RoundsController.php:71;92
+msgid "The round has been saved."
+msgstr "Runde wurde gespeichert."
+
+#: Controller/RoundsController.php:74;95
+msgid "The round could not be saved. Please, try again."
+msgstr "Runde konnte nicht gespeichert werden."
+
+#: Controller/RoundsController.php:121
+msgid "The round has matches already."
+msgstr "Dieser Runde wurden bereits Spiele zugeordnet."
+
+#: Controller/RoundsController.php:126
+msgid "The round has been deleted."
+msgstr "Runde wurde gespeichert."
+
+#: Controller/RoundsController.php:128
+msgid "The round could not be deleted. Please, try again."
+msgstr "Runde konnte nicht gespeichert werden."
+
+#: Controller/TeamsController.php:33;65;91
+msgid "Invalid team"
+msgstr "Ungültiges Team."
+
+#: Controller/TeamsController.php:48;69
+msgid "The team has been saved."
+msgstr "Team wurde gespeichert."
+
+#: Controller/TeamsController.php:51;72
+msgid "The team could not be saved. Please, try again."
+msgstr "Team konnte nicht gespeichert werden."
+
+#: Controller/TeamsController.php:98
+msgid "The team has matches already."
+msgstr "Team wurde bereits Spielen zugeordnet."
+
+#: Controller/TeamsController.php:102
+msgid "The team has been deleted."
+msgstr "Team wurde gespeichert."
+
+#: Controller/TeamsController.php:104
+msgid "The team could not be deleted. Please, try again."
+msgstr "Team konnte nicht gelöscht werden."
+
+#: Controller/TippsController.php:76
+msgid "Tipp saved successfully."
+msgstr "Tipp gespeichert."
+
+#: Controller/TippsController.php:78
+msgid ""
+"Tipp could not be saved. Please correct errors and try again. Tipps are "
+"shown like they are saved at the moment"
+msgstr ""
+"Tipp konnte nicht gespeichert werden. Bitte Fehler korrigieren und erneut "
+"versuchen."
+
+#: Controller/TippsController.php:148
+msgid "Tipps saved successfully."
+msgstr "Tipps gespeichert."
+
+#: Controller/TippsController.php:150
+msgid ""
+"Tipps could not be saved. Please correct errors and try again. Tipps are "
+"shown like they are saved at the moment"
+msgstr ""
+"Tipps konnten nicht (alle) gespeichert werden. Bitte Fehler korrigieren und "
+"erneut versuchen. Es werden die Tipps angezeigt, die momentan gespeichert "
+"sind."
+
+#: Controller/TippsController.php:186;221;249
+msgid "Invalid tipp"
+msgstr "Ungültiger Tipp."
+
+#: Controller/TippsController.php:201;225
+msgid "The tipp has been saved."
+msgstr "Tipp gespeichert."
+
+#: Controller/TippsController.php:204;228
+msgid "The tipp could not be saved. Please, try again."
+msgstr "Tipp konnte nicht gespeichert werden."
+
+#: Controller/TippsController.php:253
+msgid "The tipp has been deleted."
+msgstr "Tipp wurde gelöscht."
+
+#: Controller/TippsController.php:255
+msgid "The tipp could not be deleted. Please, try again."
+msgstr "Tipp konnte nicht gelöscht werden."
+
+#: Controller/UsersController.php:259
+msgid "Invalid User"
+msgstr "Ungültiger Benutzer."
+
+#: Controller/UsersController.php:276
+msgid "The profile has been updated."
+msgstr "Profile wurde aktualisiert."
+
+#: Controller/UsersController.php:279
+msgid "Error saving the profile. Please, try again."
+msgstr "Fehler beim Speichern des Profils."
+
+#: Controller/UsersController.php:437
+msgid "No user specified."
+msgstr "Kein Benutzer ausgewählt."
+
+#: Controller/UsersController.php:446
+msgid "Password has been changed."
+msgstr "Passwort wurde geändert."
+
+#: Controller/UsersController.php:451
+msgid "Password could not be changed."
+msgstr "Passwort konnte nicht geändert werden."
+
+#: View/Dashboards/index.ctp:18 View/Tipps/ranking.ctp:14
+msgid "Ranking"
+msgstr "Rangliste"
+
+#: View/Dashboards/index.ctp:24 View/Matches/grouptables.ctp:30
+#: View/Tipps/overview.ctp:102 View/Tipps/ranking.ctp:18
+msgid "Pos"
+msgstr "Pos"
+
+#: View/Dashboards/index.ctp:25 View/Groups/admin_add.ctp:26;33
+#: View/Groups/admin_edit.ctp:27;34 View/Groups/admin_view.ctp:9;45;94
+#: View/Matches/admin_add.ctp:59;68 View/Matches/admin_edit.ctp:64;70
+#: View/Matches/admin_result.ctp:48 View/Questions/admin_add.ctp:26;33
+#: View/Questions/admin_edit.ctp:27;34 View/Questions/admin_index.ctp:20
+#: View/Questions/admin_view.ctp:9 View/Rounds/admin_add.ctp:26;33
+#: View/Rounds/admin_edit.ctp:27;34;132;140 View/Rounds/admin_view.ctp:9;58
+#: View/Rounds/view.ctp:9;58 View/Teams/admin_view.ctp:9 View/Teams/view.ctp:9
+#: View/Tipps/overview.ctp:103 View/Tipps/ranking.ctp:19
+msgid "Name"
+msgstr "Name"
+
+#: View/Dashboards/index.ctp:26 View/Matches/grouptables.ctp:33
+#: View/Questions/admin_add.ctp:55;63 View/Questions/admin_edit.ctp:56;64
+#: View/Questions/admin_index.ctp:21 View/Questions/admin_view.ctp:59
+#: View/Tipps/enterbonus.ctp:26 View/Tipps/overview.ctp:105
+#: View/Tipps/ranking.ctp:20
+msgid "Points"
+msgstr "Punkte"
+
+#: View/Elements/main_menu.ctp:11 View/Elements/menu.ctp:63
+msgid "Users"
+msgstr "Tipper"
+
+#: View/Elements/main_menu.ctp:13 View/Elements/menu.ctp:69
+#: View/Groups/admin_index.ctp:16
+msgid "Groups"
+msgstr "Gruppen"
+
+#: View/Elements/main_menu.ctp:15 View/Elements/menu.ctp:75
+#: View/Rounds/admin_games.ctp:21 View/Rounds/admin_index.ctp:16
+msgid "Rounds"
+msgstr "Runden"
+
+#: View/Elements/main_menu.ctp:17 View/Elements/menu.ctp:81
+#: View/Matches/admin_index.ctp:17 View/Matches/grouptables.ctp:32
+msgid "Matches"
+msgstr "Spiele"
+
+#: View/Elements/main_menu.ctp:20
+msgid "Logout"
+msgstr "Logout"
+
+#: View/Elements/menu.ctp:18
+msgid "Dashboard"
+msgstr "Übersicht"
+
+#: View/Elements/menu.ctp:24 View/Matches/schedule.ctp:16
+msgid "Schedule"
+msgstr "Spielplan"
+
+#: View/Elements/menu.ctp:30
+msgid "Group tables"
+msgstr "Gruppentabellen"
+
+#: View/Elements/menu.ctp:36
+msgid "Tipp overview"
+msgstr "Tippübersicht"
+
+#: View/Elements/menu.ctp:42
+msgid "Tippenter"
+msgstr "Tippabgabe"
+
+#: View/Elements/menu.ctp:48 View/Tipps/enterbonus.ctp:21
+msgid "Bonus questions"
+msgstr "Bonusfragen"
+
+#: View/Elements/menu.ctp:54
+msgid "Profile"
+msgstr "Profil"
+
+#: View/Elements/menu.ctp:87 View/Questions/admin_index.ctp:17
+msgid "Questions"
+msgstr "Fragen"
+
+#: View/Elements/notTippedNotification.ctp:9 View/Users/admin_add.ctp:84
+#: View/Users/admin_edit.ctp:57 View/Users/edit.ctp:50
+msgid "Notifications"
+msgstr "Benachrichtigungen"
+
+#: View/Elements/notTippedNotification.ctp:22
+msgid "Missing tipps"
+msgstr "Fehlende Tipps"
+
+#: View/Elements/notTippedNotification.ctp:23
+msgid ""
+"There are %s matches within the next 7 days that you haven't tipped yet. You "
+"better do now."
+msgstr ""
+"Für %s Spiele in den nächsten Tagen wurden noch keine Tipps abgegeben. Auf "
+"geht's!"
+
+#: View/Groups/admin_add.ctp:16
+msgid "Add group"
+msgstr "Gruppe hinzufügen"
+
+#: View/Groups/admin_add.ctp:39;46 View/Groups/admin_edit.ctp:40;47
+#: View/Rounds/admin_add.ctp:40;47 View/Rounds/admin_edit.ctp:41;48;146;154
+#: View/Rounds/admin_view.ctp:19 View/Rounds/view.ctp:19
+msgid "Shortname"
+msgstr "Kurzname"
+
+#: View/Groups/admin_add.ctp:54 View/Groups/admin_edit.ctp:67
+#: View/Matches/admin_add.ctp:145 View/Matches/admin_edit.ctp:138
+#: View/Matches/admin_result.ctp:97 View/Questions/admin_add.ctp:114
+#: View/Questions/admin_edit.ctp:113 View/Rounds/admin_add.ctp:67
+#: View/Rounds/admin_edit.ctp:80;171 View/Tipps/enterbonus.ctp:59
+#: View/Tipps/entertipps.ctp:120
+msgid "Save"
+msgstr "Speichern"
+
+#: View/Groups/admin_edit.ctp:16
+msgid "Edit group"
+msgstr "Gruppe bearbeiten"
+
+#: View/Groups/admin_edit.ctp:53 View/Rounds/admin_edit.ctp:65
+msgid "created"
+msgstr "erstellt"
+
+#: View/Groups/admin_edit.ctp:59 View/Rounds/admin_edit.ctp:71
+msgid "modified"
+msgstr "geändert"
+
+#: View/Groups/admin_index.ctp:25 View/Groups/admin_view.ctp:27;56;97
+#: View/Matches/admin_index.ctp:27 View/Questions/admin_index.ctp:24
+#: View/Questions/admin_view.ctp:37;67 View/Rounds/admin_games.ctp:29;82
+#: View/Rounds/admin_index.ctp:25 View/Rounds/admin_view.ctp:42;72
+#: View/Rounds/view.ctp:42;72 View/Teams/admin_add.ctp:14
+#: View/Teams/admin_edit.ctp:15 View/Teams/admin_index.ctp:11;44
+#: View/Teams/admin_view.ctp:37 View/Teams/view.ctp:22
+#: View/Tipps/admin_add.ctp:15 View/Tipps/admin_edit.ctp:16
+#: View/Tipps/admin_index.ctp:12;50 View/Tipps/admin_view.ctp:42
+#: View/Users/admin_index.ctp:59
+msgid "Actions"
+msgstr "Aktionen"
+
+#: View/Groups/admin_index.ctp:35 View/Groups/admin_view.ctp:74;107
+#: View/Matches/admin_index.ctp:101 View/Questions/admin_index.ctp:55
+#: View/Questions/admin_view.ctp:86 View/Rounds/admin_games.ctp:40
+#: View/Rounds/admin_index.ctp:43 View/Rounds/admin_view.ctp:93
+#: View/Rounds/view.ctp:93 View/Teams/admin_index.ctp:23
+#: View/Tipps/admin_index.ctp:29 View/Users/admin_index.ctp:101
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: View/Groups/admin_index.ctp:39 View/Groups/admin_view.ctp:75;108
+#: View/Matches/admin_index.ctp:108 View/Questions/admin_index.ctp:62
+#: View/Questions/admin_view.ctp:87 View/Rounds/admin_games.ctp:41
+#: View/Rounds/admin_index.ctp:47 View/Rounds/admin_view.ctp:94
+#: View/Rounds/view.ctp:94 View/Teams/admin_edit.ctp:18
+#: View/Teams/admin_index.ctp:24 View/Tipps/admin_edit.ctp:19
+#: View/Tipps/admin_index.ctp:30 View/Users/admin_index.ctp:107
+msgid "Delete"
+msgstr "Löschen"
+
+#: View/Groups/admin_index.ctp:40 View/Groups/admin_view.ctp:30;75;108
+#: View/Matches/admin_index.ctp:113 View/Questions/admin_index.ctp:67
+#: View/Questions/admin_view.ctp:40;87 View/Rounds/admin_games.ctp:41
+#: View/Rounds/admin_view.ctp:45;94 View/Rounds/view.ctp:45;94
+#: View/Teams/admin_edit.ctp:18 View/Teams/admin_index.ctp:24
+#: View/Teams/admin_view.ctp:40 View/Teams/view.ctp:25
+#: View/Tipps/admin_edit.ctp:19 View/Tipps/admin_index.ctp:30
+#: View/Tipps/admin_view.ctp:45
+msgid "Are you sure you want to delete # %s?"
+msgstr "Bist du sicher, dass du # %s löschen willst?"
+
+#: View/Groups/admin_index.ctp:55;59 View/Matches/admin_index.ctp:131;135
+#: View/Questions/admin_index.ctp:82;86 View/Rounds/admin_index.ctp:63;67
+#: View/Users/admin_index.ctp:122;126
+msgid "Previous"
+msgstr "Vorherige"
+
+#: View/Groups/admin_index.ctp:70;74 View/Matches/admin_index.ctp:146;150
+#: View/Questions/admin_index.ctp:97;101 View/Rounds/admin_index.ctp:78;82
+#: View/Users/admin_index.ctp:137;141
+msgid "Next"
+msgstr "Nächste"
+
+#: View/Groups/admin_index.ctp:83 View/Groups/admin_view.ctp:32
+msgid "New Group"
+msgstr "Neue Gruppe"
+
+#: View/Groups/admin_view.ctp:2 View/Matches/admin_add.ctp:104;113
+#: View/Matches/admin_edit.ctp:104;110 View/Matches/admin_result.ctp:36
+#: View/Matches/schedule.ctp:36 View/Tipps/entertipps.ctp:48
+#: View/Tipps/overview.ctp:39
+msgid "Group"
+msgstr "Gruppe"
+
+#: View/Groups/admin_view.ctp:4;44;93 View/Questions/admin_view.ctp:4;54
+#: View/Rounds/admin_view.ctp:4;57 View/Rounds/view.ctp:4;57
+#: View/Teams/admin_view.ctp:4 View/Teams/view.ctp:4
+#: View/Tipps/admin_view.ctp:4
+msgid "Id"
+msgstr "Id"
+
+#: View/Groups/admin_view.ctp:14 View/Questions/admin_view.ctp:24;65
+#: View/Rounds/admin_view.ctp:29;70 View/Rounds/view.ctp:29;70
+#: View/Teams/admin_view.ctp:24 View/Tipps/admin_view.ctp:29
+msgid "Created"
+msgstr "erstellt"
+
+#: View/Groups/admin_view.ctp:19 View/Questions/admin_view.ctp:29;66
+#: View/Rounds/admin_view.ctp:34;71 View/Rounds/view.ctp:34;71
+#: View/Teams/admin_view.ctp:29 View/Tipps/admin_view.ctp:34
+msgid "Modified"
+msgstr "geändert"
+
+#: View/Groups/admin_view.ctp:29
+msgid "Edit Group"
+msgstr "Gruppe bearbeiten"
+
+#: View/Groups/admin_view.ctp:30
+msgid "Delete Group"
+msgstr "Gruppe löschen"
+
+#: View/Groups/admin_view.ctp:31
+msgid "List Groups"
+msgstr "Gruppen anzeigen"
+
+#: View/Groups/admin_view.ctp:33 View/Rounds/admin_games.ctp:85
+#: View/Rounds/admin_view.ctp:48 View/Rounds/view.ctp:48
+#: View/Tipps/admin_add.ctp:19 View/Tipps/admin_edit.ctp:21
+#: View/Tipps/admin_index.ctp:53 View/Tipps/admin_view.ctp:48
+msgid "List Matches"
+msgstr "Spiele anzeigen"
+
+#: View/Groups/admin_view.ctp:34;84 View/Matches/admin_index.ctp:160
+#: View/Rounds/admin_games.ctp:86 View/Rounds/admin_view.ctp:49;103
+#: View/Rounds/view.ctp:49;103 View/Tipps/admin_add.ctp:20
+#: View/Tipps/admin_edit.ctp:22 View/Tipps/admin_index.ctp:54
+#: View/Tipps/admin_view.ctp:49
+msgid "New Match"
+msgstr "Neues Spiel"
+
+#: View/Groups/admin_view.ctp:35 View/Questions/admin_view.ctp:43
+#: View/Teams/admin_add.ctp:17 View/Teams/admin_edit.ctp:19
+#: View/Teams/admin_view.ctp:41 View/Teams/view.ctp:26
+msgid "List Teams"
+msgstr "Teams anzeigen"
+
+#: View/Groups/admin_view.ctp:36;117 View/Questions/admin_view.ctp:44
+#: View/Teams/admin_index.ctp:46 View/Teams/admin_view.ctp:42
+#: View/Teams/view.ctp:27
+msgid "New Team"
+msgstr "Neuen Team"
+
+#: View/Groups/admin_view.ctp:40 View/Rounds/admin_view.ctp:53
+#: View/Rounds/view.ctp:53
+msgid "Related Matches"
+msgstr ""
+
+#: View/Groups/admin_view.ctp:46 View/Rounds/admin_view.ctp:59
+#: View/Rounds/view.ctp:59
+msgid "Datetime"
+msgstr ""
+
+#: View/Groups/admin_view.ctp:47 View/Rounds/admin_view.ctp:60
+#: View/Rounds/view.ctp:60
+msgid "Stage Id"
+msgstr ""
+
+#: View/Groups/admin_view.ctp:48;96 View/Questions/admin_view.ctp:63
+#: View/Rounds/admin_view.ctp:61 View/Rounds/view.ctp:61
+#: View/Teams/admin_view.ctp:19
+msgid "Group Id"
+msgstr ""
+
+#: View/Groups/admin_view.ctp:49 View/Rounds/admin_view.ctp:62
+#: View/Rounds/view.ctp:62
+msgid "Team Id1"
+msgstr ""
+
+#: View/Groups/admin_view.ctp:50 View/Rounds/admin_view.ctp:63
+#: View/Rounds/view.ctp:63
+msgid "Team Id2"
+msgstr ""
+
+#: View/Groups/admin_view.ctp:51 View/Questions/admin_view.ctp:57
+#: View/Rounds/admin_view.ctp:65 View/Rounds/view.ctp:65
+#: View/Tipps/admin_view.ctp:19
+msgid "Points Team1"
+msgstr ""
+
+#: View/Groups/admin_view.ctp:52 View/Questions/admin_view.ctp:58
+#: View/Rounds/admin_view.ctp:66 View/Rounds/view.ctp:66
+#: View/Tipps/admin_view.ctp:24
+msgid "Points Team2"
+msgstr ""
+
+#: View/Groups/admin_view.ctp:53 View/Rounds/admin_view.ctp:67
+#: View/Rounds/view.ctp:67
+msgid "Isfinished"
+msgstr ""
+
+#: View/Groups/admin_view.ctp:54 View/Rounds/admin_view.ctp:68
+#: View/Rounds/view.ctp:68
+msgid "Aftertime"
+msgstr ""
+
+#: View/Groups/admin_view.ctp:55 View/Rounds/admin_view.ctp:69
+#: View/Rounds/view.ctp:69
+msgid "Penalties"
+msgstr ""
+
+#: View/Groups/admin_view.ctp:73;106 View/Questions/admin_view.ctp:85
+#: View/Rounds/admin_view.ctp:92 View/Rounds/view.ctp:92
+#: View/Teams/admin_index.ctp:22 View/Tipps/admin_index.ctp:28
+msgid "View"
+msgstr ""
+
+#: View/Groups/admin_view.ctp:89
+msgid "Related Teams"
+msgstr ""
+
+#: View/Groups/admin_view.ctp:95 View/Teams/admin_view.ctp:14
+#: View/Teams/view.ctp:14
+msgid "Iconurl"
+msgstr ""
+
+#: View/Layouts/default.ctp:105
+msgid "Rules"
+msgstr ""
+
+#: View/Layouts/default.ctp:138
+msgid "Login"
+msgstr ""
+
+#: View/Layouts/default.ctp:143
+msgid "Register"
+msgstr ""
+
+#: View/Layouts/default.ctp:164
+msgid "Imprint"
+msgstr ""
+
+#: View/Matches/admin_add.ctp:30;40 View/Matches/admin_index.ctp:21
+#: View/Matches/schedule.ctp:31 View/Tipps/entertipps.ctp:44
+#: View/Tipps/overview.ctp:35
+msgid "Team 1"
+msgstr ""
+
+#: View/Matches/admin_add.ctp:35;47;108 View/Matches/admin_edit.ctp:106
+msgid "Choose one"
+msgstr ""
+
+#: View/Matches/admin_add.ctp:52 View/Matches/admin_index.ctp:23
+#: View/Matches/schedule.ctp:33 View/Tipps/entertipps.ctp:46
+#: View/Tipps/overview.ctp:37
+msgid "Team 2"
+msgstr ""
+
+#: View/Matches/admin_add.ctp:76;85 View/Matches/admin_edit.ctp:75;84
+#: View/Matches/admin_index.ctp:20 View/Matches/admin_result.ctp:54
+#: View/Matches/grouptables.ctp:67 View/Matches/schedule.ctp:30
+#: View/Questions/admin_add.ctp:70 View/Questions/admin_edit.ctp:71
+#: View/Tipps/enterbonus.ctp:24 View/Tipps/entertipps.ctp:43
+#: View/Tipps/overview.ctp:34
+msgid "Date"
+msgstr ""
+
+#: View/Matches/admin_add.ctp:96 View/Matches/admin_edit.ctp:95
+msgid "Time"
+msgstr ""
+
+#: View/Matches/admin_add.ctp:119;127 View/Matches/admin_edit.ctp:116;121
+#: View/Matches/admin_result.ctp:42 View/Rounds/admin_view.ctp:2
+#: View/Rounds/view.ctp:2
+msgid "Round"
+msgstr ""
+
+#: View/Matches/admin_add.ctp:138 View/Matches/admin_edit.ctp:130
+#: View/Questions/admin_add.ctp:105 View/Questions/admin_edit.ctp:104
+msgid "fixed"
+msgstr ""
+
+#: View/Matches/admin_add.ctp:150
+msgid "Cancel"
+msgstr ""
+
+#: View/Matches/admin_edit.ctp:23
+msgid "Edit match"
+msgstr ""
+
+#: View/Matches/admin_edit.ctp:35 View/Matches/grouptables.ctp:68
+#: View/Teams/admin_index.ctp:2
+msgid "Teams"
+msgstr ""
+
+#: View/Matches/admin_index.ctp:26 View/Matches/admin_result.ctp:61
+#: View/Matches/grouptables.ctp:69 View/Matches/schedule.ctp:38
+#: View/Tipps/entertipps.ctp:50 View/Tipps/overview.ctp:41
+msgid "Result"
+msgstr ""
+
+#: View/Matches/admin_index.ctp:82
+msgid "ot"
+msgstr ""
+
+#: View/Matches/admin_index.ctp:85 View/Matches/grouptables.ctp:84
+#: View/Matches/schedule.ctp:72 View/Tipps/entertipps.ctp:86
+#: View/Tipps/overview.ctp:76;92
+msgid "pen"
+msgstr ""
+
+#: View/Matches/admin_index.ctp:94 View/Questions/admin_index.ctp:49
+msgid "Enter Result"
+msgstr ""
+
+#: View/Matches/admin_result.ctp:23
+msgid "Enter match result"
+msgstr ""
+
+#: View/Matches/admin_result.ctp:31
+msgid ""
+"Are you sure you want to submit the result and calculate tipps  for match %s?"
+msgstr ""
+
+#: View/Matches/grouptables.ctp:31 View/Questions/admin_view.ctp:19
+#: View/Teams/admin_view.ctp:2 View/Teams/view.ctp:2
+msgid "Team"
+msgstr ""
+
+#: View/Matches/grouptables.ctp:34
+msgid "Goals"
+msgstr ""
+
+#: View/Matches/grouptables.ctp:35
+msgid "Diff"
+msgstr ""
+
+#: View/Matches/grouptables.ctp:36
+msgid "w"
+msgstr ""
+
+#: View/Matches/grouptables.ctp:37
+msgid "d"
+msgstr ""
+
+#: View/Matches/grouptables.ctp:38
+msgid "l"
+msgstr ""
+
+#: View/Matches/grouptables.ctp:81 View/Matches/schedule.ctp:69
+#: View/Tipps/entertipps.ctp:83 View/Tipps/overview.ctp:73
+msgid "o t"
+msgstr ""
+
+#: View/Questions/admin_add.ctp:16
+msgid "Add question"
+msgstr ""
+
+#: View/Questions/admin_add.ctp:40;48 View/Questions/admin_edit.ctp:41;49
+#: View/Questions/admin_view.ctp:14
+msgid "Text"
+msgstr ""
+
+#: View/Questions/admin_edit.ctp:16
+msgid "Edit question"
+msgstr ""
+
+#: View/Questions/admin_index.ctp:22
+msgid "Fixed"
+msgstr ""
+
+#: View/Questions/admin_index.ctp:23
+msgid "due"
+msgstr ""
+
+#: View/Questions/admin_index.ctp:111 View/Questions/admin_view.ctp:42
+msgid "New Question"
+msgstr ""
+
+#: View/Questions/admin_view.ctp:2 View/Tipps/enterbonus.ctp:25
+msgid "Question"
+msgstr ""
+
+#: View/Questions/admin_view.ctp:39
+msgid "Edit Question"
+msgstr ""
+
+#: View/Questions/admin_view.ctp:40
+msgid "Delete Question"
+msgstr ""
+
+#: View/Questions/admin_view.ctp:41
+msgid "List Questions"
+msgstr ""
+
+#: View/Questions/admin_view.ctp:45 View/Tipps/admin_add.ctp:18
+#: View/Tipps/admin_edit.ctp:20 View/Tipps/admin_view.ctp:46
+msgid "List Tipps"
+msgstr ""
+
+#: View/Questions/admin_view.ctp:46;96 View/Tipps/admin_index.ctp:52
+#: View/Tipps/admin_view.ctp:47
+msgid "New Tipp"
+msgstr ""
+
+#: View/Questions/admin_view.ctp:50
+msgid "Related Tipps"
+msgstr ""
+
+#: View/Questions/admin_view.ctp:55
+msgid "Match Id"
+msgstr ""
+
+#: View/Questions/admin_view.ctp:56
+msgid "User Id"
+msgstr ""
+
+#: View/Questions/admin_view.ctp:60
+msgid "Points Total"
+msgstr ""
+
+#: View/Questions/admin_view.ctp:61
+msgid "Type"
+msgstr ""
+
+#: View/Questions/admin_view.ctp:62
+msgid "Team Id"
+msgstr ""
+
+#: View/Questions/admin_view.ctp:64
+msgid "Question Id"
+msgstr ""
+
+#: View/Rounds/admin_add.ctp:16 View/Rounds/admin_edit.ctp:16
+msgid "Add round"
+msgstr ""
+
+#: View/Rounds/admin_add.ctp:58 View/Rounds/admin_edit.ctp:59;164
+msgid "Bonus yes/no"
+msgstr ""
+
+#: View/Rounds/admin_games.ctp:71 View/Teams/admin_index.ctp:32
+#: View/Tipps/admin_index.ctp:38
+msgid ""
+"Page {:page} of {:pages}, showing {:current} records out of {:count} total, "
+"starting on record {:start}, ending on {:end}"
+msgstr ""
+
+#: View/Rounds/admin_games.ctp:76 View/Teams/admin_index.ctp:37
+#: View/Tipps/admin_index.ctp:43
+msgid "previous"
+msgstr ""
+
+#: View/Rounds/admin_games.ctp:78 View/Teams/admin_index.ctp:39
+#: View/Tipps/admin_index.ctp:45
+msgid "next"
+msgstr ""
+
+#: View/Rounds/admin_games.ctp:84 View/Rounds/admin_index.ctp:91
+#: View/Rounds/admin_view.ctp:47 View/Rounds/view.ctp:47
+msgid "New Round"
+msgstr ""
+
+#: View/Rounds/admin_index.ctp:48
+msgid "Are you sure you want to delete round %s?"
+msgstr ""
+
+#: View/Rounds/admin_view.ctp:14 View/Rounds/view.ctp:14
+msgid "Slug"
+msgstr ""
+
+#: View/Rounds/admin_view.ctp:24 View/Rounds/view.ctp:24
+msgid "Bonus"
+msgstr ""
+
+#: View/Rounds/admin_view.ctp:44 View/Rounds/view.ctp:44
+msgid "Edit Round"
+msgstr ""
+
+#: View/Rounds/admin_view.ctp:45 View/Rounds/view.ctp:45
+msgid "Delete Round"
+msgstr ""
+
+#: View/Rounds/admin_view.ctp:46 View/Rounds/view.ctp:46
+msgid "List Rounds"
+msgstr ""
+
+#: View/Rounds/admin_view.ctp:64 View/Rounds/view.ctp:64
+msgid "Round Id"
+msgstr ""
+
+#: View/Teams/admin_add.ctp:4
+msgid "Admin Add Team"
+msgstr ""
+
+#: View/Teams/admin_add.ctp:11 View/Teams/admin_edit.ctp:12
+#: View/Tipps/admin_add.ctp:12 View/Tipps/admin_edit.ctp:13
+msgid "Submit"
+msgstr ""
+
+#: View/Teams/admin_edit.ctp:4
+msgid "Admin Edit Team"
+msgstr ""
+
+#: View/Teams/admin_view.ctp:39 View/Teams/view.ctp:24
+msgid "Edit Team"
+msgstr ""
+
+#: View/Teams/admin_view.ctp:40 View/Teams/view.ctp:25
+msgid "Delete Team"
+msgstr ""
+
+#: View/Tipps/admin_add.ctp:4
+msgid "Admin Add Tipp"
+msgstr ""
+
+#: View/Tipps/admin_add.ctp:21 View/Tipps/admin_edit.ctp:23
+#: View/Tipps/admin_index.ctp:55 View/Tipps/admin_view.ctp:50
+msgid "List Users"
+msgstr ""
+
+#: View/Tipps/admin_add.ctp:22 View/Tipps/admin_edit.ctp:24
+#: View/Tipps/admin_index.ctp:56 View/Tipps/admin_view.ctp:51
+msgid "New User"
+msgstr ""
+
+#: View/Tipps/admin_edit.ctp:4
+msgid "Admin Edit Tipp"
+msgstr ""
+
+#: View/Tipps/admin_index.ctp:2 View/Tipps/overview.ctp:99
+msgid "Tipps"
+msgstr ""
+
+#: View/Tipps/admin_view.ctp:2 View/Tipps/enterbonus.ctp:27
+#: View/Tipps/entertipps.ctp:51
+msgid "Tipp"
+msgstr ""
+
+#: View/Tipps/admin_view.ctp:9
+msgid "Match"
+msgstr ""
+
+#: View/Tipps/admin_view.ctp:14
+msgid "User"
+msgstr ""
+
+#: View/Tipps/admin_view.ctp:44
+msgid "Edit Tipp"
+msgstr ""
+
+#: View/Tipps/admin_view.ctp:45
+msgid "Delete Tipp"
+msgstr ""
+
+#: View/Tipps/entertipps.ctp:24 View/Tipps/overview.ctp:20
+msgid "Select Round"
+msgstr ""
+
+#: View/Tipps/overview.ctp:92
+msgid "et"
+msgstr ""
+
+#: View/Users/add.ctp:10
+msgid "Welcome to WM Tipp."
+msgstr ""
+
+#: View/Users/add.ctp:12
+msgid "Sing up and have fun. No strings attached!"
+msgstr ""
+
+#: View/Users/add.ctp:74
+msgid "Already have an account?"
+msgstr ""
+
+#: View/Users/admin_add.ctp:89 View/Users/admin_edit.ctp:62
+#: View/Users/edit.ctp:55
+msgid "Admins are allowed to send emails."
+msgstr ""
+
+#: View/Users/admin_add.ctp:95 View/Users/admin_edit.ctp:68
+#: View/Users/edit.ctp:61
+msgid "I want to get email reminders for outstanding tipps."
+msgstr ""
+
+#: View/Users/admin_edit.ctp:74
+msgid "Settings"
+msgstr ""
+
+#: View/Users/admin_edit.ctp:79
+msgid "Is Admin"
+msgstr ""
+
+#: View/Users/admin_edit.ctp:85
+msgid "active"
+msgstr ""
+
+#: View/Users/admin_edit.ctp:91
+msgid "has paid"
+msgstr ""
+
+#: View/Users/admin_index.ctp:55
+msgid "paid"
+msgstr ""
+
+#: View/Users/admin_index.ctp:108
+msgid "Are you sure you want to delete user %s?"
+msgstr ""
+
+#: View/Users/edit.ctp:70
+msgid "Current Datetime"
+msgstr ""
+
+#: View/Users/login.ctp:10
+msgid "Welcome back to WM Tipp."
+msgstr ""
+
+#: View/Users/login.ctp:12
+msgid "Please sign in to get access."
+msgstr ""
+
+#: View/Users/login.ctp:72 View/Users/request_password_change.ctp:47
+#: View/Users/resend_verification.ctp:47 View/Users/reset_password.ctp:56
+msgid "Don't have an account?"
+msgstr ""
+
+#: Model/Group.php:validation for field name Model/Ladder.php:validation
+#: group_id Model/Question.php:validation Model/Round.php:validation
+#: Model/Stage.php:validation Model/Team.php:validation
+msgid "notEmpty"
+msgstr ""

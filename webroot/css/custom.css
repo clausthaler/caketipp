@@ -1,0 +1,15 @@
+div.content > div.alert {
+    margin: 20px 50px 0;
+}
+
+form.form-inline input {
+    margin: 3px;
+}
+
+.tipp-select {
+    width: 40px;
+}
+
+div.error-message {
+    color: #FF0000;
+}

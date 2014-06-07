@@ -1,0 +1,542 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2014-06-03 23:32+0200\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Controller/UsersController.php:322
+msgid "Invalid User."
+msgstr ""
+
+#: Controller/UsersController.php:340
+msgid "The User has been saved"
+msgstr ""
+
+#: Controller/UsersController.php:357
+msgid "User saved"
+msgstr ""
+
+#: Controller/UsersController.php:381
+msgid "User deleted"
+msgstr ""
+
+#: Controller/UsersController.php:383
+#: Model/User.php:817;846
+msgid "Invalid User"
+msgstr ""
+
+#: Controller/UsersController.php:405
+msgid "You are already registered and logged in!"
+msgstr ""
+
+#: Controller/UsersController.php:425
+msgid "Your account has been created. You should receive an e-mail shortly to authenticate your account. Once validated you will be able to login."
+msgstr ""
+
+#: Controller/UsersController.php:430
+msgid "Your account could not be created. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:501
+msgid "%s you have successfully logged in"
+msgstr ""
+
+#: Controller/UsersController.php:517
+msgid "Invalid e-mail / password combination.  Please try again"
+msgstr ""
+
+#: Controller/UsersController.php:583
+msgid "%s you have successfully logged out"
+msgstr ""
+
+#: Controller/UsersController.php:597
+msgid "The email was resent. Please check your inbox."
+msgstr ""
+
+#: Controller/UsersController.php:600
+msgid "The email could not be sent. Please check errors."
+msgstr ""
+
+#: Controller/UsersController.php:623
+msgid "Your e-mail has been validated!"
+msgstr ""
+
+#: Controller/UsersController.php:646
+msgid "The url you accessed is not longer valid"
+msgstr ""
+
+#: Controller/UsersController.php:652
+msgid "Your password was sent to your registered email account"
+msgstr ""
+
+#: Controller/UsersController.php:656
+msgid "There was an error verifying your account. Please check the email you were sent, and retry the verification link."
+msgstr ""
+
+#: Controller/UsersController.php:672;782
+msgid "Password Reset"
+msgstr ""
+
+#: Controller/UsersController.php:689;853
+msgid "Password changed."
+msgstr ""
+
+#: Controller/UsersController.php:750
+msgid "Account verification"
+msgstr ""
+
+#: Controller/UsersController.php:809
+msgid "%s has been sent an email with instruction to reset their password."
+msgstr ""
+
+#: Controller/UsersController.php:813
+msgid "You should receive an email with further instructions shortly"
+msgstr ""
+
+#: Controller/UsersController.php:817
+msgid "No user was found with that email."
+msgstr ""
+
+#: Controller/UsersController.php:847
+msgid "Invalid password reset token, try again."
+msgstr ""
+
+#: Controller/UsersController.php:856
+msgid "Password changed, you can now login with your new password."
+msgstr ""
+
+#: Controller/Component/RememberMeComponent.php:230
+msgid "Invalid options %s"
+msgstr ""
+
+#: Controller/Component/Auth/TokenAuthenticate.php:67
+msgid "You need to specify token parameter and/or header"
+msgstr ""
+
+#: Model/User.php:166;347
+msgid "The passwords are not equal."
+msgstr ""
+
+#: Model/User.php:168
+msgid "Invalid password."
+msgstr ""
+
+#: Model/User.php:250
+msgid "Invalid token, please check the email you were sent, and retry the verification link."
+msgstr ""
+
+#: Model/User.php:255
+msgid "The token has expired."
+msgstr ""
+
+#: Model/User.php:309
+msgid "This Email Address exists but was never validated."
+msgstr ""
+
+#: Model/User.php:311
+msgid "This Email Address does not exist in the system."
+msgstr ""
+
+#: Model/User.php:405
+msgid "$this->data['"
+msgstr ""
+
+#: Model/User.php:451
+msgid "The user does not exist."
+msgstr ""
+
+#: Model/User.php:489
+msgid "Invalid Email address."
+msgstr ""
+
+#: Model/User.php:494
+msgid "This email is already verified."
+msgstr ""
+
+#: Model/User.php:592
+msgid "Please enter your email address."
+msgstr ""
+
+#: Model/User.php:599
+msgid "The email address does not exist in the system"
+msgstr ""
+
+#: Model/User.php:604
+msgid "Your account is already authenticaed."
+msgstr ""
+
+#: Model/User.php:609
+msgid "Your account is disabled."
+msgstr ""
+
+#: View/Elements/pagination.ctp:14
+msgid "previous"
+msgstr ""
+
+#: View/Elements/pagination.ctp:16
+msgid "next"
+msgstr ""
+
+#: View/Elements/Users/admin_sidebar.ctp:3
+#: View/Elements/Users/sidebar.ctp:9
+msgid "Logout"
+msgstr ""
+
+#: View/Elements/Users/admin_sidebar.ctp:4
+#: View/Elements/Users/sidebar.ctp:10
+msgid "My Account"
+msgstr ""
+
+#: View/Elements/Users/admin_sidebar.ctp:6
+#: View/Users/admin_index.ctp:150
+msgid "Add Users"
+msgstr ""
+
+#: View/Elements/Users/admin_sidebar.ctp:7
+#: View/Elements/Users/sidebar.ctp:15
+msgid "List Users"
+msgstr ""
+
+#: View/Elements/Users/admin_sidebar.ctp:9
+msgid "Frontend"
+msgstr ""
+
+#: View/Elements/Users/sidebar.ctp:4
+msgid "Login"
+msgstr ""
+
+#: View/Elements/Users/sidebar.ctp:6
+msgid "Register an account"
+msgstr ""
+
+#: View/Elements/Users/sidebar.ctp:11
+msgid "Change password"
+msgstr ""
+
+#: View/Emails/text/account_verification.ctp:12
+msgid "Hello %s,"
+msgstr ""
+
+#: View/Emails/text/account_verification.ctp:14
+msgid "to validate your account, you must visit the URL below within 24 hours"
+msgstr ""
+
+#: View/Emails/text/new_password.ctp:12
+msgid "Your password has been reset"
+msgstr ""
+
+#: View/Emails/text/new_password.ctp:13
+msgid "Please login using this password and change your password"
+msgstr ""
+
+#: View/Emails/text/new_password.ctp:15
+msgid "Your new password is: %s"
+msgstr ""
+
+#: View/Emails/text/password_reset_request.ctp:12
+msgid "A request to reset your password was sent. To change your password click the link below."
+msgstr ""
+
+#: View/Groups/admin_add.ctp:61
+#: View/Groups/admin_edit.ctp:74
+#: View/Matches/admin_edit.ctp:145
+#: View/Matches/admin_result.ctp:104
+#: View/Questions/admin_add.ctp:121
+#: View/Questions/admin_edit.ctp:120
+#: View/Rounds/admin_add.ctp:74
+#: View/Rounds/admin_edit.ctp:87
+#: View/Users/admin_add.ctp:128
+#: View/Users/admin_edit.ctp:106
+#: View/Users/admin_passwordreset.ctp:66
+#: View/Users/edit.ctp:91
+msgid "Cancel"
+msgstr ""
+
+#: View/Users/add.ctp:24;29
+#: View/Users/admin_add.ctp:48
+#: View/Users/admin_edit.ctp:49
+#: View/Users/admin_index.ctp:39;56
+#: View/Users/edit.ctp:39;45
+#: View/Users/login.ctp:24;29
+#: View/Users/search.ctp:20
+msgid "Email"
+msgstr ""
+
+#: View/Users/add.ctp:32;37
+#: View/Users/admin_add.ctp:27;34
+#: View/Users/admin_edit.ctp:28;35
+#: View/Users/admin_index.ctp:31;54
+#: View/Users/admin_view.ctp:15
+#: View/Users/search.ctp:18
+#: View/Users/view.ctp:15
+msgid "Username"
+msgstr ""
+
+#: View/Users/add.ctp:40;45
+#: View/Users/admin_add.ctp:56;64
+#: View/Users/admin_passwordreset.ctp:29;37
+#: View/Users/login.ctp:32;37
+msgid "Password"
+msgstr ""
+
+#: View/Users/add.ctp:48;53
+#: View/Users/admin_add.ctp:70;78
+#: View/Users/admin_passwordreset.ctp:43;51
+msgid "Password (confirm)"
+msgstr ""
+
+#: View/Users/add.ctp:54
+msgid "Terms of Service"
+msgstr ""
+
+#: View/Users/add.ctp:59
+msgid "I have read and agreed to "
+msgstr ""
+
+#: View/Users/add.ctp:63
+msgid "Register"
+msgstr ""
+
+#: View/Users/admin_add.ctp:16
+msgid "New User"
+msgstr ""
+
+#: View/Users/admin_add.ctp:40
+#: View/Users/admin_edit.ctp:41
+msgid "E-mail (used as login)"
+msgstr ""
+
+#: View/Users/admin_add.ctp:49
+#: View/Users/admin_edit.ctp:50
+msgid "Must be a valid email address"
+msgstr ""
+
+#: View/Users/admin_add.ctp:50
+#: View/Users/admin_edit.ctp:51
+msgid "An account with that email already exists"
+msgstr ""
+
+#: View/Users/admin_add.ctp:104
+msgid "Is Admin"
+msgstr ""
+
+#: View/Users/admin_add.ctp:113
+msgid "Active"
+msgstr ""
+
+#: View/Users/admin_add.ctp:121
+#: View/Users/admin_edit.ctp:99
+#: View/Users/admin_passwordreset.ctp:59
+#: View/Users/edit.ctp:84
+msgid "Save"
+msgstr ""
+
+#: View/Users/admin_edit.ctp:16
+#: View/Users/admin_passwordreset.ctp:16
+msgid "Edit User"
+msgstr ""
+
+#: View/Users/admin_edit.ctp:117
+msgid "Reset password"
+msgstr ""
+
+#: View/Users/admin_index.ctp:25
+msgid "Filter"
+msgstr ""
+
+#: View/Users/admin_index.ctp:43
+#: View/Users/search.ctp:23
+msgid "Search"
+msgstr ""
+
+#: View/Users/admin_index.ctp:57
+msgid "Email verified"
+msgstr ""
+
+#: View/Users/admin_index.ctp:77;87;94
+msgid "Yes"
+msgstr ""
+
+#: View/Users/admin_index.ctp:79;89;96
+msgid "No"
+msgstr ""
+
+#: View/Users/admin_view.ctp:13
+#: View/Users/view.ctp:13
+msgid "User"
+msgstr ""
+
+#: View/Users/admin_view.ctp:20
+#: View/Users/view.ctp:20
+msgid "Created"
+msgstr ""
+
+#: View/Users/admin_view.ctp:25
+msgid "Modified"
+msgstr ""
+
+#: View/Users/change_password.ctp:13
+msgid "Change your password"
+msgstr ""
+
+#: View/Users/change_password.ctp:14
+msgid "Please enter your old password because of security reasons and then your new password twice."
+msgstr ""
+
+#: View/Users/change_password.ctp:18
+msgid "Old Password"
+msgstr ""
+
+#: View/Users/change_password.ctp:21
+#: View/Users/reset_password.ctp:23;28
+msgid "New Password"
+msgstr ""
+
+#: View/Users/change_password.ctp:24
+#: View/Users/reset_password.ctp:31;36
+msgid "Confirm"
+msgstr ""
+
+#: View/Users/change_password.ctp:26
+#: View/Users/request_password_change.ctp:33
+#: View/Users/resend_verification.ctp:33
+#: View/Users/reset_password.ctp:42
+msgid "Submit"
+msgstr ""
+
+#: View/Users/dashboard.ctp:13
+msgid "Welcome"
+msgstr ""
+
+#: View/Users/dashboard.ctp:14
+msgid "Recent broadcasts"
+msgstr ""
+
+#: View/Users/edit.ctp:16
+msgid "Profile"
+msgstr ""
+
+#: View/Users/edit.ctp:29;34
+#: View/Users/search.ctp:22
+msgid "Name"
+msgstr ""
+
+#: View/Users/index.ctp:13
+#: View/Users/search.ctp:13
+msgid "Users"
+msgstr ""
+
+#: View/Users/index.ctp:17
+#: View/Users/search.ctp:27
+msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+msgstr ""
+
+#: View/Users/index.ctp:25
+#: View/Users/search.ctp:35
+msgid "Actions"
+msgstr ""
+
+#: View/Users/index.ctp:39
+#: View/Users/search.ctp:49
+msgid "View"
+msgstr ""
+
+#: View/Users/login.ctp:48
+msgid "Remember Me"
+msgstr ""
+
+#: View/Users/login.ctp:53
+msgid "I forgot my password"
+msgstr ""
+
+#: View/Users/login.ctp:74
+#: View/Users/request_password_change.ctp:49
+#: View/Users/resend_verification.ctp:49
+#: View/Users/reset_password.ctp:58
+msgid "Create an Account!"
+msgstr ""
+
+#: View/Users/request_password_change.ctp:10
+msgid "Forgot your password?"
+msgstr ""
+
+#: View/Users/request_password_change.ctp:11
+#: View/Users/resend_verification.ctp:11
+msgid "Please enter the email you used for registration and you'll get an email with further instructions."
+msgstr ""
+
+#: View/Users/request_password_change.ctp:22;27
+#: View/Users/resend_verification.ctp:22;27
+msgid "Your Email"
+msgstr ""
+
+#: View/Users/resend_verification.ctp:10
+msgid "Resend the Email Verification"
+msgstr ""
+
+#: View/Users/reset_password.ctp:10
+msgid "Reset your password"
+msgstr ""
+
+#: View/Users/search.ctp:50
+msgid "Edit"
+msgstr ""
+
+#: View/Users/search.ctp:52
+msgid "Delete"
+msgstr ""
+
+#: View/Users/search.ctp:55
+msgid "Are you sure you want to delete # %s?"
+msgstr ""
+
+#: Model/User.php:validation for field username
+msgid "Please enter a username."
+msgstr ""
+
+#: Model/User.php:validation for field username
+msgid "The username must be alphanumeric."
+msgstr ""
+
+#: Model/User.php:validation for field username
+msgid "This username is already in use."
+msgstr ""
+
+#: Model/User.php:validation for field username
+msgid "The username must have at least 3 characters."
+msgstr ""
+
+#: Model/User.php:validation for field email
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: Model/User.php:validation for field email
+msgid "This email is already in use."
+msgstr ""
+
+#: Model/User.php:validation for field password
+msgid "The password must have at least 6 characters."
+msgstr ""
+
+#: Model/User.php:validation for field password
+msgid "Please enter a password."
+msgstr ""
+
+#: Model/User.php:validation for field temppassword
+msgid "The passwords are not equal, please try again."
+msgstr ""
+
+#: Model/User.php:validation for field tos
+msgid "You must agree to the terms of use."
+msgstr ""
+

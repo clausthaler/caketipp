@@ -42,7 +42,7 @@ class TippsController extends AppController {
       // validate the entries and clean up the array
       $tippErrors = array();
       foreach ($this->request->data['Tipp'] as $matchid => $tippresult) {
-        if (!isset($tippmatches[$matchid]) || $tippmatches[$matchid] > strtotime($this->Session->read('currentdatetime'))) {
+        if (!isset($tippmatches[$matchid]) || $tippmatches[$matchid] < strtotime($this->Session->read('currentdatetime'))) {
           unset($this->request->data['Tipp'][$matchid]);
         } else {
           if (!is_numeric($tippresult['points1']) && !is_numeric($tippresult['points2'])) {
@@ -333,7 +333,7 @@ order by sum desc) c');
       $this->Match->recursive = -1;
       $matches = $this->Match->find(
         'all', array(
-          'fields' => array('id','name','kickoff','group_id','team1_id', 'team2_id','round_id','points_team1','points_team2','extratime', 'isfinished'),
+          'fields' => array('id','name','kickoff', 'due', 'group_id','team1_id', 'team2_id','round_id','points_team1','points_team2','extratime', 'isfinished'),
           'conditions' => array(
             'Match.round_id' => $roundslugs[$tippround]['id'])
           , 'order' => array('Match.datetime')));

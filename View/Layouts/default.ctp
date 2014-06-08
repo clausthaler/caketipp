@@ -91,7 +91,7 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
 
               <!--  notifications -->
               <?php echo $this->element('notTippedNotification', array(
-                "matchesNotTipped" => $this->requestAction('/matches/checktipps/10'),
+                "matchesNotTipped" => $this->requestAction('/matches/checktipps/5'),
                 "questionsNotTipped" => $this->requestAction('/questions/checktipps/17')
               ));  ?> 
 

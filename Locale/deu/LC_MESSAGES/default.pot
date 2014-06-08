@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WM Tipp\n"
 "POT-Creation-Date: 2014-06-03 23:32+0200\n"
-"PO-Revision-Date: 2014-06-07 17:34+0100\n"
+"PO-Revision-Date: 2014-06-08 12:06+0100\n"
 "Last-Translator: Ralf Dannhauer <post@dannhauer.eu>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -14,6 +14,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.6.5\n"
+
+#: Days
+msgid "Mon"
+msgstr "Mo"
+
+msgid "Tue"
+msgstr "Di"
+
+msgid "Wed"
+msgstr "Mi"
+
+msgid "Thu"
+msgstr "Do"
+
+msgid "Fri"
+msgstr "Fr"
+
+msgid "Sat"
+msgstr "Sa"
+
+msgid "Sun"
+msgstr "So"
 
 #: Model
 msgid "Value required"

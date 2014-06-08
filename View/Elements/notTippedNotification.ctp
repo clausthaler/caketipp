@@ -12,7 +12,6 @@ if (count($matchesNotTipped) > 0) {
 if (count($questionsNotTipped) > 0) {
   $count = $count + count($questionsNotTipped);
 }
-print_r($count);
 ?> 
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">

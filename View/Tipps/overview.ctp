@@ -40,7 +40,7 @@
           }
           echo '<th style="text-align: center;">' . __('Result') . '</th>';
           echo '</tr>';
-
+          // list all matches for this round with result
           foreach ($matches as $key => $match) {
             echo '<tr>';
             echo '<td>';
@@ -122,23 +122,24 @@
             }
             echo '<td>' . $user['username'] . '</td>';
             foreach ($matches as $matchkey => $match) {
-              if ($user['Tipps'][$match['Match']['id']]['points'] > 0) {
-                echo '<td style="text-align:center">' 
-                  . $user['Tipps'][$match['Match']['id']]['points_team1'] 
+              // only show tipps when tipp due is over
+              if ($match['Match']['due'] < strtotime($this->Session->read('currentdatetime'))) {
+                // show if exists tipp
+                if (isset($user['Tipps'][$match['Match']['id']])) {
+                  echo $user['Tipps'][$match['Match']['id']]['points_team1'] 
                   . ':' 
-                  . $user['Tipps'][$match['Match']['id']]['points_team2'] 
-                  . '<sub style="color:red;font-weight:bold">'
-                  . $user['Tipps'][$match['Match']['id']]['points']
-                  . '</sub>'
-                  . '</td>';
+                  . $user['Tipps'][$match['Match']['id']]['points_team2'];
+                  if ($user['Tipps'][$match['Match']['id']]['points'] > 0) {
+                    echo '<sub style="color:red;font-weight:bold">'
+                    . $user['Tipps'][$match['Match']['id']]['points']
+                    . '</sub>';
+                  }
+                } else {
+                  echo '<td style="text-align:center">&nbsp;</td>'; 
+                }
+                # code...
               } else {
-                echo '<td style="text-align:center;color:grey">' 
-                  . $user['Tipps'][$match['Match']['id']]['points_team1'] 
-                  . ':' 
-                  . $user['Tipps'][$match['Match']['id']]['points_team2'] 
-
-                  . '</td>';
-
+                echo '<td style="text-align:center"> - </td>'; 
               }
             }              
 

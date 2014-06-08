@@ -60,17 +60,17 @@
             echo '&nbsp;<small>' . date("H:i", $match['Match']['kickoff']) . ' </small>'; 
             echo '</td>';
             echo '<td>';
-            echo $teams[$match['Match']['team1_id']]['name'];
             if (!empty($teams[$match['Match']['team1_id']]['iconurl'])) {
               echo '&nbsp;' . $this->Html->image($teams[$match['Match']['team1_id']]['iconurl']);
             }
+            echo '&nbsp;' . $teams[$match['Match']['team1_id']]['name'];
             echo '</td>';
             echo '<td>-</td>';
             echo '<td>';
-            echo $teams[$match['Match']['team2_id']]['name'];
             if (!empty($teams[$match['Match']['team2_id']]['iconurl'])) {
               echo '&nbsp;' . $this->Html->image($teams[$match['Match']['team2_id']]['iconurl']);
             }
+            echo '&nbsp;' . $teams[$match['Match']['team2_id']]['name'];
             echo '</td>';
             if ($roundId <= 3) {
               echo '<td style="text-align: center;">';

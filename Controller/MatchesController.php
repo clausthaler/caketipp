@@ -323,12 +323,13 @@ class MatchesController extends AppController {
         'Match.round_id', 
         'Match.datetime'),
         'conditions' => array('group_id' => Hash::extract($groups, '{n}.Group.id'))))); 
-    $this->set('ladders', $this->Ladder->find(
+    $ladders = $this->Ladder->find(
       'all', 
       array('order' => array(
         'Ladder.group_id', 
         'Ladder.pos'),
-        'conditions' => array('type' => 'real'))));
+        'conditions' => array('type' => 'real')));
+    $this->set('ladders', $ladders);
   }
 
 /**

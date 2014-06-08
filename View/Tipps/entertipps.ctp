@@ -35,7 +35,8 @@
         <?php
           echo $this->Form->create('Tipp', array(
             'action' => 'entertipps/' . $roundId,
-            'role' => 'form'
+            'role' => 'form',
+            'class' => 'form-inline'
           )); 
           echo '<h4>' . $rounds[$roundId]['name']  . '</h4>';
           echo '<table class="table table-condensed" cellpadding="0" cellspacing="0">';
@@ -89,6 +90,7 @@
             echo '</td>';
             echo '<td class="col-xs-2" style="text-align: center;">';
             if ($match['Match']['due'] > strtotime($this->Session->read('currentdatetime'))) {
+              echo '<div class="form-group">';
               echo $this->Form->input('Tipp.' . $match['Match']['id'] . '.points1', array(
                 'type'=>'select',
                 'label' => false,
@@ -97,7 +99,7 @@
                 'div' => false,
                 'options' => Configure::read('MatchResults'),
                 'value' => isset($tipps[$match['Match']['id']]['points_team1']) ? $tipps[$match['Match']['id']]['points_team1'] : false));
-              echo ' : ';
+              echo '</div><div class="form-group">&nbsp;:&nbsp;</div><div class="form-group">';
               echo $this->Form->input('Tipp.' . $match['Match']['id'] . '.points2', array(
                 'type'=>'select',
                 'label' => false,
@@ -106,6 +108,7 @@
                 'div' => false,
                 'options' => Configure::read('MatchResults'),
                 'value' => isset($tipps[$match['Match']['id']]['points_team2']) ? $tipps[$match['Match']['id']]['points_team2'] : false));
+              echo '</div>';
             } else {
               echo isset($tipps[$match['Match']['id']]['points_team1']) ? $tipps[$match['Match']['id']]['points_team1'] : ' ' ;
               echo ':';

@@ -186,6 +186,7 @@ class UsersController extends AppController {
  * 
  */
 	public function fake() {
+		exit();
 		require_once '../vendor/autoload.php';
 
 		// use the factory to create a Faker\Generator instance
@@ -261,9 +262,6 @@ class UsersController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 
 			$this->User->read(null, $this->Auth->user('id'));
-			if (!empty($this->request->data['User']['name'])) {
-				$this->User->set('name', $this->request->data['User']['name']);
-			}
 			if (!empty($this->request->data['User']['email'])) {
 				$this->User->set('email', $this->request->data['User']['email']);
 			}
@@ -272,6 +270,12 @@ class UsersController extends AppController {
         $this->Session->write('currentdatetime', $this->request->data['User']['currentdatetime']);
       }
 
+      if (!empty($this->request->data['User']['recieve_emails'])) {
+        $this->User->set('recieve_emails', $this->request->data['User']['recieve_emails']);
+      }
+      if (!empty($this->request->data['User']['recieve_reminders'])) {
+        $this->User->set('recieve_reminders', $this->request->data['User']['recieve_reminders']);
+      }
 			if ($this->User->save()) {
 				$this->Session->setFlash(__('The profile has been updated.'));
 				return $this->redirect(array('controller' => 'dashboards', 'action' => 'index'));

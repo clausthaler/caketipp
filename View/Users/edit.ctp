@@ -21,30 +21,26 @@
                 'id' => 'EditForm',
                 'class' => 'form-horizontal',
                 'role' => 'form'
-              )); 
+              )); ?>
         
-        
-              echo $this->Form->input('name', array(
-                'label' => array('class' => 'col-md-3',
-                  'text' => __d('users', 'Name')),
-                'tabindex' => '1',
-                'class' => 'form-control',
-                'div' => array('class' => 'form-group'),
-                'type' => 'text',
-                'placeholder' => __d('users', 'Name'),
-                'between'=>'<div class="col-md-7">',
-                'after'=>'</div>'));
-              echo $this->Form->input('email', array(
-                'label' => array('class' => 'col-md-3',
-                  'text' => __d('users', 'Email')),
-                'class' => 'form-control',
-                'tabindex' => '2',
-                'div' => array('class' => 'form-group'),
-                'type' => 'email',
-                'required' => false,
-                'placeholder' => __d('users', 'Email'),
-                'between'=>'<div class="col-md-7">',
-                'after'=>'</div>'));
+              <div class="form-group">
+                <label class="col-md-3" for="UserName"><?php echo __d('users', 'Userame') ?></label>
+                <div class="col-md-7">
+                  <p class="form-control-static"><?php echo $this->request->data['User']['username'] ?></p>
+                </div>
+              </div>
+              <?php 
+                echo $this->Form->input('email', array(
+                  'label' => array('class' => 'col-md-3',
+                    'text' => __d('users', 'Email')),
+                  'class' => 'form-control',
+                  'tabindex' => '2',
+                  'div' => array('class' => 'form-group'),
+                  'type' => 'email',
+                  'required' => false,
+                  'placeholder' => __d('users', 'Email'),
+                  'between'=>'<div class="col-md-7">',
+                  'after'=>'</div>'));
               ?>
               <div class="form-group">
                 <label class="col-md-3"><?php echo __('Notifications'); ?></label>

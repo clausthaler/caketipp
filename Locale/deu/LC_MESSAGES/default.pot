@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WM Tipp\n"
 "POT-Creation-Date: 2014-06-03 23:32+0200\n"
-"PO-Revision-Date: 2014-06-08 12:06+0100\n"
+"PO-Revision-Date: 2014-06-08 12:47+0100\n"
 "Last-Translator: Ralf Dannhauer <post@dannhauer.eu>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -14,6 +14,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.6.5\n"
+
+#: Notifications
+msgid ""
+"There are %s matches within the next days that you haven't tipped yet. You "
+"better do now."
+msgstr "Für %s Spiele wurden noch keine Tipps abgegeben. Auf geht's!"
+
+msgid ""
+"There are %s bonus questions that you haven't tipped yet. What are you "
+"waiting for?"
+msgstr ""
 
 #: Days
 msgid "Mon"

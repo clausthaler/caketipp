@@ -40,7 +40,7 @@ if (count($questionsNotTipped) > 0) {
           </span>
           <span class="noticebar-item-body">
             <strong class="noticebar-item-title"><?php echo __('Missing tipps') ?></strong>
-            <span class="noticebar-item-text"><?php echo __("There are %s matches within the next 7 days that you haven't tipped yet. You better do now.", count($matchesNotTipped)) ?></span>
+            <span class="noticebar-item-text"><?php echo __("There are %s matches within the next days that you haven't tipped yet. You better do now.", count($matchesNotTipped)) ?></span>
           </span>
         </a>
       </li>
@@ -53,7 +53,7 @@ if (count($questionsNotTipped) > 0) {
           </span>
           <span class="noticebar-item-body">
             <strong class="noticebar-item-title"><?php echo __('Missing bonus tipps') ?></strong>
-            <span class="noticebar-item-text"><?php echo __("There are %s questions within the next 7 days that you haven't tipped yet. You better do now.", count($questionsNotTipped)) ?></span>
+            <span class="noticebar-item-text"><?php echo __("There are %s bonus questions that you haven't tipped yet. What are you waiting for?", count($questionsNotTipped)) ?></span>
           </span>
         </a>
       </li>

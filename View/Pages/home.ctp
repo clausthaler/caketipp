@@ -49,7 +49,7 @@
               </div>
       
               <div class="pull-right">
-                <small><?php echo $this->Html->link(__d('users', 'I forgot my password'), array('controller' => 'users', 'action' => 'reset_password')); ?></small>
+                <small><?php echo $this->Html->link(__d('users', 'I forgot my password'), '/reset_password'); ?></small>
               </div>
             </div> <!-- /.form-group -->
             <div class="form-group">

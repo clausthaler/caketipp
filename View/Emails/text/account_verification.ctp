@@ -11,6 +11,8 @@
 
 echo __d('users', 'Hello %s,', $user[$model]['username']);
 echo "\n";
+echo "\n";
 echo __d('users', 'to validate your account, you must visit the URL below within 24 hours');
+echo "\n";
 echo "\n";
 echo Router::url(array('admin' => false, 'controller' => 'users', 'action' => 'verify', 'email', $user[$model]['email_token']), true);

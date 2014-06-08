@@ -46,6 +46,7 @@
  */
     Router::connect('/users', array('controller' => 'users'));
     Router::connect('/profile', array('controller' => 'users', 'action' => 'edit'));
+    Router::connect('/reset_password', array('controller' => 'users', 'action' => 'reset_password'));
     Router::connect('/users/index/*', array('controller' => 'users'));
     Router::connect('/users/:action/*', array('controller' => 'users'));
     Router::connect('/users/users/:action/*', array('controller' => 'users'));

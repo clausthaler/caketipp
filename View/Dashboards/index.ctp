@@ -108,7 +108,7 @@
                           echo $this->Html->image($match['Team1']['iconurl']);
                         }
                         echo "&nbsp;";
-                        echo $this->Html->link($match['Team1']['name'], array('controller' => 'teams', 'action' => 'view',  $match['Team1']['id'])); 
+                        echo $match['Team1']['name']; 
                       ?>
                       </td>
                       <td>:</td>
@@ -118,11 +118,11 @@
                           echo $this->Html->image($match['Team2']['iconurl']);
                         }
                         echo "&nbsp;";
-                        echo $this->Html->link($match['Team2']['name'], array('controller' => 'teams', 'action' => 'view',  $match['Team2']['id'])); 
+                        echo $match['Team2']['name']; 
                       ?>
                       </td>
                       <td>
-                      <?php echo $this->Html->link($match['Group']['shortname'], array('controller' => 'groups', ' action' => 'view  ', $match['Group']['id'])); ?>
+                      <?php echo $match['Group']['shortname']; ?>
                       </td>
                     </tr>
                   <?php } ?>

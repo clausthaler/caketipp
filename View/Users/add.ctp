@@ -45,7 +45,7 @@
         'tabindex' => '4',
         'data-parsley-equalto' => '#UserPassword',
         'placeholder' => __d('users', 'Password (confirm)')));
-      $tosLink = $this->Html->link(__d('users', 'Terms of Service'), array('controller' => 'pages', 'action' => 'display', 'agb'));
+      $tosLink = $this->Html->link(__d('users', 'Terms of Service'), array('controller' => 'pages', 'action' => 'display', 'agb'), array('target'=>'_blank'));
       echo $this->Form->input('tos', array(
           'type' => 'checkbox',
           'tabindex' => '5',

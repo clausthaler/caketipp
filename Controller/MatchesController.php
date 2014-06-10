@@ -374,4 +374,19 @@ class MatchesController extends AppController {
       $this->set('nextMatches', $nextMatches);
     }
   }
+  public function test() {
+        // get all tippers that want to be reminded
+#    $users = $this->User->find('list', array(
+#      'conditions' => array('recieve_reminders' => 1, 'active' => 1),
+#      'fields' => array('username', 'email', 'id')));
+#    print_r($users);
+    // get all matches that are due on the next day
+    $matches = $this->Match->find('list', array(
+      'conditions' => array(
+        'due <' => (strtotime($this->Session->read('currentdatetime')) + 1 * 86400), 
+        'due >' => strtotime($this->Session->read('currentdatetime'))),
+      'fields' => array('id')));
+    print_r($matches);
+  }
+
 }

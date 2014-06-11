@@ -110,7 +110,7 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
             </li>
             <li class="dropdown navbar-profile">
               <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
-                <?php echo $this->Html->image($this->Gravatar->get_gravatar('clausthaler007@hotmail.com'), array('alt' => $this->Session->read('Auth.User.username'), 'class' => 'navbar-profile-avatar')); ?>
+                <?php echo $this->Html->image($this->Gravatar->get_gravatar($this->Session->read('Auth.User.email')), array('alt' => $this->Session->read('Auth.User.username'), 'class' => 'navbar-profile-avatar')); ?>
                 <span><?php echo $this->Session->read('Auth.User.username'); ?> &nbsp;</span>
               </a>
 

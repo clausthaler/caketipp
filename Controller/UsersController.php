@@ -125,6 +125,15 @@ class UsersController extends AppController {
 		}
 	}
 
+	public function switchLang($lng='deu')  {
+    if ($lng == 'eng') {
+      $this->Session->write('Config.language', 'eng');
+    } else {
+      $this->Session->write('Config.language', 'deu');
+    }
+    $this->redirect('/');
+  }
+
 /**
  * Sets the default pagination settings up
  *

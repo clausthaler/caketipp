@@ -88,5 +88,10 @@ class AppController extends Controller {
                 'scope' => array(
                   $this->modelClass . '.active' => 1,
                   $this->modelClass . '.email_verified' => 1)));
+      if ($this->Session->check('Config.language')) {
+        Configure::write('Config.language', $this->Session->read('Config.language'));
+      } else {
+        Configure::write('Config.language', 'deu');
+      }
     }
 }

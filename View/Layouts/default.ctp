@@ -104,6 +104,16 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
           <ul class="nav navbar-nav navbar-right">    
             <?php if($this->Session->check('Auth.User')) { ?>
             <li>
+              <a href="/users/switchLang/deu">
+                <?php echo $this->Html->image('de.gif'); ?>
+              </a>
+            </li>
+            <li>
+              <a href="/users/switchLang/eng">
+                <?php echo $this->Html->image('gb.gif'); ?>
+              </a>
+            </li>
+            <li>
               <a href="/rules">
                 <?php echo __('Rules'); ?>
               </a>

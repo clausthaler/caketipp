@@ -123,7 +123,7 @@
             echo '<td>' . $user['username'] . '</td>';
             foreach ($matches as $matchkey => $match) {
               // only show tipps when tipp due is over
-              if ($match['Match']['due'] < strtotime($this->Session->read('currentdatetime'))) {
+              if ($match['Match']['due'] < time()) {
                 // show if exists tipp
                 if (isset($user['Tipps'][$match['Match']['id']])) {
                   echo $user['Tipps'][$match['Match']['id']]['points_team1'] 

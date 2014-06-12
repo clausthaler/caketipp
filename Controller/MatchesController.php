@@ -222,7 +222,7 @@ class MatchesController extends AppController {
         $groupmatches = $this->Match->find('all', 
           array('conditions' => array(
             'Match.group_id' => $groupid,
-            'Match.isfinished' => 1)));
+            'Match.kickoff <' => time())));
         foreach ($groupmatches as $key => $gmatch) {
           $team1_id = $gmatch['Match']['team1_id'];
           $team2_id = $gmatch['Match']['team2_id'];
@@ -243,7 +243,7 @@ class MatchesController extends AppController {
             $arrladder[$team2_id]['points']++;
             $arrladder[$team1_id]['draw']++;
             $arrladder[$team2_id]['draw']++;
-          } elseif ($gmatch['Match']['points_team1'] > $gmatch['Match']['points_team1']) {
+          } elseif ($gmatch['Match']['points_team1'] > $gmatch['Match']['points_team2']) {
             // team 1 won
             $arrladder[$team1_id]['points'] = $arrladder[$team1_id]['points'] + 3;
             $arrladder[$team1_id]['won']++;
@@ -259,10 +259,10 @@ class MatchesController extends AppController {
         $this->Ladder->deleteAll(array(
           'Ladder.group_id' => $groupid,
           'Ladder.type' => 'real' ), false);
-        foreach ($arrladder as $key => $value) {
+        foreach ($arrladder as $poskey => $value) {
           $this->Ladder->create();
           $newLadder['Ladder'] = $value;
-          $newLadder['Ladder']['pos'] = $key + 1;
+          $newLadder['Ladder']['pos'] = $poskey + 1;
           $this->Ladder->save($newLadder);
         }
         $this->Session->setFlash(__('The match has been saved and tipps have been calculated.'));

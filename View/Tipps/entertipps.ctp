@@ -89,7 +89,7 @@
             }
             echo '</td>';
             echo '<td class="col-xs-2" style="text-align: center;">';
-            if ($match['Match']['due'] > strtotime($this->Session->read('currentdatetime'))) {
+            if ($match['Match']['due'] > time()) {
               echo '<div class="form-group">';
               echo $this->Form->input('Tipp.' . $match['Match']['id'] . '.points1', array(
                 'type'=>'select',

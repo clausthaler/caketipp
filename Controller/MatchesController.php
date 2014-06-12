@@ -143,7 +143,6 @@ class MatchesController extends AppController {
           unset($this->request->data['Match'][$key]);
         }
       }
-      $this->request->data['Match']['isfinished'] = 1;
 
       if ($this->Match->save($this->request->data)) {
         // calculate tipps

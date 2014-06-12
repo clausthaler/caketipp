@@ -66,7 +66,11 @@
               echo $groups[$match['Match']['group_id']]['shortname'];
               echo '</td>';
             }
-            echo '<td style="text-align: center;">';
+            if ($match['Match']['kickoff'] < time() && $match['Match']['isfinished'] != 1) {
+              echo '<td style="text-align:center;color:red;">';
+            } else {
+              echo '<td style="text-align: center;">';
+            }
             echo  $match['Match']['points_team1'] . ':' . $match['Match']['points_team2'];
             if ($match['Match']['extratime'] != 0) {
               if ($match['Match']['extratime'] == 1) {
@@ -91,8 +95,13 @@
         $mth3 = '';
         $extratime = array('', __('et'), __('pen'));
         foreach ($matches as $key => $match) {
+          if ($match['Match']['kickoff'] < time() && $match['Match']['isfinished'] != 1) {
+            $style = ';color:red';
+          } else {
+            $style = '';
+          }
           $mth1 = $mth1 . '<th style="text-align:center">' . $teams[$match['Match']['team1_id']]['iso'] . '</th>';
-          $mth2 = $mth2 . '<th style="text-align:center">' . $match['Match']['points_team1'] . ':' . $match['Match']['points_team2'] . ' ' . $extratime[$match['Match']['extratime']] . '</th>';
+          $mth2 = $mth2 . '<th style="text-align:center' . $style  . '">' . $match['Match']['points_team1'] . ':' . $match['Match']['points_team2'] . ' ' . $extratime[$match['Match']['extratime']] . '</th>';
           $mth3 = $mth3 . '<th style="text-align:center">' . $teams[$match['Match']['team2_id']]['iso'] . '</th>';
           # code...
         }
@@ -126,6 +135,7 @@
               if ($match['Match']['due'] < time()) {
                 // show if exists tipp
                 if (isset($user['Tipps'][$match['Match']['id']])) {
+                  echo '<td>';
                   echo $user['Tipps'][$match['Match']['id']]['points_team1'] 
                   . ':' 
                   . $user['Tipps'][$match['Match']['id']]['points_team2'];
@@ -133,6 +143,7 @@
                     echo '<sub style="color:red;font-weight:bold">'
                     . $user['Tipps'][$match['Match']['id']]['points']
                     . '</sub>';
+                  echo '</td>';
                   }
                 } else {
                   echo '<td style="text-align:center">&nbsp;</td>'; 

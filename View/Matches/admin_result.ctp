@@ -91,6 +91,19 @@
                 </div>
               </div>
             </div>
+
+            <div class="form-group">
+              <div class="col-md-7 col-md-push-3">
+                <?php 
+                  echo $this->Form->input('isfinished', array(
+                    'type' => 'checkbox',
+                    'label' => array('text' => __('finished'),
+                      'class' => 'checkbox')));
+                ?>
+              </div>
+            </div>        
+
+
             <div class="form-group">
               <div class="col-md-7 col-md-push-3">
                 <?php

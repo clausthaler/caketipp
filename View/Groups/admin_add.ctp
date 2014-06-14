@@ -49,6 +49,19 @@
               </div>
             </div>
             <div class="form-group">
+              <?php echo $this->Form->label('Group.round_id', __('Round'), 'col-md-3'); ?>
+              <div class="col-md-7">
+                <?php 
+                  echo $this->Form->input('round_id', array(
+                    'label' => false,
+                    'class' => 'form-control',
+                    'div' => false,
+                    'placeholder' => __('Round')
+                  ));
+                ?>
+              </div>
+            </div>
+            <div class="form-group">
               <div class="col-md-7 col-md-push-3">
                 <?php
                   echo $this->Form->button(__('Save'), array(

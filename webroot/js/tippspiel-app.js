@@ -31,8 +31,6 @@ var tippspiel_admin = function () {
 
   var setMatchname = function () {
     $( ".MatchTeamName" ).change(function() {
-      alert($('#MatchTeam1Id option:selected').text());
-      alert($('#MatchTeam2Id option:selected').text());
       $('#MatchName').val($('#MatchTeam1Id option:selected').text() + ' - ' + $('#MatchTeam2Id option:selected').text());
     });
   }
@@ -51,9 +49,9 @@ var tippspiel_admin = function () {
     });
   }
 
-  var loadTippsOverview = function (round) {
+  var loadTippsOverview = function (url) {
     var request = $.ajax({
-      url: "/tipps/overview/" + round,
+      url: url,
       dataType: "html"
     });
     
@@ -63,6 +61,36 @@ var tippspiel_admin = function () {
     request.fail(function( jqXHR, textStatus ) {
       alert( "Request failed: " + textStatus );
     });
+  }
+
+  var refreshTippsOverview = function (type) {
+    var params;
+    if ($('#RoundSelect option:selected').val() == 'overview') {
+      loadTippsOverview('/ranking');
+    } else {
+      if (type == 'round') {
+        params = defineroundgroup();
+      } else {
+        params = defineroundgroup();
+        if ($('#MatchFrom option:selected').val() != '') {
+          params = params + '/from_match:' + $('#MatchFrom option:selected').val();
+        };
+        if ($('#MatchTo option:selected').val() != '') {
+          params = params + '/to_match:' + $('#MatchTo option:selected').val();
+        };
+      };
+      loadTippsOverview('/tipps/overview/' + params);
+    }
+  }
+
+  var defineroundgroup = function(){
+    var roundgroup = $('#RoundSelect option:selected').val();
+    var roundgrparr = roundgroup.split('-');
+    var params = 'round:' + roundgrparr[0];
+    if (roundgrparr[1]) {
+      params = params + '/group:' + roundgrparr[1];
+    };
+    return params;
   }
 
 	return {
@@ -84,7 +112,8 @@ var tippspiel_admin = function () {
 			mvpready_core.initLightbox ()
 		},
     loadTippsOverview: loadTippsOverview,
-    loadRoundTipps: loadRoundTipps
+    loadRoundTipps: loadRoundTipps,
+    refreshTippsOverview: refreshTippsOverview
 	}
 
 }()

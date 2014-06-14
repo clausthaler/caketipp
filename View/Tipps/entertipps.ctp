@@ -53,6 +53,7 @@
           echo '</tr>';
 
           foreach ($matches as $key => $match) {
+            if ($match['Match']['kickoff'] > time()) {
             echo '<tr>';
             echo '<td>';
             echo __(date("D", $match['Match']['kickoff'])) . ', ';
@@ -117,6 +118,7 @@
             }
             echo '</td>';
             echo '</tr>';
+            }
 
           }
           echo "</table>";

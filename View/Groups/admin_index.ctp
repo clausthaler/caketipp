@@ -22,6 +22,7 @@
                   <th><?php echo $this->Paginator->sort('id'); ?></th>
                   <th><?php echo $this->Paginator->sort('name'); ?></th>
                   <th><?php echo $this->Paginator->sort('shortname'); ?></th>
+                  <th><?php echo $this->Paginator->sort('round_id'); ?></th>
                   <th class="actions"><?php echo __('Actions'); ?></th>
                 </tr>
               </thead>   
@@ -31,6 +32,7 @@
                   <td><?php echo h($group['Group']['id']); ?>&nbsp;</td>
                   <td><?php echo h($group['Group']['name']); ?>&nbsp;</td>
                   <td><?php echo h($group['Group']['shortname']); ?>&nbsp;</td>
+                  <td><?php echo h($group['Round']['name']); ?></td>
                   <td class="actions">
                     <?php echo $this->Html->link(__('Edit'), array(
                       'action' => 'edit', $group['Group']['id']),

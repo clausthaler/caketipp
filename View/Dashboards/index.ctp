@@ -1,4 +1,9 @@
 <div class="mainnav">
+  <!-- temporary maintnance warning -->
+  <div class="alert alert-warning">
+    <strong>Im den nächsten Minuten kann es aufgrund von Wartungsarbeiten zu eingeschränkter Verfügbarkeit oder Fehlermeldungen auf der Seite kommen.</strong>
+  </div>
+  <!-- temporary maintnance warning -->
   <?php 
     echo $this->Session->flash('flash', array('element' => 'message'));
     echo $this->Session->flash('auth', array('element' => 'message'));

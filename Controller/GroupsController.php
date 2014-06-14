@@ -51,6 +51,8 @@ class GroupsController extends AppController {
 				$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
 			}
 		}
+		$rounds = $this->Match->Round->find('list');
+		$this->set(compact('rounds'));
 	}
 
 /**
@@ -72,6 +74,8 @@ class GroupsController extends AppController {
 				$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
 			}
 		} else {
+			$rounds = $this->Match->Round->find('list');
+			$this->set(compact('rounds'));
 			$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
 			$this->request->data = $this->Group->find('first', $options);
 		}

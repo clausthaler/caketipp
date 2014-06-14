@@ -21,7 +21,7 @@
                 <tr>
                   <th><?php echo $this->Paginator->sort('id'); ?></th>
                   <th><?php echo $this->Paginator->sort('name'); ?></th>
-                  <th><?php echo $this->Paginator->sort('bonus'); ?></th>
+                  <th><?php echo $this->Paginator->sort('groupstage'); ?></th>
                   <th class="actions"><?php echo __('Actions'); ?></th>
                 </tr>
               </thead>   
@@ -31,11 +31,11 @@
                   <td><?php echo h($round['Round']['id']); ?>&nbsp;</td>
                   <td><?php echo h($round['Round']['name']); ?>&nbsp;</td>
                   <td>
-                  <?php echo $this->Form->checbox('bonus', array(
+                  <?php echo $this->Form->checbox('groupstage', array(
                     'div' => false,
                     'type' => 'checkbox',
                     'label' => false,
-                    'checked' => ($round['Round']['bonus'] == 1 ? true : false),
+                    'checked' => ($round['Round']['groupstage'] == 1 ? true : false),
                     'disabled' => 'disabled')); 
                   ?>
                   </td>

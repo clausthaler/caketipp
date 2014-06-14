@@ -42,6 +42,12 @@ class Group extends AppModel {
  *
  * @var array
  */
+  public $belongsTo = array(
+    'Round' => array(
+        'className' => 'Round',
+        'foreignKey' => 'round_id'
+    )
+  );
 	public $hasMany = array(
 		'Match' => array(
 			'className' => 'Match',

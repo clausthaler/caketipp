@@ -18,6 +18,12 @@
       &nbsp;&nbsp;<?php echo __('Dashboard');?>
       </a>
     </li>
+    <li <?php if ($active == 'tippoverview') { echo ' class="active" '; } ?>>
+      <a href="/tipps/overview">
+      <i class="fa fa-dashboard"></i> 
+      &nbsp;&nbsp;<?php echo __('Tipp overview');?>
+      </a>
+    </li>
     <li <?php if ($active == 'schedule') { echo ' class="active" '; } ?>>
       <a href="/schedule">
       <i class="fa fa-table"></i> 
@@ -28,12 +34,6 @@
       <a href="/grouptables">
       <i class="fa fa-table"></i> 
       &nbsp;&nbsp;<?php echo __('Group tables');?>
-      </a>
-    </li>
-    <li <?php if ($active == 'tippoverview') { echo ' class="active" '; } ?>>
-      <a href="/tipps/overview">
-      <i class="fa fa-dashboard"></i> 
-      &nbsp;&nbsp;<?php echo __('Tipp overview');?>
       </a>
     </li>
     <li <?php if ($active == 'entertipps') { echo ' class="active" '; } ?>>
@@ -57,6 +57,12 @@
   </ul>
   <?php if ($this->Session->read('Auth.User.role') == 'admin') { ?>
   <ul class="nav nav-layout-sidebar nav-stacked">
+    <li <?php if ($active == 'matches') { echo ' class="active" '; } ?>>
+      <a href="/admin/matches">
+      <i class="fa fa-dollar"></i> 
+      &nbsp;&nbsp;<?php echo __('Matches');?>
+      </a>
+    </li>
     <li <?php if ($active == 'users') { echo ' class="active" '; } ?>>
       <a href="/admin/users">
       <i class="fa fa-user"></i> 
@@ -73,12 +79,6 @@
       <a href="/admin/rounds">
       <i class="fa fa-bullhorn"></i> 
       &nbsp;&nbsp;<?php echo __('Rounds');?>
-      </a>
-    </li>
-    <li <?php if ($active == 'matches') { echo ' class="active" '; } ?>>
-      <a href="/admin/matches">
-      <i class="fa fa-dollar"></i> 
-      &nbsp;&nbsp;<?php echo __('Matches');?>
       </a>
     </li>
     <li <?php if ($active == 'questions') { echo ' class="active" '; } ?>>

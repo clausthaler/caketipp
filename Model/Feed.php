@@ -48,8 +48,8 @@ class Feed extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Feedlike' => array(
-			'className' => 'Feedlike',
+		'Like' => array(
+			'className' => 'Like',
 			'foreignKey' => 'feed_id',
 			'dependent' => false,
 			'conditions' => '',

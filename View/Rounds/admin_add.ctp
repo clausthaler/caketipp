@@ -52,10 +52,10 @@
             </div>
             <div class="form-group">
               <div class="col-md-7 col-md-push-3">
-              <?php echo $this->Form->input('bonus', array(
+              <?php echo $this->Form->input('groupstage', array(
                 'div' => array('class' => 'checkbox'),
                 'type' => 'checkbox',
-                'label' => __('Bonus yes/no'),
+                'label' => __('Groupstage'),
                 'tabindex' => '3')); 
               ?>
               </div> <!-- /.col -->

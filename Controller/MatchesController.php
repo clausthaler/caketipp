@@ -363,7 +363,7 @@ class MatchesController extends AppController {
     }
     $this->Match->recursive = 0;
     $nextMatches = $this->Match->find('all', array(
-      'conditions' => array('Match.kickoff >' => strtotime($this->Session->read('currentdatetime'))),
+      'conditions' => array('Match.kickoff >' => time()),
       'order' => 'Match.kickoff',
       'limit' => $nbr));
 

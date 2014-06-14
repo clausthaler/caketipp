@@ -77,6 +77,7 @@
                     } ?>
                   </tbody>
                 </table>
+                <a href="/ranking" class="btn btn-xs btn-info"><?php echo __('Complete Ranking') ?></a>
               </div>
             </div>
           </div>
@@ -93,11 +94,10 @@
                       <th><?php echo __('Team 1'); ?></th>
                       <th>&nbsp;</th>
                       <th><?php echo __('Team 2'); ?></th>
-                      <th><?php echo __('Groupe'); ?></th>
                     </tr>
                   </thead>
                   <tbody>
-                  <?php $matches = $this->requestAction('matches/nextmatches' ); ?>
+                  <?php $matches = $this->requestAction('matches/nextmatches/7' ); ?>
                   <?php foreach ($matches as $id => $match) { ?>
                     <tr>
                       <td>
@@ -126,13 +126,11 @@
                         echo $match['Team2']['name']; 
                       ?>
                       </td>
-                      <td>
-                      <?php echo $match['Group']['shortname']; ?>
-                      </td>
                     </tr>
                   <?php } ?>
                   </tbody>
                 </table>
+                <a href="/schedule" class="btn btn-xs btn-info"><?php echo __('Show schedule') ?></a>
               </div>
             </div>
           </div>

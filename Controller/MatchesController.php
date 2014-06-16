@@ -14,6 +14,14 @@ class MatchesController extends AppController {
  */
   public $uses = array('Match', 'Round', 'Team', 'Group', 'Ladder');
 
+  public $paginate = array(
+      'limit' => 20,
+      'order' => array(
+          'Match.isfinished' => 'asc',
+          'Match.kickoff' => 'asc'
+      )
+  );
+
   public function array_orderby() {
     $args = func_get_args();
     $data = array_shift($args);
@@ -37,9 +45,13 @@ class MatchesController extends AppController {
  * @return void
  */
 	public function admin_index() {
+    $this->Paginator->settings = $this->paginate;
 		$this->Match->recursive = 0;
-		$rounds = $this->Match->Round->find('list', array('fields'=> array('id','shortname')));
+		$rounds = $this->Match->Round->find('list', array(
+      'fields'=> array('id','shortname')));
 		$this->set(compact('rounds'));
+
+    $this->set(compact('data'));
 		$this->set('matches', $this->Paginator->paginate());
 	}
 

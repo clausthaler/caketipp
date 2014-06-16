@@ -44,6 +44,13 @@
             </div>
           </div>
           <br><br>
+        </section> <!-- /.demo-section -->
+        <div class="row">
+            <div class="col-xs-3 pull-right">
+              <a href="" onClick="$( '#MatchSchedule' ).toggle();return false;"><?php echo __('show / hide schedule'); ?></a>
+            </div>
+        </div>
+        <section id="MatchSchedule" style="display:none;">
           <!-- start: Content -->
           <?php
             echo '<h4>' . $rounds[$tipproundid]['name']  . '</h4>';

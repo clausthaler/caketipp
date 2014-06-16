@@ -364,6 +364,7 @@ order by sum desc) c');
       // todo: set current round according to date
       $tipproundid = $rounds[0]['Round']['id'];
     }
+
     $rounds = Hash::combine($rounds, '{n}.Round.id', '{n}.Round'); 
 
     $this->Group->recursive = -1;
@@ -419,7 +420,13 @@ order by sum desc) c');
       $conditions['Match.id <='] = $this->params['named']['to_match'];
       $tomatch = $this->params['named']['to_match'];
     } else {
-      $tomatch = false;
+      if ($tipproundid == 1) {
+        $toM = $this->Tipp->query("select max(id) as 'lastgame' from matches where round_id = " . $tipproundid . " and kickoff < " . time() );
+        $tomatch = $toM[0][0]['lastgame'];
+        $conditions['Match.id <='] = $tomatch;
+      } else {
+        $tomatch = false;
+      }
     }
 
     // get all matches according to conditions 

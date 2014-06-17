@@ -113,17 +113,7 @@
                     'class' => 'btn btn-primary'
                     )); 
                   echo '&nbsp;';
-                  echo $this->Form->button(
-                    __d('users', 'Cancel'), 
-                    array(
-                      'formaction' => Router::url(
-                      array(
-                        'action' => 'index',
-                        'admin' => true)
-                      ),
-                      'class' => 'btn btn-default'
-                    )
-                  );
+                  echo $this->Html->link('Cancel', array( 'action'=>'index'), array('class' => 'btn btn-default'));
                 ?>
               </div> <!-- /.col -->
             </div>

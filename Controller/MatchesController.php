@@ -271,9 +271,9 @@ class MatchesController extends AppController {
         $this->Ladder->deleteAll(array(
           'Ladder.group_id' => $groupid,
           'Ladder.type' => 'real' ), false);
-        foreach ($arrladder as $poskey => $value) {
+        foreach ($arrladder as $poskey => $newlader) {
           $this->Ladder->create();
-          $newLadder['Ladder'] = $value;
+          $newLadder['Ladder'] = $newlader;
           $newLadder['Ladder']['pos'] = $poskey + 1;
           $this->Ladder->save($newLadder);
         }

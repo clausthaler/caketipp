@@ -114,6 +114,12 @@
                     }
                     echo '&nbsp;';                    
                   }
+                } else {
+                      echo $this->Html->link(__('Edit result'), array(
+                          'action' => 'result', 
+                          $match['Match']['id']),
+                          array('class' => 'btn btn-xs btn-danger')
+                      );                      
                 }
                 ?>
                 </td>

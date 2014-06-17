@@ -39,9 +39,10 @@ $teams = Hash::combine($teams, '{n}.Team.id', '{n}.Team');
                     </tr>
                   </thead>
                   <tbody>
+                  <?php $pos = 1; ?>
                   <?php foreach ($ladders[$group['Group']['id']] as $ladderkey => $ladder) { ?>
                     <tr style="text-align:center">
-                      <td><?php echo $ladder['pos'] ?></td>
+                      <td><?php echo $pos++; ?></td>
                       <td style="text-align:left">
                       <?php 
                         echo $this->Html->image($teams[$ladder['team_id']]['iconurl']) . '&nbsp;';

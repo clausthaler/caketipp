@@ -338,7 +338,9 @@ class MatchesController extends AppController {
       'all', 
       array('order' => array(
         'Ladder.group_id', 
-        'Ladder.pos'),
+        'Ladder.points desc',
+        'Ladder.goodgoals - Ladder.badgoals desc',
+        'Ladder.goodgoals desc'),
         'conditions' => array('type' => 'real')));
     $this->set('ladders', $ladders);
   }

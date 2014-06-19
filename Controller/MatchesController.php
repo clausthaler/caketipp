@@ -355,7 +355,7 @@ class MatchesController extends AppController {
       $days = 7;
     }
     $nextMatches = $this->Match->query("SELECT * FROM matches a  WHERE a.due <= UNIX_TIMESTAMP() + " . $days * 86400 . 
-      " AND a.kickoff >= UNIX_TIMESTAMP() AND  NOT EXISTS (SELECT 'X' FROM tipps b " .
+      " AND a.kickoff >= UNIX_TIMESTAMP() AND a.isfixed = 1 AND NOT EXISTS (SELECT 'X' FROM tipps b " .
       " WHERE b.user_id = '" . $this->Auth->user('id') . "' " .
       " AND a.id = b.match_id);");
 

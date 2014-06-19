@@ -35,48 +35,51 @@ class TippsController extends AppController {
  */
   public function entertipps($id = null) {
 	  if ($this->request->is('post')) {
-      $tippmatches = $this->Match->find('list', array(
-        'conditions' => array(
-          'Match.id' => array_keys($this->request->data['Tipp'])),
-        'fields' => array('id', 'due')));
-      // validate the entries and clean up the array
-      $tippErrors = array();
-      foreach ($this->request->data['Tipp'] as $matchid => $tippresult) {
-        if (!isset($tippmatches[$matchid]) || $tippmatches[$matchid] < strtotime($this->Session->read('currentdatetime'))) {
-          unset($this->request->data['Tipp'][$matchid]);
-        } else {
-          if (!is_numeric($tippresult['points1']) && !is_numeric($tippresult['points2'])) {
+      if (isset($this->request->data['Tipp'])) {
+        $tippmatches = $this->Match->find('list', array(
+          'conditions' => array(
+            'Match.id' => array_keys($this->request->data['Tipp'])),
+          'fields' => array('id', 'due')));
+        // validate the entries and clean up the array
+        $tippErrors = array();
+        foreach ($this->request->data['Tipp'] as $matchid => $tippresult) {
+          if (!isset($tippmatches[$matchid]) || $tippmatches[$matchid] < strtotime($this->Session->read('currentdatetime'))) {
             unset($this->request->data['Tipp'][$matchid]);
           } else {
-            if (!is_numeric($tippresult['points1']) || !is_numeric($tippresult['points2'])) {
-              array_push($tippErrors, $matchid);
+            if (!is_numeric($tippresult['points1']) && !is_numeric($tippresult['points2'])) {
               unset($this->request->data['Tipp'][$matchid]);
+            } else {
+              if (!is_numeric($tippresult['points1']) || !is_numeric($tippresult['points2'])) {
+                array_push($tippErrors, $matchid);
+                unset($this->request->data['Tipp'][$matchid]);
+              }
             }
           }
         }
-      }
-      // delete all valid tipps from database
-      $this->Tipp->deleteAll(array(
-        'Tipp.user_id' => $this->Auth->user('id'),
-        'Tipp.match_id' => array_keys($this->request->data['Tipp']) ), false);
-      // insert new tipps
-      foreach ($this->request->data['Tipp'] as $matchid => $tippresult) {
-        $this->Tipp->create();
-        $newTipp = array(
-          'Tipp' => array(
-            'match_id' => $matchid, 
-            'user_id' => $this->Auth->user('id'),
-            'points_team1' => $tippresult['points1'],
-            'points_team2' => $tippresult['points2']));
-        if (!$this->Tipp->save($newTipp)) {
-          array_push($tippErrors, $matchid);
+        // delete all valid tipps from database
+        $this->Tipp->deleteAll(array(
+          'Tipp.user_id' => $this->Auth->user('id'),
+          'Tipp.match_id' => array_keys($this->request->data['Tipp']) ), false);
+        // insert new tipps
+        foreach ($this->request->data['Tipp'] as $matchid => $tippresult) {
+          $this->Tipp->create();
+          $newTipp = array(
+            'Tipp' => array(
+              'match_id' => $matchid, 
+              'user_id' => $this->Auth->user('id'),
+              'points_team1' => $tippresult['points1'],
+              'points_team2' => $tippresult['points2']));
+          if (!$this->Tipp->save($newTipp)) {
+            array_push($tippErrors, $matchid);
+          }
+        }
+        if (empty($tippErrors) ) {
+          $this->Session->setFlash(__('Tipp saved successfully.'));
+        } else {
+          $this->Session->setFlash(__('Tipp could not be saved. Please correct errors and try again. Tipps are shown like they are saved at the moment'));
         }
       }
-      if (empty($tippErrors) ) {
-        $this->Session->setFlash(__('Tipp saved successfully.'));
-      } else {
-        $this->Session->setFlash(__('Tipp could not be saved. Please correct errors and try again. Tipps are shown like they are saved at the moment'));
-      }
+
 	  }
     
     if ($id == null) {

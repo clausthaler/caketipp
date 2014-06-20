@@ -133,3 +133,29 @@ div.error-message {
 .shoutboxchild {
   margin-top:25px;
 }
+
+.message-body {
+  overflow: auto;
+}
+
+.message-item {
+  margin-bottom: 20px;
+}
+
+.message-footer span {
+  margin-right: 10px; 
+}
+
+.message-footer {
+  margin-bottom: 30px;
+}
+
+.layout-sidebar {
+    padding-bottom: 52px;
+    padding-top: 0px;
+}
+
+.layout-main {
+    padding-bottom: 26px;
+    padding-top: 0px;
+}

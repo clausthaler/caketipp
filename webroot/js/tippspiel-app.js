@@ -65,12 +65,26 @@ var tippspiel_admin = function () {
 
   var togglelike = function (id) {
     var request = $.ajax({
-      url: 'feeds/like/' + id,
+      url: '/feeds/like/' + id,
       dataType: "html"
     });
     
     request.done(function( msg ) {
       $( "#commentlike-" + id ).html( msg );
+    });
+    request.fail(function( jqXHR, textStatus ) {
+      alert( "Request failed: " + textStatus );
+    });
+  }
+
+  var toggleMessagelike = function (id) {
+    var request = $.ajax({
+      url: '/messages/like/' + id,
+      dataType: "html"
+    });
+    
+    request.done(function( msg ) {
+      $( "#messagelike-" + id ).html( msg );
     });
     request.fail(function( jqXHR, textStatus ) {
       alert( "Request failed: " + textStatus );
@@ -115,6 +129,10 @@ var tippspiel_admin = function () {
     $('#ModalFeedId').val(feedid);
     $('#myModal').modal('show');
     console.log($('#ModalFeedId').val());
+  }
+
+  var loadStreamPage = function(page) {
+    $( "#feedStream" ).load( "/feeds/stream/page:" + page );
   }
 
   var showcommentbox = function(params) {
@@ -173,7 +191,9 @@ var tippspiel_admin = function () {
     messagerefresh: messagerefresh,
     togglelike: togglelike,
     commentmodal: commentmodal,
-    showcommentbox: showcommentbox
+    showcommentbox: showcommentbox,
+    loadStreamPage: loadStreamPage,
+    toggleMessagelike: toggleMessagelike
 	}
 
 }()

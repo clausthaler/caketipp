@@ -1,3 +1,13 @@
+<?php 
+  if (isset($feeds['paging'])) {
+    $paging = $feeds['paging'];
+    unset($feeds['paging']);
+  } else {
+    $paging = false;
+  }
+
+?>
+<div id="feedStream">
 <div id="shoutbox" class="share-widget clearfix">
   <div class="row">
     <div class="col-md-9">
@@ -93,6 +103,29 @@
   </div> <!-- /.feed-item -->
 <?php } ?>
 
+            <?php
+              $params = $this->Paginator->params();
+              if ($paging) {
+            ?>
+              <div class="pagination pagination-centered">
+                  <ul class="pagination">
+                  <?php
+                    if ( $paging['Feed']['prevPage'] == 1) {
+                      echo '<li class="prev"><a rel="prev" onclick="tippspiel_admin.loadStreamPage(' . ($paging['Feed']['page'] - 1) . ');">Vorherige</a></li>';
+                    } else {
+                      echo '<li class="prev disabled"><a onclick="return false;">Vorherige</a></li>';
+                    }
+                    if ( $paging['Feed']['nextPage'] == 1) {
+                      echo '<li class="next"><a rel="next" onclick="tippspiel_admin.loadStreamPage(' . ($paging['Feed']['page'] + 1) . ');" >Nächste</a></li>';
+                    } else {
+                      echo '<li class="next disabled"><a onclick="return false;">Nächste</a></li>';
+                    }
+                    ?>
+
+                  </ul>
+              </div>
+            <?php } ?>
+
 <div id="shoutboxholder" style="display: none;">
   <div class="row shoutboxtemplate">
     <?php 
@@ -128,6 +161,7 @@
     </div>
     <?php echo $this->Form->end();  ?>
   </div>
+</div>
 </div>
 
 

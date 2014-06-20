@@ -39,6 +39,7 @@
   Router::connect('/entertipps/*', array('controller' => 'tipps', 'action' => 'entertipps'));
   Router::connect('/enterbonus', array('controller' => 'tipps', 'action' => 'enterbonus'));
   Router::connect('/ranking', array('controller' => 'tipps', 'action' => 'ranking'));
+  Router::connect('/blog', array('controller' => 'messages', 'action' => 'blog'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

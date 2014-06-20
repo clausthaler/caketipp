@@ -45,6 +45,7 @@ class FeedsController extends AppController {
         'order' => array('Feed.created' => 'DESC')
     );
     $feeds = $this->Paginator->paginate('Feed');
+    $feeds['paging'] = $this->request->params['paging'];
     if ($this->request->is('requested')) {
       return $feeds;
     } else {

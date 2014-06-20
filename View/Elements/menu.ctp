@@ -24,6 +24,12 @@
       &nbsp;&nbsp;<?php echo __('Tipp overview');?>
       </a>
     </li>
+    <li <?php if ($active == 'blog') { echo ' class="active" '; } ?>>
+      <a href="/blog">
+      <i class="fa fa-book"></i> 
+      &nbsp;&nbsp;<?php echo __('Blog');?>
+      </a>
+    </li>
     <li <?php if ($active == 'schedule') { echo ' class="active" '; } ?>>
       <a href="/schedule">
       <i class="fa fa-table"></i> 

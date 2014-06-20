@@ -23,7 +23,6 @@
         </span> 
         <?php echo $this->element('feedlike', array('feed' => $feed));  ?>
         <a class="pull-left" href="javascript:tippspiel_admin.showcommentbox({feed:'<?php echo $feed['Feed']['id'] ?>', target:'<?php echo $id; ?>'});"> <?php echo __('comment it') ?></a>
-        <a class="pull-left" href="javascript:tippspiel_admin.showcommentbox(<?php echo $feed['Feed']['id'] ?>);"> <?php echo __('comment it') ?></a>
     </div> <!-- /.feed-actions -->
     <?php foreach ($feed['ChildFeed'] as $ckey => $comment) {  ?>
       <?php $id = String::uuid(); ?>

@@ -7,10 +7,10 @@
   </div> <!-- /.mainnav -->
   <div class="content">
     <div class="container">
-      <div class="layout layout-main-right layout-stack-sm">
-      <!-- start: Main Menu -->
-      <?php echo $this->element('menu', array("active" => "tippoverview")); ?>
-      <!-- end: Main Menu -->
+      <div class="row">
+        <!-- start: Main Menu -->
+        <?php echo $this->element('menu', array("active" => "tippoverview")); ?>
+        <!-- end: Main Menu -->
         <div class="col-md-9 col-sm-8 layout-main">
         <section>
           <div class="row">
@@ -112,7 +112,7 @@
             echo "</table>";
             ?>
         </section> <!-- /.demo-section -->
-        <section>
+        <section style="overflow:scroll;">
         <?php
           //calculate match table headers first
           $mth1 = '';
@@ -187,7 +187,6 @@
             }
           echo '</table>';
           ?>
-  
         </section> <!-- /.demo-section -->
   
         </div> <!-- /.col -->

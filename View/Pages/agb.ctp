@@ -6,7 +6,7 @@
 </div> <!-- /.mainnav -->
 <div class="content">
   <div class="container">
-    <div class="layout layout-main-right layout-stack-sm">
+    <div class="row">
       <br>
       <h2 class="">Tippspielregeln</h2>
       <h4 class="content-title">Allgemein</h4>

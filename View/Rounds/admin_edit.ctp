@@ -6,7 +6,7 @@
 </div> <!-- /.mainnav -->
 <div class="content">
   <div class="container">
-    <div class="layout layout-main-right layout-stack-sm">
+    <div class="row">
     <!-- start: Main Menu -->
     <?php echo $this->element('menu', array("active" => "rounds")); ?>
     <!-- end: Main Menu -->
@@ -105,77 +105,3 @@
     </div> <!-- /.row -->
   </div> <!-- /.container -->
 </div> <!-- .content -->
-
-
-<!-- start: Main Menu -->
-<?php
-    echo $this->element('main_menu', array(
-	    "active" => "rounds"
-    ));
-?>
-<!-- end: Main Menu -->
-
-            
-<!-- start: Content -->
-<div id="content" class="col-sm-11">
-	<div class="box">
-		<?php
-		echo $this->Form->create('Round', array(
-			'action' => 'edit',
-			'id' => 'EditForm',
-			'class' => 'form-horizontal',
-			'role' => 'form'
-		)); 
-		echo $this->Form->input('id');
-		?>
-		<div class="form-group">
-			<?php echo $this->Form->label('Round.name', __('Name'), 'control-label'); ?>
-			<div class="controls">
-				<?php 
-					echo $this->Form->input('name', array(
-						'label' => false,
-						'class' => 'form-control',
-						'div' => array(
-							'class' => 'input-group col-sm-4'),
-						'placeholder' => __('Name')
-					));
-				?>
-			</div>
-		</div>
-		<div class="form-group">
-			<?php echo $this->Form->label('Round.shortname', __('Shortname'), 'control-label'); ?>
-			<div class="controls">
-				<?php 
-					echo $this->Form->input('shortname', array(
-						'label' => false,
-						'class' => 'form-control',
-						'div' => array(
-							'class' => 'input-group col-sm-4'),
-						'placeholder' => __('Shortname')
-					));
-				?>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="controls">
-				<?php 
-					echo $this->Form->input('bonus', array(
-						'type' => 'checkbox',
-						'label' => array('text' => __('Bonus yes/no'),
-							'class' => 'checkbox')));
-				?>
-			</div>
-		 </div>
-		<div class="form-group">
-		<?php
-			echo $this->Form->button(__('Save'), array(
-    			'type' => 'submit',
-    			'escape' => true,
-    			'class' => 'btn btn-primary')); ?>
-			<button class="btn" onclick="window.location.href='<?php echo Router::url(array('controller'=>'Rounds', 'action'=>'admin_index'))?>'">Cancel</button>
-		<?php
-    		echo $this->Form->end(); 
-    	?>
-		</div>
-	</div>
-</div>

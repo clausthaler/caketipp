@@ -6,7 +6,7 @@
 </div> <!-- /.mainnav -->
 <div class="content">
   <div class="container">
-    <div class="layout layout-main-right layout-stack-sm">
+    <div class="row">
     <!-- start: Main Menu -->
     <?php echo $this->element('menu', array("active" => "enterbonus")); ?>
     <!-- end: Main Menu -->

@@ -52,7 +52,6 @@ class DashboardsController extends AppController {
  * @return void
  */
     public function index() {
-      $this->set('feeds', $this->Feed->find('threaded'));
       $this->set('title_for_layout', 'User Dashboard');
     }
 

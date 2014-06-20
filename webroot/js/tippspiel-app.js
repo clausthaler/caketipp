@@ -63,6 +63,20 @@ var tippspiel_admin = function () {
     });
   }
 
+  var togglelike = function (id) {
+    var request = $.ajax({
+      url: 'feeds/like/' + id,
+      dataType: "html"
+    });
+    
+    request.done(function( msg ) {
+      $( "#commentlike-" + id ).html( msg );
+    });
+    request.fail(function( jqXHR, textStatus ) {
+      alert( "Request failed: " + textStatus );
+    });
+  }
+
   var refreshTippsOverview = function (type) {
     var params;
     if ($('#RoundSelect option:selected').val() == 'overview') {
@@ -93,6 +107,48 @@ var tippspiel_admin = function () {
     return params;
   }
 
+  var messagerefresh = function() {
+    $('#PublishMessage').attr('disabled', 'disabled');
+  }
+
+  var commentmodal = function(feedid) {
+    $('#ModalFeedId').val(feedid);
+    $('#myModal').modal('show');
+    console.log($('#ModalFeedId').val());
+  }
+
+  var showcommentbox = function(params) {
+    var $newbox = $( ".shoutboxtemplate" ).clone();
+    $( ".shoutboxchild" ).remove();
+    $newbox.addClass('shoutboxchild').removeClass('shoutboxtemplate');
+    $newbox.appendTo( "#" + params.target);
+    $('.shoutboxchild input.ModalFeedId').val(params.feed);
+    $('.shoutboxchild form').submit(function(e) {
+      var postData = $(this).serializeArray();
+      var formURL = $(this).attr("action");
+      if ( $('.shoutboxchild textarea').val() != '' ) {    
+        $.ajax({
+          url : formURL,
+          type: "POST",
+          data : postData,
+          success:function(data, textStatus, jqXHR) {
+            $( "#feed-" + params.feed).html( data );
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            alert( "Request failed: " + textStatus );
+          }
+        });
+      }
+      e.preventDefault(); //STOP default action
+      //    e.unbind(); //unbind. to stop multiple form submit.
+    });
+
+//    $( ".shoutboxtemplate" ).clone().appendTo( "#feedaction-" + feedid);
+//    console.log($( "#feedaction-" + feedid ).html());
+  }
+
+
+
 	return {
 		init: function () {
 			// Layouts
@@ -113,7 +169,11 @@ var tippspiel_admin = function () {
 		},
     loadTippsOverview: loadTippsOverview,
     loadRoundTipps: loadRoundTipps,
-    refreshTippsOverview: refreshTippsOverview
+    refreshTippsOverview: refreshTippsOverview,
+    messagerefresh: messagerefresh,
+    togglelike: togglelike,
+    commentmodal: commentmodal,
+    showcommentbox: showcommentbox
 	}
 
 }()

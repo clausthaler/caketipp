@@ -59,9 +59,9 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
 
         echo $this->fetch('meta');
         echo $this->fetch('css');
+        echo $this->Html->script('libs/jquery-1.10.2.min');
         echo $this->fetch('script');
     ?>
-         <link rel="stylesheet" href="/css/mvpready-admin-carrot.css">
   <!-- Favicon -->
   <link rel="shortcut icon" href="favicon.ico">
 
@@ -185,12 +185,10 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
     //<!-- Bootstrap core JavaScript
     //================================================== -->
     //<!-- Core JS -->
-    echo $this->Html->script('libs/jquery-1.10.2.min');
     echo $this->Html->script('libs/bootstrap.min');
     //<!-- Plugins JS -->
     echo $this->Html->script('plugins/parsley/parsley2');
     echo $this->Html->script('plugins/parsley/i18n/de');
-#    echo $this->Html->script('plugins/parsley/parsley');
 
     //<!-- App JS -->
     echo $this->Html->script('mvpready-core');

@@ -13,3 +13,123 @@ form.form-inline input {
 div.error-message {
     color: #FF0000;
 }
+
+/* !Social Feed */
+/* ----------------------------------------------- */
+.feed-item {
+  position: relative;
+  padding: 10px 0 10px;
+  margin: 0;
+  border-left: none;
+  border-bottom: 1px dotted #ccc;
+}
+.feed-item:last-child {
+  padding-bottom: 15px;
+}
+.feed-item .feed-subject {
+  margin-bottom: 0;
+}
+.feed-item .feed-subject a {
+  font-weight: 600;
+}
+.feed-item .feed-content {
+  padding-left: 0;
+}
+.feed-item .feed-content .thumbnail {
+  max-width: 100%;
+}
+.feed-item .feed-actions {
+  padding: 4px 0 4px 10px;
+  margin-top: 0;
+  border-top: none;
+}
+.feed-item .feed-actions:before,
+.feed-item .feed-actions:after {
+  content: " ";
+  display: table;
+}
+.feed-item .feed-actions:after {
+  clear: both;
+}
+.feed-item .feed-actions a {
+  color: #999;
+  font-size: 13px;
+}
+.feed-item .feed-actions a:hover {
+  text-decoration: none;
+  color: #e5723f;
+}
+.feed-item .feed-actions .pull-left {
+  margin: 0 15px 0 0;
+}
+.feed-item .feed-actions .pull-right {
+  margin: 0 0 0 15px;
+}
+.feed-item .feed-icon {
+  position: absolute;
+  top: 15px;
+  left: -23px;
+  width: 40px;
+  height: 40px;
+  color: #FFF;
+  text-align: center;
+  font-size: 16px;
+  line-height: 34px;
+  background-color: #52a5d9;
+  border: 3px solid #FFF;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+}
+.feed-item-idea .feed-icon {
+  background-color: #52a5d9;
+}
+.feed-item-image .feed-icon {
+  background-color: #bcbcbc;
+}
+.feed-item-file .feed-icon {
+  background-color: #e5723f;
+}
+.feed-item-bookmark .feed-icon {
+  background-color: #555;
+}
+.feed-item-question .feed-icon {
+  background-color: #428bca;
+}
+.icons-list {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.icons-list > li {
+    line-height: 1.65em;
+    margin-bottom: 0;
+    padding-left: 0.5em;
+    position: relative;
+}
+.icons-list > li > .icon-li {
+    font-size: 1.25em;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 0.25em;
+    width: 1em;
+}
+.feed-comment {
+    margin: 5px 0px 0 15px;
+}
+.share-widget {
+    margin-bottom: 10px;
+}
+
+.feed-item .feed-content,
+.feed-item .feed-actions,
+.feed-item .feed-comment {
+    background-color: #f5f5f5;
+}
+.shoutboxchild {
+  margin-top:25px;
+}

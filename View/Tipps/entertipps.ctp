@@ -90,7 +90,7 @@
             }
             echo '</td>';
             echo '<td class="col-xs-2" style="text-align: center;">';
-            if ($match['Match']['due'] > time()) {
+            if ($match['Match']['due'] > time() && $match['Match']['isfixed'] == 1) {
               echo '<div class="form-group">';
               echo $this->Form->input('Tipp.' . $match['Match']['id'] . '.points1', array(
                 'type'=>'select',

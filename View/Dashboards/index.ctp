@@ -11,13 +11,11 @@
 </div> <!-- /.mainnav -->
 <div class="content">
   <div class="container">
-    <div class="layout layout-main-right layout-stack-sm">
-    <!-- start: Main Menu -->
-    <?php echo $this->element('menu', array("active" => "dashboard")); ?>
-    <!-- end: Main Menu -->
-      <div class="col-md-9 col-sm-8 layout-main">
-        <div class="row">
-          <div class="col-md-6">
+    <div class="row">
+      <!-- start: Main Menu -->
+      <?php echo $this->element('menu', array("active" => "blog")); ?>
+      <!-- end: Main Menu -->
+      <div class="col-md-6 col-sm-8 layout-main">
             <div class="portlet">
               <div class="portlet-title">
                 <h4><?php echo __('Ranking'); ?> </h4>
@@ -131,14 +129,12 @@
                 <a href="/schedule" class="btn btn-xs btn-info"><?php echo __('Show schedule') ?></a>
               </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <?php 
-              $feeds = $this->requestAction('feeds/stream' ); 
-              echo $this->element('feedstream', array('feeds' => $feeds));
-            ?>
-          </div>
-        </div>
+      </div>
+      <div class="col-md-3">
+        <?php 
+          $feeds = $this->requestAction('feeds/stream' ); 
+          echo $this->element('feedstream', array('feeds' => $feeds));
+        ?>
       </div> <!-- /.col -->
     </div> <!-- /.row -->
   </div> <!-- /.container -->

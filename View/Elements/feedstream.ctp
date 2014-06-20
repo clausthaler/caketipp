@@ -44,6 +44,10 @@
     <div class="feed-content">
       <ul class="icons-list">
         <li><a href="javascript:;"><?php echo $feed['User']['username'] ?></a> &nbsp;
+          <?php if ($feed['Feed']['message_id'] != '') {
+            echo __('has commented message') . substr($feed['Message']['title'], 0, 20) . '...' ;
+          }
+          ?>
           <?=h($feed['Feed']['text']); ?> 
         </li>
       </ul>

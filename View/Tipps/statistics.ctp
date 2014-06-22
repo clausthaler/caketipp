@@ -64,7 +64,7 @@
                       <th class="text-center"><?php echo __('Tipp') ?></th>
                       <th class="text-center"><?php echo __('Count') ?></th>
                       <th class="text-center"><?php echo __('Points') ?></th>
-                      <th class="text-center"><?php echo __('Avg') ?></th>
+                      <th class="text-center"><i class="fa fa-ban"></i></th>
                     </tr>
                   </thead>
                   <tbody>

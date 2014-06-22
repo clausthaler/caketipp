@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WM Tipp\n"
 "POT-Creation-Date: 2014-06-03 23:32+0200\n"
-"PO-Revision-Date: 2014-06-20 10:18+0100\n"
+"PO-Revision-Date: 2014-06-23 01:35+0100\n"
 "Last-Translator: Ralf Dannhauer <post@dannhauer.eu>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -25,6 +25,24 @@ msgid ""
 "There are %s bonus questions that you haven't tipped yet. What are you "
 "waiting for?"
 msgstr "%s Bonusfragen sind noch zu beantworten. nicht verpassen!"
+
+msgid "Tipp statistics"
+msgstr "Tippstatistiken"
+
+msgid "Tipped results & points"
+msgstr "Tippverteilung, Ergebnisse und Punkte"
+
+msgid "Tipp hits"
+msgstr "Tipptreffer"
+
+msgid "Played matches tipps"
+msgstr "Tippergebnisse"
+
+msgid "Show statistics for"
+msgstr "Statistiken anzeigen für"
+
+msgid "Points per country - Top 10"
+msgstr "Punkte pro Land - Top 10"
 
 msgid "comment it"
 msgstr "kommentieren"

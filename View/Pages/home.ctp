@@ -4,7 +4,7 @@
 </div>
 <div class="content">
   <div class="container">
-    <div class="layout layout-stack-sm layout-main-left">
+    <div class="row">
       <div class="col-sm-4 col-sm-push-8 layout-sidebar">
         <div class="portlet">
           <h4 class="portlet-title">

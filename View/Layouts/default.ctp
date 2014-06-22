@@ -193,6 +193,7 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
     //<!-- App JS -->
     echo $this->Html->script('mvpready-core');
     echo $this->Html->script('tippspiel-app');
+    echo $this->fetch('scriptBottom');
   ?>
 </body>
 </html>

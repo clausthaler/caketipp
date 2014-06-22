@@ -165,7 +165,7 @@ class RememberMeComponent extends Component {
 			$data = $this->request->data;
 			if (empty($data)) {
 				$data = $this->Auth->user();
-		}
+  		}
 		}
 
 		if (empty($data)) {
@@ -179,7 +179,6 @@ class RememberMeComponent extends Component {
 				$cookieData[$field] = $data[$userModel][$field];
 			}
 		}
-
 		$this->Cookie->write($cookieKey, $cookieData, true, $cookieLifeTime);
 		return true;
 	}

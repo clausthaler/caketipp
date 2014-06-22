@@ -464,15 +464,35 @@ order by sum desc) c');
     $this->set(compact('teams', 'groups', 'matchlist', 'rounds', 'roundsselarr', 'tipproundid', 'fromtomatches', 'roundselected', 'frommatch', 'tomatch'));
   }
 
-  public function statistics($userid = null) {
-    if (!$userid) {
-      $userid = $this->Auth->user('id');
+  public function statistics($username = null) {
+    if (!$username) {
+      $user['User'] = $this->Auth->user();
+    } else {
+      $options = array('conditions' => array('User.username' => $username));
+      $user = $this->User->find('first', $options);
+      if (empty($user)) {
+        exit();
+      }
     }
-    $tipps = $this->Tipp->query('select result, count(*) as "count" from (select CASE WHEN points_team2 > points_team1 THEN CONCAT(CONCAT(points_team2, " : "), points_team1) WHEN points_team2 > points_team1 THEN CONCAT(CONCAT(points_team1, " : "), points_team2) ELSE CONCAT(CONCAT(points_team1, " : "), points_team2) END as "result", points from tipps where user_id = "' . $userid . '" and type = 0) a group by result order by result desc');
 
-    $resultsTipps = $this->Tipp->query('select result, count(*) as "count", sum(points) as "points", sum(points) / count(*) as "average" from (select CASE WHEN points_team2 > points_team1 THEN CONCAT(CONCAT(points_team2, " : "), points_team1) WHEN points_team2 > points_team1 THEN CONCAT(CONCAT(points_team1, " : "), points_team2) ELSE CONCAT(CONCAT(points_team1, " : "), points_team2) END as "result", points from tipps where user_id = "' . $userid . '" and type = 0 and match_id in (select id from matches where isfinished = 1)) a group by result order by result desc');
-    $countries = $this->Tipp->query('select x.country, sum(x.points) as "points" from (select a.name as "country", c.points as "points" from teams a, matches b, tipps c where (a.id = b.team1_id or a.id = b.team2_id) and b.isfinished = 1 and b.id = c.match_id and c.user_id = "' . $userid . '") x group by x.country order by sum(x.points) desc limit 10;');
-    $this->set(compact('resultsTipps', 'tipps', 'countries'));
+    $this->User->recursive = -1;
+    $users = $this->User->find('list', array('fields' => array('username', 'username')));
+#    $users = Hash::extract($users, '{s}'); 
+
+    $tipps = $this->Tipp->query('select result, count(*) as "count" from (select CASE WHEN points_team2 > points_team1 THEN CONCAT(CONCAT(points_team2, " : "), points_team1) WHEN points_team2 > points_team1 THEN CONCAT(CONCAT(points_team1, " : "), points_team2) ELSE CONCAT(CONCAT(points_team1, " : "), points_team2) END as "result", points from tipps where user_id = "' . $user['User']['id'] . '" and type = 0) a group by result order by result desc');
+
+    $tipphits = $this->Tipp->query('select x.type, count(*) as "count" from (select CONCAT(CONCAT(b.points_team1, " : "), b.points_team2) as "result", CONCAT(CONCAT(a.points_team1, " : "), a.points_team2) as "tipp" ,CASE WHEN a.points_team1 = b.points_team1 and a.points_team2 = b.points_team2 THEN "Ergebnis" WHEN a.points_team1 - a.points_team2 = b.points_team1 - b.points_team2 THEN "Tordifferenz" WHEN a.points_team1 > a.points_team2 and b.points_team1 > b.points_team2 or a.points_team1 < a.points_team2 and b.points_team1 < b.points_team2 THEN "Tendenz" ELSE "daneben" END as "type" from tipps a, matches b where a.user_id = "' . $user['User']['id'] . '" and a.match_id = b.id and a.type = 0 and b.isfinished = 1) x group by type order by count');
+
+    $resultsTipps = $this->Tipp->query('select result, count(*) as "count", sum(points) as "points", sum(points) / count(*) as "average" from (select CASE WHEN points_team2 > points_team1 THEN CONCAT(CONCAT(points_team2, " : "), points_team1) WHEN points_team2 > points_team1 THEN CONCAT(CONCAT(points_team1, " : "), points_team2) ELSE CONCAT(CONCAT(points_team1, " : "), points_team2) END as "result", points from tipps where user_id = "' . $user['User']['id'] . '" and type = 0 and match_id in (select id from matches where isfinished = 1)) a group by result order by result desc');
+
+    $countries = $this->Tipp->query('select * from (select x.country, sum(x.points) as "pointstotal", (sum(x.points) / count(*)) as "pointspergame" from (select a.name as "country", c.points as "points" from teams a, matches b, tipps c where (a.id = b.team1_id or a.id = b.team2_id) and b.isfinished = 1 and b.id = c.match_id and c.user_id = "' . $user['User']['id'] . '") x group by x.country order by sum(x.points) desc limit 10) x order by 2 asc;');
+    $this->set(compact('resultsTipps', 'tipps', 'countries', 'users', 'user', 'tipphits'));
+
+  }
+
+  private function getTippTimeline () {
+
+    # code...
   }
 
 }

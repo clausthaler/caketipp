@@ -159,3 +159,9 @@ div.error-message {
     padding-bottom: 26px;
     padding-top: 0px;
 }
+.demo-container {
+  width: 100%;
+  min-height: 500px;
+  height: 100%;
+
+}

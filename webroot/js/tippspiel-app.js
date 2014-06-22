@@ -49,6 +49,23 @@ var tippspiel_admin = function () {
     });
   }
 
+  var refreshTippsStatistics = function () {
+    var tipper = $('#TipperSelect option:selected').val();
+
+    var request = $.ajax({
+      url: '/tipps/statistics/' + tipper,
+      dataType: "html"
+    });
+    
+    request.done(function( msg ) {
+      $( "#tippstatistics" ).html( msg );
+    });
+
+    request.fail(function( jqXHR, textStatus ) {
+      alert( "Request failed: " + textStatus );
+    });
+  }
+
   var loadTippsOverview = function (url) {
     var request = $.ajax({
       url: url,
@@ -193,7 +210,8 @@ var tippspiel_admin = function () {
     commentmodal: commentmodal,
     showcommentbox: showcommentbox,
     loadStreamPage: loadStreamPage,
-    toggleMessagelike: toggleMessagelike
+    toggleMessagelike: toggleMessagelike,
+    refreshTippsStatistics: refreshTippsStatistics
 	}
 
 }()

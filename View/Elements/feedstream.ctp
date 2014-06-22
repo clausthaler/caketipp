@@ -58,7 +58,6 @@
           <?php 
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $feed['Feed']['created']);
             $diff = time() - $date->getTimestamp();
-            print_r($diff);
             if ($diff < 3600) {
               echo 'vor ' . round($diff / 60, 0) . ' Min.';
             } elseif ($diff < 84000) {

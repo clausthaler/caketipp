@@ -88,7 +88,7 @@
           </h4>
           <div class="portlet-body">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <div id="pointspercountry" class="chart-holder"></div>
               </div> <!-- /.col -->
             </div> <!-- /.row -->

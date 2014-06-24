@@ -133,6 +133,7 @@ class TippsController extends AppController {
       }
       // delete all valid tipps from database
       $this->Tipp->deleteAll(array(
+        'Tipp.type' => 1,
         'Tipp.user_id' => $this->Auth->user('id'),
         'Tipp.question_id' => array_keys($this->request->data['Question']) ), false);
       // insert new tipps
@@ -326,9 +327,10 @@ order by sum desc) c');
           $roundsselarr[$rkey] =  __($round['name']);
         }
       }
+      $roundsselarr['bonus'] = __('Bonus questions');
       $roundselected = 'overview';
 
-      $rounds['bonus'] = __('Bonus');
+      $rounds['bonus'] = __('Bonus questions');
   
       $this->User->recursive = -1;
       $users = $this->User->find('list', array('fields' => array('id', 'username')));
@@ -396,6 +398,7 @@ order by sum desc) c');
         $roundsselarr[$rkey] =  __($round['name']);
       }
     }
+    $roundsselarr['bonus'] = __('Bonus questions');
 
     // get the matches and tipps for the round
     $conditions = array('Match.round_id' => $tipproundid);
@@ -494,5 +497,60 @@ order by sum desc) c');
 
     # code...
   }
+
+  public function bonusquestions() {
+    $this->Round->recursive = -1;
+    $rounds = $this->Round->find('all', array('fields' => array('id', 'name', 'groupstage', 'shortname', 'slug')));
+    $selrounds = Hash::combine($rounds, '{n}.Round.id', '{n}.Round'); 
+    $rounds = Hash::combine($rounds, '{n}.Round.id', '{n}.Round.shortname'); 
+
+    $this->Group->recursive = -1;
+    $groups = $this->Group->find('all', array(
+      'fields' => array('id', 'name', 'shortname', 'slug', 'round_id')));
+    $roundgroups = Hash::combine($groups, '{n}.Group.id', '{n}.Group', '{n}.Group.round_id'); 
+    $groups = Hash::combine($groups, '{n}.Group.id', '{n}.Group'); 
+
+
+    // generate the round select values
+    $roundsselarr = array('overview' => __('Ranking'));
+    foreach ($selrounds as $rkey => $round) {
+      if ($round['groupstage'] == 1) {
+        $roundsselarr[$rkey] =  __($round['name']) . ' ' .  __('all');
+        foreach ($roundgroups[$rkey] as $gkey => $rgroup) {
+          $roundsselarr[$rkey . '-' . $gkey] =  '  ' . __($round['name']) . ' ' .  __($rgroup['name']);
+        }
+      } else {
+        $roundsselarr[$rkey] =  __($round['name']);
+      }
+    }
+    $roundselected = 'bonus';
+
+    $roundsselarr['bonus'] = __('Bonus');
+  
+
+    $this->Tipp->unbindModel(
+        array('belongsTo' => array('Match'))
+    );    
+    $tipps = $this->Tipp->find('all',
+      array(
+        'conditions' => array('Tipp.type' => 1),
+        'order' => array('lower(User.username)', 'Tipp.question_id')));
+    $tipps = Hash::combine($tipps, '{n}.Tipp.id', '{n}.Tipp', '{n}.User.username'); 
+
+    $this->Team->recursive = -1;
+    $teams = $this->Team->find('all', array('fields' => array('id', 'name', 'iconurl', 'iso')));
+    $teams = Hash::combine($teams, '{n}.Team.id', '{n}.Team'); 
+
+    $this->Question->recursive = -1;
+    $questions = $this->Question->find('all', array('fields' => array('id', 'name', 'text', 'points', 'team_id')));
+    $questions = Hash::combine($questions, '{n}.Question.id', '{n}.Question'); 
+    
+    $this->set(compact('questions', 'teams'));
+    $this->set('tipps', $tipps);
+    $this->set('rounds', $rounds);
+    $this->set('roundsselarr', $roundsselarr);
+    $this->set('roundselected', $roundselected);
+  }
+
 
 }

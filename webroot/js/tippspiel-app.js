@@ -113,18 +113,22 @@ var tippspiel_admin = function () {
     if ($('#RoundSelect option:selected').val() == 'overview') {
       loadTippsOverview('/ranking');
     } else {
-      if (type == 'round') {
-        params = defineroundgroup();
+      if ($('#RoundSelect option:selected').val() == 'bonus') {
+        loadTippsOverview('/tipps/bonusquestions');
       } else {
-        params = defineroundgroup();
-        if ($('#MatchFrom option:selected').val() != '') {
-          params = params + '/from_match:' + $('#MatchFrom option:selected').val();
+        if (type == 'round') {
+          params = defineroundgroup();
+        } else {
+          params = defineroundgroup();
+          if ($('#MatchFrom option:selected').val() != '') {
+            params = params + '/from_match:' + $('#MatchFrom option:selected').val();
+          };
+          if ($('#MatchTo option:selected').val() != '') {
+            params = params + '/to_match:' + $('#MatchTo option:selected').val();
+          };
         };
-        if ($('#MatchTo option:selected').val() != '') {
-          params = params + '/to_match:' + $('#MatchTo option:selected').val();
-        };
-      };
       loadTippsOverview('/tipps/overview/' + params);
+      }
     }
   }
 

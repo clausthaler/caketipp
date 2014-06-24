@@ -13,7 +13,7 @@
   <div class="container">
     <div class="row">
       <!-- start: Main Menu -->
-      <?php echo $this->element('menu', array("active" => "blog")); ?>
+      <?php echo $this->element('menu', array("active" => "dashboard")); ?>
       <!-- end: Main Menu -->
       <div class="col-md-6 col-sm-8 layout-main">
             <div class="portlet">

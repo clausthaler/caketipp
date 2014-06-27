@@ -88,7 +88,7 @@ class TippsController extends AppController {
       // show actual round
       $this->Match->recursive = -1;
       $nextmatch = $this->Match->find('first', array(
-        'conditions' => array('Match.due >' => 'UNIX_TIMESTAMP()'), 
+        'conditions' => array('Match.due >' => time()), 
         'fields' => array('Match.round_id'),
         'order' => array('Match.due asc')));
       if (isset($nextmatch['Match']['round_id'])) {

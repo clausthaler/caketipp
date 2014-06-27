@@ -65,22 +65,33 @@
             </thead>
             <tbody>
             <?php
-              foreach ($tipps as $username => $tipp) {
-                if ($username == $this->Session->read('Auth.User.username')) {
+              foreach ($users as $id => $user) {
+                if ($user['username'] == $this->Session->read('Auth.User.username')) {
                   echo '<tr style="background-color:lightgreen">';
                 } else {
                   echo '<tr>';
                 }
-                echo '<td>' . $username . '</td>';
+                echo '<td>' . $user['username'] . '</td>';
+
+                if (isset($tipps[$user['username']])) {
+                  $userhastipps = true;
+                  $usertipps = $tipps[$user['username']];
+                } else {
+                  $userhastipps = false;
+                }
                 $points = 0;
-                foreach ($tipp as $question) {
+                foreach ($questions as $key => $question) {
                   echo '<td>';
-                  if (!empty($teams[$question['team_id']]['iconurl'])) {
-                    echo $this->Html->image($teams[$question['team_id']]['iconurl']) . '&nbsp;';
+                  if ($userhastipps && isset($usertipps[$question['id']])) {
+                    if (!empty($teams[$usertipps[$question['id']]['team_id']]['iconurl'])) {
+                      echo $this->Html->image($teams[$usertipps[$question['id']]['team_id']]['iconurl']) . '&nbsp;';
+                    }
+                    echo $teams[$usertipps[$question['id']]['team_id']]['name'];
+                    $points = $points + $question['points'];
+                  } else {
+                    echo '-';
                   }
-                  echo $teams[$question['team_id']]['name'];
                   echo '</td>';
-                  $points = $points + $question['points'];
                 }
                 echo '<td>' . $points . '</td>';
                 echo '</tr>';

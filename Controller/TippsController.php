@@ -535,7 +535,11 @@ order by sum desc) c');
       array(
         'conditions' => array('Tipp.type' => 1),
         'order' => array('lower(User.username)', 'Tipp.question_id')));
-    $tipps = Hash::combine($tipps, '{n}.Tipp.id', '{n}.Tipp', '{n}.User.username'); 
+    $tipps = Hash::combine($tipps, '{n}.Tipp.question_id', '{n}.Tipp', '{n}.User.username'); 
+
+    $this->User->recursive = -1;
+    $users = $this->User->find('all', array('fields' => array('id', 'username'), 'order' => array('lower(User.username)')));
+    $users = Hash::combine($users, '{n}.User.id', '{n}.User'); 
 
     $this->Team->recursive = -1;
     $teams = $this->Team->find('all', array('fields' => array('id', 'name', 'iconurl', 'iso')));
@@ -545,7 +549,7 @@ order by sum desc) c');
     $questions = $this->Question->find('all', array('fields' => array('id', 'name', 'text', 'points', 'team_id')));
     $questions = Hash::combine($questions, '{n}.Question.id', '{n}.Question'); 
     
-    $this->set(compact('questions', 'teams'));
+    $this->set(compact('questions', 'teams', 'users'));
     $this->set('tipps', $tipps);
     $this->set('rounds', $rounds);
     $this->set('roundsselarr', $roundsselarr);

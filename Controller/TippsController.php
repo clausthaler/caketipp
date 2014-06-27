@@ -81,9 +81,21 @@ class TippsController extends AppController {
       }
 
 	  }
+
+#select round_id from matches where due > UNIX_TIMESTAMP() order by due asc limit 1
     
     if ($id == null) {
-      $id = 1;
+      // show actual round
+      $this->Match->recursive = -1;
+      $nextmatch = $this->Match->find('first', array(
+        'conditions' => array('Match.due >' => 'UNIX_TIMESTAMP()'), 
+        'fields' => array('Match.round_id'),
+        'order' => array('Match.due asc')));
+      if (isset($nextmatch['Match']['round_id'])) {
+        $id = $nextmatch['Match']['round_id'];
+      } else {
+        $id = 1;
+      }
     }
 
     $this->Team->recursive = -1;

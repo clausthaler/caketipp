@@ -66,6 +66,23 @@ var tippspiel_admin = function () {
     });
   }
 
+  var refreshGroupTables = function () {
+    var tipper = $('#TipperSelect option:selected').val();
+
+    var request = $.ajax({
+      url: '/matches/grouptables/' + tipper,
+      dataType: "html"
+    });
+    
+    request.done(function( msg ) {
+      $( "#tippersgrouptables" ).html( msg );
+    });
+
+    request.fail(function( jqXHR, textStatus ) {
+      alert( "Request failed: " + textStatus );
+    });
+  }
+
   var loadTippsOverview = function (url) {
     var request = $.ajax({
       url: url,
@@ -215,6 +232,7 @@ var tippspiel_admin = function () {
     showcommentbox: showcommentbox,
     loadStreamPage: loadStreamPage,
     toggleMessagelike: toggleMessagelike,
+    refreshGroupTables: refreshGroupTables,
     refreshTippsStatistics: refreshTippsStatistics
 	}
 

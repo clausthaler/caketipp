@@ -19,6 +19,7 @@ class TippsController extends AppController {
 
 
   public $uses = array(
+    'Ladder',
     'Tipp',
     'Match', 
     'Round', 
@@ -81,8 +82,6 @@ class TippsController extends AppController {
       }
 
 	  }
-
-#select round_id from matches where due > UNIX_TIMESTAMP() order by due asc limit 1
     
     if ($id == null) {
       // show actual round
@@ -568,5 +567,103 @@ order by sum desc) c');
     $this->set('roundselected', $roundselected);
   }
 
+  public function admin_generategrouptables() {
+    $this->User->recursive = -1;
+    $users = $this->User->find('all', array('fields' => array('id', 'username'), 'order' => array('lower(User.username)')));
+    foreach ($users as $key => $user) {
+      $userid = $user['User']['id'];
+      $this->Group->recursive = -1;
+      $groups = $this->Group->find('list', array(
+        'fields' => array('id'),
+        'conditions' => array('round_id' => 1)));
+      foreach ($groups as $group) {
+        // get all group team first
+        $this->Team->recursive = -1;
+        $groupteams = $this->Team->find('list', array('conditions' => array('Team.group_id' => $group)));
 
+        // next get the group matches
+        $this->Match->recursive = -1;
+        $groupmatches = $this->Match->find('all', array(
+          'fields' => array('id'),
+          'conditions' => array('group_id' => $group)));
+        $groupmatches = Hash::extract($groupmatches, '{n}.Match.id'); 
+
+        // and than all users tipps for this group matches
+        $this->Tipp->recursive = 0;
+        $this->Tipp->unbindModel(
+          array('belongsTo' => array('User'))
+        );    
+        $usertipps = $this->Tipp->find('all', array(
+          'conditions' => array(
+            'Tipp.match_id' => $groupmatches,
+            'Tipp.user_id' => $userid)));
+
+        // prepare working array
+        $arrladder = array();
+        foreach ($groupteams as $key => $groupteam) {
+          $arrgt = array(
+            'group_id' => $group,
+            'user_id' => $userid,
+            'type' => 'tipp',
+            'pos' => 0,
+            'team_id' => $key,
+            'matches' => 0,
+            'points' => 0,
+            'goodgoals' => 0,
+            'badgoals' => 0,
+            'goaldif' => 0,
+            'won' => 0,
+            'draw' => 0,
+            'lost' => 0);
+          $arrladder[$key] = $arrgt;
+        }
+
+        // calculate all tipps to build a ladder
+        foreach ($usertipps as $key => $usertipp) {
+          $team1_id = $usertipp['Match']['team1_id'];
+          $team2_id = $usertipp['Match']['team2_id'];
+          //goals
+          $arrladder[$team1_id]['goodgoals'] =  $arrladder[$team1_id]['goodgoals'] + $usertipp['Tipp']['points_team1'];
+          $arrladder[$team2_id]['goodgoals'] =  $arrladder[$team2_id]['goodgoals'] + $usertipp['Tipp']['points_team2'];
+          $arrladder[$team1_id]['badgoals'] =  $arrladder[$team1_id]['badgoals'] + $usertipp['Tipp']['points_team2'];
+          $arrladder[$team2_id]['badgoals'] =  $arrladder[$team2_id]['badgoals'] + $usertipp['Tipp']['points_team1'];
+         $arrladder[$team1_id]['goaldif'] =  $arrladder[$team1_id]['goodgoals'] - $arrladder[$team1_id]['badgoals'];
+          $arrladder[$team2_id]['goaldif'] =  $arrladder[$team2_id]['goodgoals'] - $arrladder[$team2_id]['badgoals'];
+          //matches
+          $arrladder[$team1_id]['matches']++;
+          $arrladder[$team2_id]['matches']++;
+          //points, won, drw, lost
+          if ($usertipp['Tipp']['points_team1'] == $usertipp['Tipp']['points_team2']) {
+           // let's call it a draw
+            $arrladder[$team1_id]['points']++;
+            $arrladder[$team2_id]['points']++;
+            $arrladder[$team1_id]['draw']++;
+            $arrladder[$team2_id]['draw']++;
+          } elseif ($usertipp['Tipp']['points_team1'] > $usertipp['Tipp']['points_team2']) {
+            // team 1 won
+            $arrladder[$team1_id]['points'] = $arrladder[$team1_id]['points'] + 3;
+            $arrladder[$team1_id]['won']++;
+            $arrladder[$team2_id]['lost']++;
+          } else {
+            // team 2 won
+            $arrladder[$team2_id]['points'] = $arrladder[$team2_id]['points'] + 3;
+            $arrladder[$team2_id]['won']++;
+            $arrladder[$team1_id]['lost']++;
+          }
+        }
+
+        // write the ladder
+        $this->Ladder->deleteAll(array(
+          'Ladder.group_id' => $group,
+          'Ladder.type' => 'tipp',
+          'Ladder.user_id' =>  $userid), false);
+
+        foreach ($arrladder as $poskey => $newlader) {
+          $this->Ladder->create();
+          $newLadder['Ladder'] = $newlader;
+          $this->Ladder->save($newLadder);
+        }
+      }
+    }
+  }
 }

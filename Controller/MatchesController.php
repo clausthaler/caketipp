@@ -12,7 +12,7 @@ class MatchesController extends AppController {
 /**
  * 
  */
-  public $uses = array('Match', 'Round', 'Team', 'Group', 'Ladder');
+  public $uses = array('Match', 'Round', 'Team', 'Group', 'Ladder', 'User', 'Tipp');
 
   public $paginate = array(
       'limit' => 20,
@@ -318,22 +318,63 @@ class MatchesController extends AppController {
  *
  * @return void
  */
-  public function grouptables() {
-    $this->Team->recursive = -1;
+  public function grouptables($username = null) {
+    if (!$username) {
+      $user['User'] = $this->Auth->user();
+    } else {
+      $options = array('conditions' => array('User.username' => $username));
+      $user = $this->User->find('first', $options);
+      if (empty($user)) {
+        exit();
+      }
+    }
+
     $this->Group->recursive = -1;
-    $this->Round->recursive = -1;
     $groups = $this->Group->find('all', array('fields' => array('id', 'name', 'shortname')));
+
+    $this->Team->recursive = -1;
     $teams = $this->Team->find('all', array(
       'fields' => array('id', 'name', 'iconurl', 'group_id'),
       'conditions' => array('group_id' => Hash::extract($groups, '{n}.Group.id'))));
-    $this->set(compact('teams', 'groups'));
+
+
+    $this->User->recursive = -1;
+    $users = $this->User->find('list', array('fields' => array('username', 'username')));
+    $this->set(compact('teams', 'groups', 'users','user'));
     $this->Match->recursive = -1;
-    $this->set('matches', $this->Match->find(
+    $matches = $this->Match->find(
       'all', 
       array('order' => array(
         'Match.round_id', 
         'Match.datetime'),
-        'conditions' => array('group_id' => Hash::extract($groups, '{n}.Group.id'))))); 
+        'conditions' => array('group_id' => Hash::extract($groups, '{n}.Group.id'))));
+    ;
+    $this->set('matches', $matches); 
+
+    $this->Tipp->recursive = -1;
+    $tipps = $this->Tipp->find('all',
+      array(
+        'order' => 'Tipp.match_id',
+        'conditions' => array(
+          'Tipp.match_id' => Hash::extract($matches, '{n}.Match.id'),
+          'Tipp.user_id' => $user['User']['id'])));
+    $this->set('tipps', $tipps);
+
+    $this->Ladder->recursive = -1;
+    $tippladders = $this->Ladder->find(
+      'all', 
+      array('order' => array(
+        'Ladder.group_id', 
+        'Ladder.points desc',
+        'Ladder.goodgoals - Ladder.badgoals desc',
+        'Ladder.goodgoals desc'),
+        'conditions' => array(
+          'Ladder.type' => 'tipp',
+          'Ladder.user_id' => $user['User']['id'])));
+    $this->set('tippladders', $tippladders);
+
+
+    $this->Ladder->recursive = -1;
     $ladders = $this->Ladder->find(
       'all', 
       array('order' => array(
@@ -344,6 +385,9 @@ class MatchesController extends AppController {
         'conditions' => array('type' => 'real')));
     $this->set('ladders', $ladders);
   }
+
+
+
 
 /**
  * admin_index method

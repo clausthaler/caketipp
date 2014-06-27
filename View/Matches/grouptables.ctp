@@ -92,6 +92,7 @@ $tippladders = Hash::combine($tippladders, '{n}.Ladder.id', '{n}.Ladder', '{n}.L
             </div> <!-- /.row -->
             <div class="row">
               <div class="col-md-6">
+                <h5><u><?php echo __('Result'); ?></u></h5>
                 <table class="table table-bordered table-condensed">
                   <thead>
                     <tr>
@@ -130,6 +131,7 @@ $tippladders = Hash::combine($tippladders, '{n}.Ladder.id', '{n}.Ladder', '{n}.L
                 </table>
               </div> <!-- /.col -->
               <div class="col-md-6">
+                <h5><u><?php echo __('Tipp table'); ?></u></h5>
                 <table class="table table-bordered table-condensed">
                   <thead>
                     <tr>

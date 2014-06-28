@@ -19,7 +19,7 @@
       </a>
     </li>
     <li <?php if ($active == 'tippoverview') { echo ' class="active" '; } ?>>
-      <a href="/tipps/overview">
+      <a href="/tipps/ranking">
       <i class="fa fa-dashboard"></i> 
       &nbsp;&nbsp;<?php echo __('Tipp overview');?>
       </a>

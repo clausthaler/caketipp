@@ -56,7 +56,13 @@
                 }
                 echo '<td>' . $users[$key] . '</td>';
                 foreach ($tipp as $round => $points) {
-                  echo '<td>' . $points . '</td>';
+                  echo '<td>';
+                  if (!$points) {
+                    echo '0';
+                  } else {
+                    echo $points;
+                  }
+                  echo '</td>';
                 }
                 echo '</tr>';
                 $lastsum = $tipp['total'];

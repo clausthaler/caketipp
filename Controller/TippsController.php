@@ -341,6 +341,7 @@ order by sum desc) c');
       $roundsselarr['bonus'] = __('Bonus questions');
       $roundselected = 'overview';
 
+      $rounds['groupbonus'] = __('Group bonus');
       $rounds['bonus'] = __('Bonus questions');
   
       $this->User->recursive = -1;
@@ -351,6 +352,8 @@ order by sum desc) c');
         foreach ($rounds as $key => $round) {
           if ($key == 'bonus') {
             $select = $select . '(select sum(points) from tipps where user_id = "' . $id . '" and type = 1) as "' . $round . '", ';
+          } elseif ($key == 'groupbonus') {
+              $select = $select . '(select sum(points) from tipps where user_id = "' . $id . '" and type = 2) as "' . $round . '", ';
           } else {
             $select = $select . '(select sum(points) from tipps where user_id = "' . $id . '" and match_id in (select id from matches where round_id = '. $key . ')) as "' . $round . '", ';
           }

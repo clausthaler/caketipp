@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WM Tipp\n"
 "POT-Creation-Date: 2014-06-03 23:32+0200\n"
-"PO-Revision-Date: 2014-06-28 00:27+0100\n"
+"PO-Revision-Date: 2014-06-28 14:12+0100\n"
 "Last-Translator: Ralf Dannhauer <post@dannhauer.eu>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -28,6 +28,9 @@ msgstr "%s Bonusfragen sind noch zu beantworten. nicht verpassen!"
 
 msgid "Answer"
 msgstr "Antwort"
+
+msgid "Group bonus"
+msgstr "Gruppenbonus"
 
 msgid "Tipp table"
 msgstr "Tipptabelle"

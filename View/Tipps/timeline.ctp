@@ -2,6 +2,7 @@
   $usercount = count($users);
   $this->Html->script('libs/jquery-ui.min', array('block' => 'scriptBottom'));
   $this->Html->script('plugins/flot/jquery.flot', array('block' => 'scriptBottom'));
+  $this->Html->script('plugins/flot/jquery.flot.tooltip.min', array('block' => 'scriptBottom'));
   $this->Html->script('plugins/flot/jquery.flot.pie', array('block' => 'scriptBottom'));
   $this->Html->script('plugins/flot/jquery.flot.resize', array('block' => 'scriptBottom'));
   $this->Html->script('plugins/flot/jquery.flot.orderBars', array('block' => 'scriptBottom'));
@@ -41,7 +42,7 @@
 $(function() {
 
   function positionFormatter(v, axis) {
-    return (50 - v) == 0 ? 1 : (50 - v);
+    return (50 - v) == 0 ? 1 : (50 - v) < 0 ? '' : (50 - v);
   }
 
     var datasets = {
@@ -111,6 +112,30 @@ $(function() {
           legend: {
             show: true,
             position: "nw"
+          },
+          series: {
+            lines: {
+              show: true, 
+              lineWidth: 3
+            },
+            points: {
+              show: true,
+              radius: 2,
+              fill: true,
+              fillColor: "#ffffff",
+              lineWidth: 2
+            }
+          },
+          grid: { 
+            hoverable: true, 
+            clickable: false, 
+            borderWidth: 0 
+          },
+          tooltip: true,
+          tooltipOpts: {
+            content: function(label, xval, yval, flotItem){
+              return "Platz <b>" + (<?php echo $usercount; ?> -  yval + 1) + "</b>"
+            },
           },
         });
       }

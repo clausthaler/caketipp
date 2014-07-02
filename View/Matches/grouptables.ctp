@@ -194,7 +194,7 @@ $tippladders = Hash::combine($tippladders, '{n}.Ladder.id', '{n}.Ladder', '{n}.L
                         echo '<td>' . ($tippladders[$groupid][$tippladderkey]['goodgoals'] - $tippladders[$groupid][$tippladderkey]['badgoals']);
                         if (($tippladders[$groupid][$tippladderkey]['goodgoals'] - $tippladders[$groupid][$tippladderkey]['badgoals']) == ($ladders[$groupid][$tippladderkey]['goodgoals'] - $ladders[$groupid][$tippladderkey]['badgoals'])) {
                           echo '<sub style="color:red;font-weight:bold">1</sub>';
-                          $points['diff'] = $points['diff'] + 2;
+                          $points['diff'] = $points['diff'] + 1;
                         }
                         echo  '</td>';                        
                       ?>

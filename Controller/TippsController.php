@@ -26,7 +26,9 @@ class TippsController extends AppController {
     'Team', 
     'Group', 
     'User',
-    'Question');
+    'Question',
+    'Timeline',
+    'Usertimeline');
 
 
 /**
@@ -339,6 +341,8 @@ order by sum desc) c');
         }
       }
       $roundsselarr['bonus'] = __('Bonus questions');
+      $roundsselarr['timeline'] = __('Ranking timeline');
+
       $roundselected = 'overview';
 
       $rounds['groupbonus'] = __('Group bonus');
@@ -413,6 +417,7 @@ order by sum desc) c');
       }
     }
     $roundsselarr['bonus'] = __('Bonus questions');
+    $roundsselarr['timeline'] = __('Ranking timeline');
 
     // get the matches and tipps for the round
     $conditions = array('Match.round_id' => $tipproundid);
@@ -492,8 +497,23 @@ order by sum desc) c');
       }
     }
 
+    $maxdifftotop = $this->Usertimeline->query('select max(difftotop) as "maxdiff" from usertimelines where user_id = "' . $user['User']['id'] . '";');
+    if (!empty($maxdifftotop)) {
+      $maxdiff = $maxdifftotop[0][0]['maxdiff'];
+    } else {
+      $maxdiff = 0;
+    }
+
+    $usertimelines = $this->Usertimeline->find('all',
+      array(
+        'fields' => array('timeline_id', 'position', 'points', 'points_total', 'difftotop'),
+        'conditions' => array('Usertimeline.user_id' => $user['User']['id'])
+        ));
+    $this->set(compact('usertimelines', 'maxdiff'));
+
     $this->User->recursive = -1;
     $users = $this->User->find('list', array('fields' => array('username', 'username')));
+    $usercount = count($users);
 #    $users = Hash::extract($users, '{s}'); 
 
     $tipps = $this->Tipp->query('select result, count(*) as "count" from (select CASE WHEN points_team2 > points_team1 THEN CONCAT(CONCAT(points_team2, " : "), points_team1) WHEN points_team2 > points_team1 THEN CONCAT(CONCAT(points_team1, " : "), points_team2) ELSE CONCAT(CONCAT(points_team1, " : "), points_team2) END as "result", points from tipps where user_id = "' . $user['User']['id'] . '" and type = 0) a group by result order by result desc');
@@ -503,13 +523,10 @@ order by sum desc) c');
     $resultsTipps = $this->Tipp->query('select result, count(*) as "count", sum(points) as "points", sum(points) / count(*) as "average" from (select CASE WHEN points_team2 > points_team1 THEN CONCAT(CONCAT(points_team2, " : "), points_team1) WHEN points_team2 > points_team1 THEN CONCAT(CONCAT(points_team1, " : "), points_team2) ELSE CONCAT(CONCAT(points_team1, " : "), points_team2) END as "result", points from tipps where user_id = "' . $user['User']['id'] . '" and type = 0 and match_id in (select id from matches where isfinished = 1)) a group by result order by result desc');
 
     $countries = $this->Tipp->query('select * from (select x.country, sum(x.points) as "pointstotal", (sum(x.points) / count(*)) as "pointspergame" from (select a.name as "country", c.points as "points" from teams a, matches b, tipps c where (a.id = b.team1_id or a.id = b.team2_id) and b.isfinished = 1 and b.id = c.match_id and c.user_id = "' . $user['User']['id'] . '") x group by x.country order by sum(x.points) desc limit 10) x order by 2 asc;');
-    $this->set(compact('resultsTipps', 'tipps', 'countries', 'users', 'user', 'tipphits'));
+    $this->set(compact('resultsTipps', 'tipps', 'countries', 'users', 'user', 'tipphits', 'usercount'));
 
-  }
 
-  private function getTippTimeline () {
 
-    # code...
   }
 
   public function bonusquestions() {
@@ -538,6 +555,7 @@ order by sum desc) c');
       }
     }
     $roundselected = 'bonus';
+    $roundsselarr['timeline'] = __('Ranking timeline');
 
     $roundsselarr['bonus'] = __('Bonus');
   
@@ -668,5 +686,60 @@ order by sum desc) c');
         }
       }
     }
+  }
+
+  public function timeline() {
+      $this->Round->recursive = -1;
+      $rounds = $this->Round->find('all', array('fields' => array('id', 'name', 'groupstage', 'shortname', 'slug')));
+      $selrounds = Hash::combine($rounds, '{n}.Round.id', '{n}.Round'); 
+      $rounds = Hash::combine($rounds, '{n}.Round.id', '{n}.Round.shortname'); 
+
+      $this->Group->recursive = -1;
+      $groups = $this->Group->find('all', array(
+        'fields' => array('id', 'name', 'shortname', 'slug', 'round_id')));
+      $roundgroups = Hash::combine($groups, '{n}.Group.id', '{n}.Group', '{n}.Group.round_id'); 
+      $groups = Hash::combine($groups, '{n}.Group.id', '{n}.Group'); 
+
+
+      // generate the round select values
+      $roundsselarr = array('overview' => __('Ranking'));
+      foreach ($selrounds as $rkey => $round) {
+        if ($round['groupstage'] == 1) {
+          $roundsselarr[$rkey] =  __($round['name']) . ' ' .  __('all');
+          foreach ($roundgroups[$rkey] as $gkey => $rgroup) {
+            $roundsselarr[$rkey . '-' . $gkey] =  '  ' . __($round['name']) . ' ' .  __($rgroup['name']);
+          }
+        } else {
+          $roundsselarr[$rkey] =  __($round['name']);
+        }
+      }
+      $roundsselarr['bonus'] = __('Bonus questions');
+      $roundselected = 'overview';
+
+      $rounds['groupbonus'] = __('Group bonus');
+      $rounds['bonus'] = __('Bonus questions');
+  
+      $this->User->recursive = -1;
+      $users = $this->User->find('list', array('fields' => array('id', 'username')));
+
+      $this->Timeline->recursive = -1;
+      $timelines = $this->Timeline->find('all',
+        array(
+          'fields' => array('Timeline.id'),
+          'conditions' => array('Timeline.finished' => 1)));
+
+      $usertimelines = $this->Usertimeline->find('all',
+        array(
+          'fields' => array('timeline_id', 'position', 'points', 'points_total', 'difftotop', 'user_id'),
+          'conditions' => array('Usertimeline.timeline_id' => Hash::extract( $timelines, '{n}.Timeline.id')),
+          'order' => array('Usertimeline.timeline_id', 'Usertimeline.points_total desc')
+          ));
+      $usertimelines = Hash::combine($usertimelines, '{n}.Usertimeline.timeline_id', '{n}.Usertimeline', '{n}.Usertimeline.user_id');
+
+      $this->set('usertimelines', $usertimelines);
+      $this->set('users', $users);
+      $this->set('rounds', $rounds);
+      $this->set('roundsselarr', $roundsselarr);
+      $this->set('roundselected', $roundselected);
   }
 }

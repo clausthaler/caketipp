@@ -191,7 +191,7 @@ class GroupsController extends AppController {
             $points['points'] = $points['points'] + 2;
           }
           if (($tippladders[$groupid][$tippladderkey]['goodgoals'] - $tippladders[$groupid][$tippladderkey]['badgoals']) == ($ladders[$groupid][$tippladderkey]['goodgoals'] - $ladders[$groupid][$tippladderkey]['badgoals'])) {
-            $points['diff'] = $points['diff'] + 2;
+            $points['diff'] = $points['diff'] + 1;
           }
         }
         $this->Tipp->deleteAll(array(

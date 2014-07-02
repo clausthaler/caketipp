@@ -127,25 +127,29 @@ var tippspiel_admin = function () {
 
   var refreshTippsOverview = function (type) {
     var params;
-    if ($('#RoundSelect option:selected').val() == 'overview') {
-      loadTippsOverview('/ranking');
-    } else {
-      if ($('#RoundSelect option:selected').val() == 'bonus') {
-        loadTippsOverview('/tipps/bonusquestions');
+    if ($('#RoundSelect option:selected').val() == 'timeline') {
+      window.location = "/tipps/timeline";
+    } else{
+      if ($('#RoundSelect option:selected').val() == 'overview') {
+        loadTippsOverview('/ranking');
       } else {
-        if (type == 'round') {
-          params = defineroundgroup();
+        if ($('#RoundSelect option:selected').val() == 'bonus') {
+          loadTippsOverview('/tipps/bonusquestions');
         } else {
-          params = defineroundgroup();
-          if ($('#MatchFrom option:selected').val() != '') {
-            params = params + '/from_match:' + $('#MatchFrom option:selected').val();
+          if (type == 'round') {
+            params = defineroundgroup();
+          } else {
+            params = defineroundgroup();
+            if ($('#MatchFrom option:selected').val() != '') {
+              params = params + '/from_match:' + $('#MatchFrom option:selected').val();
+            };
+            if ($('#MatchTo option:selected').val() != '') {
+              params = params + '/to_match:' + $('#MatchTo option:selected').val();
+            };
           };
-          if ($('#MatchTo option:selected').val() != '') {
-            params = params + '/to_match:' + $('#MatchTo option:selected').val();
-          };
-        };
-      loadTippsOverview('/tipps/overview/' + params);
-      }
+        loadTippsOverview('/tipps/overview/' + params);
+        }
+      }      
     }
   }
 

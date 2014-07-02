@@ -165,3 +165,14 @@ div.error-message {
   height: 100%;
 
 }
+
+.chartuser {
+  padding: 0px 3px;
+  border: 1px solid lightgrey;
+  float: left;
+  margin: 2px;
+  border-radius:5px;
+}
+.chartuser label {
+  margin-left: 3px;
+}

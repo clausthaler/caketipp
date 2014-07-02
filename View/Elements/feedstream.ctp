@@ -94,7 +94,7 @@
               } elseif ($diff < 84000) {
                 echo 'vor ' . round($diff / 3600, 0) . ' Std.';
               } else {
-                echo 'vor ' . round($diff / 8400, 0) . ' Tagen';
+                echo 'vor ' . round($diff / 84000, 0) . ' Tagen';
               }
             ?>
           </span> 

@@ -81,13 +81,23 @@
                 }
                 $points = 0;
                 foreach ($questions as $key => $question) {
-                  echo '<td>';
+                  $style = '';
+                  if ($userhastipps && isset($usertipps[$question['id']])) {
+#                    print_r($usertipps[$question['id']]['team_id']);
+#                    print_r($possibleanswers[$question['id']]);
+#                    print_r(gettype(array_search($usertipps[$question['id']]['team_id'], $possibleanswers[$question['id']])));
+#                    exit();
+                    if (gettype(array_search($usertipps[$question['id']]['team_id'], $possibleanswers[$question['id']])) != 'integer') {
+                      $style = 'opacity:0.3;';
+                    }
+                  }
+                  echo '<td style="' . $style . '">';
                   if ($userhastipps && isset($usertipps[$question['id']])) {
                     if (!empty($teams[$usertipps[$question['id']]['team_id']]['iconurl'])) {
                       echo $this->Html->image($teams[$usertipps[$question['id']]['team_id']]['iconurl']) . '&nbsp;';
                     }
                     echo $teams[$usertipps[$question['id']]['team_id']]['name'];
-                    $points = $points + $question['points'];
+                    $points = $points + $usertipps[$question['id']]['points'];
                   } else {
                     echo '-';
                   }

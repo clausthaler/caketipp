@@ -530,6 +530,11 @@ order by sum desc) c');
   }
 
   public function bonusquestions() {
+    $possibleanswers = array(
+      '1' => array('139', '764'),     // Weltmeister
+      '2' => array('139', '764', '753', '147')      // Torschütze
+      );
+
     $this->Round->recursive = -1;
     $rounds = $this->Round->find('all', array('fields' => array('id', 'name', 'groupstage', 'shortname', 'slug')));
     $selrounds = Hash::combine($rounds, '{n}.Round.id', '{n}.Round'); 
@@ -581,7 +586,7 @@ order by sum desc) c');
     $questions = $this->Question->find('all', array('fields' => array('id', 'name', 'text', 'points', 'team_id')));
     $questions = Hash::combine($questions, '{n}.Question.id', '{n}.Question'); 
     
-    $this->set(compact('questions', 'teams', 'users'));
+    $this->set(compact('questions', 'teams', 'users', 'possibleanswers'));
     $this->set('tipps', $tipps);
     $this->set('rounds', $rounds);
     $this->set('roundsselarr', $roundsselarr);

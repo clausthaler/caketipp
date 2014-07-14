@@ -531,8 +531,8 @@ order by sum desc) c');
 
   public function bonusquestions() {
     $possibleanswers = array(
-      '1' => array('139', '764'),     // Weltmeister
-      '2' => array('139', '764', '753', '147')      // Torschütze
+      '1' => array('139'),     // Weltmeister
+      '2' => array('1469')      // Torschütze
       );
 
     $this->Round->recursive = -1;

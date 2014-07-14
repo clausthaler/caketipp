@@ -1,5 +1,4 @@
 <?php 
-
 #    'questions'
 #    'teams'
 #    'tipps'
@@ -44,7 +43,11 @@
                 <tr>
                   <td><?php echo $question['text'] ; ?></td>
                   <td><?php echo $question['points'] ; ?></td>
-                  <td><?php echo $question['team_id'] ; ?></td>
+                  <td>
+                    <?php 
+                    echo $this->Html->image($teams[$question['team_id']]['iconurl']) . '&nbsp;';
+                    echo $teams[$question['team_id']]['name'] ; ?>
+                  </td>
                 </tr>
               <?php 
               ?>

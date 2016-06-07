@@ -3,7 +3,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WM Tipp\n"
+"Project-Id-Version: EM Tipp\n"
 "POT-Creation-Date: 2014-06-03 23:32+0200\n"
 "PO-Revision-Date: 2014-07-02 23:25+0100\n"
 "Last-Translator: Ralf Dannhauer <post@dannhauer.eu>\n"
@@ -984,8 +984,8 @@ msgid "et"
 msgstr "n.V."
 
 #: View/Users/add.ctp:10
-msgid "Welcome to WM Tipp."
-msgstr "Willkommen zum WM Tippspiel."
+msgid "Welcome to EM Tipp."
+msgstr "Willkommen zum EM Tippspiel."
 
 #: View/Users/add.ctp:12
 msgid "Sing up and have fun. No strings attached!"
@@ -1034,8 +1034,8 @@ msgid "Current Datetime"
 msgstr "Aktuelle Zeit"
 
 #: View/Users/login.ctp:10
-msgid "Welcome back to WM Tipp."
-msgstr "Willkommen zurück zum WM Tippspiel"
+msgid "Welcome back to EM Tipp."
+msgstr "Willkommen zurück zum EM Tippspiel"
 
 #: View/Users/login.ctp:12
 msgid "Please sign in to get access."

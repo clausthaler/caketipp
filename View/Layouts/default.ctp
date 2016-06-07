@@ -16,7 +16,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
+$cakeDescription = __d('cake_dev', 'EM 2014 Tippspiel');
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
     </title>
 
 	<?php echo $this->Html->charset(); ?>
-    <meta name="description" content="WM Tippspiel von Ralf Dannhauer">
+    <meta name="description" content="EM Tippspiel von Ralf Dannhauer">
     <meta name="author" content="Ralf Dannhauer">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +81,7 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
             <i class="fa fa-cog"></i>
           </button>
           <a href="/" class="navbar-brand navbar-brand-img">
-            <?php echo $this->Html->image('logo.png', $options = array('alt' => 'WM Tipppsiel')); ?> 
+            <?php echo $this->Html->image('logo.png', $options = array('alt' => 'EM Tipppsiel')); ?> 
           </a>
         </div> <!-- /.navbar-header -->
 
@@ -172,7 +172,7 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
 
   <footer class="footer">
     <div class="container">
-      <p class="pull-left">Copyright &copy; 2014 Ralf Dannhauer.</p>
+      <p class="pull-left">Copyright &copy; 2016 Ralf Dannhauer.</p>
       <p class="pull-right"><a href="/impressum"><?php echo __('Imprint'); ?></a></p>
     </div>
   </footer>

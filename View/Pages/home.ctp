@@ -65,7 +65,7 @@
         </div> <!-- /.portlet -->
       </div> <!-- /.layout-sidebar -->
       <div class="col-sm-8 col-sm-pull-4 layout-main">
-        <h2><?php echo __('Welcome to our WM 2014 tipp game') ?></h2>
+        <h2><?php echo __('Welcome to our EM 2016 tipp game') ?></h2>
           <br>
 
           <h4 class="content-title"><u>General Questions</u></h4>

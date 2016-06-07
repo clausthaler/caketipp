@@ -3,7 +3,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WM Tipp\n"
+"Project-Id-Version: EM Tipp\n"
 "POT-Creation-Date: 2014-06-03 23:32+0200\n"
 "PO-Revision-Date: 2014-06-03 23:48+0100\n"
 "Last-Translator: Ralf Dannhauer <post@dannhauer.eu>\n"
@@ -863,7 +863,7 @@ msgid "et"
 msgstr ""
 
 #: View/Users/add.ctp:10
-msgid "Welcome to WM Tipp."
+msgid "Welcome to EM Tipp."
 msgstr ""
 
 #: View/Users/add.ctp:12
@@ -913,7 +913,7 @@ msgid "Current Datetime"
 msgstr ""
 
 #: View/Users/login.ctp:10
-msgid "Welcome back to WM Tipp."
+msgid "Welcome back to EM Tipp."
 msgstr ""
 
 #: View/Users/login.ctp:12

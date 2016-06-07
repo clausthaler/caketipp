@@ -1,9 +1,8 @@
-<div class="portlet-header">
-  <h4 class="portlet-title">
-    <?php echo __('Ranking'); ?>
-  </h4>
-</div> <!-- /.portlet-header -->
-<div class="portlet-body">
+<div class="col-md-3 col-sm-4 layout-sidebar">
+  <div class="nav-layout-sidebar-skip">
+    <strong>Tab Navigation</strong> / <a href="#settings-content">Skip to Content</a>   
+  </div>
+
   <ul class="nav nav-layout-sidebar nav-stacked">
     <?php if (Configure::read('mode') == 1) { ?>
     <li>
@@ -13,12 +12,6 @@
       </a>
     </li>
     <?php } ?>
-    <li <?php if ($active == 'rules') { echo ' class="active" '; } ?>>
-      <a href="/rules">
-      <i class="fa fa-bullhorn"></i> 
-      &nbsp;&nbsp;<?php echo __('Rules');?>
-      </a>
-    </li>
     <li <?php if ($active == 'dashboard') { echo ' class="active" '; } ?>>
       <a href="/">
       <i class="fa fa-dashboard"></i> 
@@ -67,5 +60,45 @@
       &nbsp;&nbsp;<?php echo __('Bonus questions');?>
       </a>
     </li>
+    <li <?php if ($active == 'profile') { echo ' class="active" '; } ?>>
+      <a href="/profile">
+      <i class="fa fa-user"></i> 
+      &nbsp;&nbsp;<?php echo __('Profile');?>
+      </a>
+    </li>
   </ul>
-</div> <!-- /.portlet-body -->
+  <?php if ($this->Session->read('Auth.User.role') == 'admin') { ?>
+  <ul class="nav nav-layout-sidebar nav-stacked">
+    <li <?php if ($active == 'matches') { echo ' class="active" '; } ?>>
+      <a href="/admin/matches">
+      <i class="fa fa-dollar"></i> 
+      &nbsp;&nbsp;<?php echo __('Matches');?>
+      </a>
+    </li>
+    <li <?php if ($active == 'users') { echo ' class="active" '; } ?>>
+      <a href="/admin/users">
+      <i class="fa fa-user"></i> 
+      &nbsp;&nbsp;<?php echo __('Users');?>
+      </a>
+    </li>
+    <li <?php if ($active == 'groups') { echo ' class="active" '; } ?>>
+      <a href="/admin/groups">
+      <i class="fa fa-lock"></i> 
+      &nbsp;&nbsp;<?php echo __('Groups');?>
+      </a>
+    </li>
+    <li <?php if ($active == 'rounds') { echo ' class="active" '; } ?>>
+      <a href="/admin/rounds">
+      <i class="fa fa-bullhorn"></i> 
+      &nbsp;&nbsp;<?php echo __('Rounds');?>
+      </a>
+    </li>
+    <li <?php if ($active == 'questions') { echo ' class="active" '; } ?>>
+      <a href="/admin/questions">
+      <i class="fa fa-question"></i> 
+      &nbsp;&nbsp;<?php echo __('Questions');?>
+      </a>
+    </li>
+  </ul>
+  <?php } ?>
+</div> <!-- /.col -->

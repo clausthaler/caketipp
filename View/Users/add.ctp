@@ -7,7 +7,7 @@
   ?>
 
   <div class="account-body">
-    <h3><?php echo __('Welcome to WM Tipp.'); ?></h3>
+    <h3><?php echo __('Welcome to EM Tipp.'); ?></h3>
 
     <h5><?php echo __('Sing up and have fun. No strings attached!'); ?></h5>
 
@@ -34,6 +34,19 @@
         'type' => 'email',
         'tabindex' => '2',
         'placeholder' => __d('users', 'Email')));
+      echo $this->Form->input('recieve_emails', array(
+          'type' => 'checkbox',
+          'class' => '',
+          'label' => array('text' => __('Admins are allowed to send emails.'),
+            'class' => 'checkbox-inline'),
+          'tabindex' => '3')); 
+
+      echo $this->Form->input('recieve_reminders', array(
+          'type' => 'checkbox',
+          'class' => '',
+          'label' => array('text'=> __('I want to get email reminders for outstanding tipps.'),
+            'class' => 'checkbox-inline'),
+          'tabindex' => '4'));
       echo $this->Form->input('password', array(
         'label' => __d('users', 'Password'),
         'type' => 'password',

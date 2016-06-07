@@ -91,7 +91,7 @@
                 echo $groups[$match['Match']['group_id']]['shortname'];
                 echo '</td>';
               }
-              if ($match['Match']['kickoff'] < strtotime($this->Session->read('currentdatetime')) && $match['Match']['isfinished'] != 1) {
+              if ($match['Match']['kickoff'] < time() && $match['Match']['isfinished'] != 1) {
                 echo '<td style="text-align:center;color:red;">';
               } else {
                 echo '<td style="text-align: center;">';
@@ -120,7 +120,7 @@
           $mth3 = '';
           $extratime = array('', __('et'), __('pen'));
           foreach ($matches as $key => $match) {
-            if ($match['Match']['kickoff'] < strtotime($this->Session->read('currentdatetime')) && $match['Match']['isfinished'] != 1) {
+            if ($match['Match']['kickoff'] < time() && $match['Match']['isfinished'] != 1) {
               $style = ';color:red';
             } else {
               $style = '';
@@ -158,7 +158,7 @@
               echo '<td>' . $user['username'] . '</td>';
               foreach ($matches as $matchkey => $match) {
                 // only show tipps when tipp due is over
-                if ($match['Match']['due'] < strtotime($this->Session->read('currentdatetime'))) {
+                if ($match['Match']['due'] < time()) {
                   // show if exists tipp
                   if (isset($user['Tipps'][$match['Match']['id']])) {
                     echo '<td style="text-align: center;">';

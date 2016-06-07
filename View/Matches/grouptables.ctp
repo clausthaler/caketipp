@@ -19,11 +19,6 @@ $tippladders = Hash::combine($tippladders, '{n}.Ladder.id', '{n}.Ladder', '{n}.L
     <?php echo $this->element('menu', array("active" => "grouptables")); ?>
     <!-- end: Main Menu -->
       <div class="col-md-9 col-sm-8">
-        <div class="row">
-          <div class="alert alert-warning">
-            <h1>UNDER CONSTRUCTION!</h1>
-          </div>
-        </div>
         <div class="row form-group">
           <?php echo $this->Form->label('TipperSelect', __('Show group bonus for'), 'col-md-3'); ?>
           <div class="col-md-4">

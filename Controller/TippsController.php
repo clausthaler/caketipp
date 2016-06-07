@@ -134,7 +134,7 @@ class TippsController extends AppController {
     $this->Team->recursive = -1;
     $teams = $this->Team->find('list', array(
       'fields' => array('id', 'name'),
-      'conditions' => array('Team.iconurl <>' => '')));
+      'conditions' => array('Team.iso <>' => null)));
     if ($this->request->is('post')) {
       // validate the entries and clean up the array
       $tippErrors = array();

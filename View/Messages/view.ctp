@@ -99,7 +99,7 @@
               <span class="pull-right"><i class="fa fa-clock-o"></i>
               <?php 
                 $date = DateTime::createFromFormat('Y-m-d H:i:s', $feed['created']);
-                $diff = strtotime($this->Session->read('currentdatetime')) - $date->getTimestamp();
+                $diff = time() - $date->getTimestamp();
                 if ($diff < 3600) {
                   echo 'vor ' . round($diff / 60, 0) . ' Min.';
                 } elseif ($diff < 84000) {

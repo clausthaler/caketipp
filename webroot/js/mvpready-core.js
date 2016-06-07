@@ -5,8 +5,7 @@
 * ========================================================
 *
 * File: mvpready-core.js
-* Theme Version: 3.0.0
-* Bootstrap Version: 3.3.6
+* Version: 1.0.0
 * Author: Jumpstart Themes
 * Website: http://mvpready.com
 *
@@ -16,48 +15,70 @@ var mvpready_core = function () {
 
   "use strict"
 
-  var getLayoutColors = function (theme) {
+  var getLayoutColors = function () {
+    var colors
+    
+    colors = ['#D74B4B', '#475F77', '#BCBCBC', '#777777', '#6685a4', '#E68E8E'] // Slate
+    //colors = ['#2980b9', '#7CB268', '#A9A9A9', '#888888', '#74B5E0', '#B3D1A7'] // Belize    
+    //colors = ['#6B5C93', '#444444', '#569BAA', '#AFB7C2', '#A89EC2', '#A9CCD3'] // Square
+    //colors = ['#e74c3c', '#444444', '#569BAA', '#AFB7C2', '#F2A299', '#A9CBD3'] // Pom
+    //colors = ['#3498DB', '#2c3e50', '#569BAA', '#AFB7C2', '#ACCDD5', '#6487AA'] // Royal
+    //colors = ['#E5723F', '#67B0DE', '#373737', '#BCBCBC', '#F2BAA2', '#267BAE'] // Carrot
 
-    var theme_choice = (theme === undefined || theme === '') ? 'slate' : theme
-
-    var color_object = {
-      slate: ['#D74B4B', '#475F77', '#BCBCBC', '#777777', '#6685a4', '#E68E8E']
-      , belize: ['#2980b9', '#7CB268', '#A9A9A9', '#888888', '#74B5E0', '#B3D1A7']
-      , square: ['#6B5C93', '#444444', '#569BAA', '#AFB7C2', '#A89EC2', '#A9CCD3']
-      , pom: ['#e74c3c', '#444444', '#569BAA', '#AFB7C2', '#F2A299', '#A9CBD3']
-      , royal: ['#3498DB', '#2c3e50', '#569BAA', '#AFB7C2', '#ACCDD5', '#6487AA']
-      , carrot: ['#E5723F', '#67B0DE', '#373737', '#BCBCBC', '#F2BAA2', '#267BAE']
-    }
-
-    return color_object[theme_choice]
-  }
-
-  var scrollConfig = {
-    height: '100%',
-    railVisible: true,
-    railColor: '#999',
-    size: '5px',
-    color: '#888',
-    touchScrollStep: 60
-  }
+    return colors
+  }   
 
   var isLayoutCollapsed = function () {
-    return $('.navbar-toggle').is (':visible')
+    return $('.navbar-toggle').css ('display') == 'block'
   }
 
-  var isSidebarCollapsed = function () {
-    return $('.sidebar-toggle').is (':visible')
+  var initFormValidation = function( ) {
+    if ($.fn.parsley) {
+      $('.parsley-form').each (function () {
+        $(this).parsley ({
+          trigger: 'change',
+          errors: {
+            container: function (element, isRadioOrCheckbox) {
+              if (element.parents ('form').is ('.form-horizontal')) {
+                return element.parents ("*[class^='col-']")
+              }             
+              return element.parents ('.form-group')
+            }
+          }
+        })
+      })
+    }
   }
 
-  var initLayoutToggles = function () {
-    $('.navbar-toggle, .mainnav-toggle').click (function (e) {
-      $(this).toggleClass ('is-open')
+  var initAccordions = function () {
+    $('.accordion-simple, .accordion-panel').each (function (i) {
+      var accordion = $(this),
+          toggle = accordion.find ('.accordion-toggle'),
+          activePanel = accordion.find ('.panel-collapse.in').parent ()
+
+      activePanel.addClass ('is-open')
+
+      if (accordion.is ('.accordion-simple')) {
+        toggle.prepend('<i class="fa accordion-caret"></i>')
+      }
+
+      toggle.on ('click', function (e) {
+        var panel = $(this).parents ('.panel')
+
+        panel.toggleClass ('is-open')
+        panel.siblings ().removeClass ('is-open')
+      })
     })
   }
 
+  var initTooltips = function () {
+    $('.ui-tooltip').tooltip ({ container: 'body' })
+    $('.ui-popover').popover ({ container: 'body' })
+  }
+
   var initBackToTop = function () {
-    var backToTop = $('<a>', { id: 'back-to-top', href: '#top' })
-        , icon = $('<i>', { 'class': 'fa fa-chevron-up' })
+    var backToTop = $('<a>', { id: 'back-to-top', href: '#top' }),
+        icon = $('<i>', { 'class': 'fa fa-chevron-up' })
 
     backToTop.appendTo ('body')
     icon.appendTo (backToTop)
@@ -81,73 +102,22 @@ var mvpready_core = function () {
     })
   }
 
-  var initSidebarNav = function () {
+  var navEnhancedInit = function () {
+    $('.mainnav-menu').find ('> .active').addClass ('is-open')
 
-    var resizeTimer
+    $('.mainnav-menu > .dropdown').on ('show.bs.dropdown', function () {
+      $(this).addClass ('is-open')
+      $(this).siblings ().removeClass ('is-open')
+    })
+  }
 
-    $('.sidebar .dropdown > a').click (function(e) {
-
-      if($(this).parent ().hasClass ('has_sub')) {
-        e.preventDefault();
-      }
-
+  var navHoverInit = function (config) {
+    $('[data-hover="dropdown"]').each (function () {
       var $this = $(this),
-          $li = $this.parents ('li')
-
-      if(!$li.hasClass ("open")) {
-
-        $li.siblings ().find ('ul').slideUp (250, function () {
-          $(this).parent ().removeClass ('open')
-        })
-
-        $li.find ('ul').slideDown (250, function () {
-          $(this).parent ().addClass ('open')
-        })
-
-      } else {
-        $li.find ('ul').slideUp (250, function () {
-          $(this).parent ().removeClass ('open')
-        })
-      }
-
-    })
-
-    initSidebarScroll ()
-
-    $(window).on('resize', function(e) {
-      clearTimeout(resizeTimer)
-      resizeTimer = setTimeout(function() {
-        initSidebarScroll ()
-      }, 250)
-    })
-  }
-
-  var initSidebarScroll = function () {
-    if (!isSidebarCollapsed ()) {
-      $('.sidebar-inner').slimScroll (scrollConfig)
-    }
-  }
-
-  var initNavEnhanced = function () {
-    $('.mainnav-menu .dropdown-toggle').click (function (e) {
-      e.preventDefault ()
-      e.stopPropagation ()
-
-      var $toggle = $(this)
-
-      $toggle.parent ().addClass ('open').trigger ('show.bs.dropdown')
-      $toggle.parent ().siblings ('.dropdown').removeClass ('open').trigger ('hide.bs.dropdown')
-    })
-  }
-
-  var initNavHover = function (config) {
-    $('[data-hover="dropdown"]').each (function (e) {
-
-      var $this = $(this)
-          , defaults = { delay: { show: 1000, hide: 1000 } }
-          , $parent = $this.parent ()
-          , settings = $.extend (defaults, config)
-          , timeout
+          defaults = { delay: { show: 1000, hide: 1000 } },
+          $parent = $this.parent (),
+          settings = $.extend (defaults, config),
+          timeout
 
       if (!('ontouchstart' in document.documentElement)) {
         $parent.find ('.dropdown-toggle').click (function (e) {
@@ -180,32 +150,61 @@ var mvpready_core = function () {
     })
   }
 
-  var initNavbarNotifications = function () {
-    var notifications = $('.navbar-notification'),
-        notificationsScrollConfig = {}
+  var initLightbox = function () {
+    if ($.fn.magnificPopup) {
+      $('.ui-lightbox').magnificPopup ({
+        type: 'image',
+        closeOnContentClick: false,
+        closeBtnInside: true,
+        fixedContentPos: true,
+        mainClass: 'mfp-no-margins mfp-with-zoom',
+        image: {
+          verticalFit: true,
+          tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+        }
+      })
 
-    notifications.find ('> .dropdown-toggle').click (function (e) {
-      if (mvpready_core.isLayoutCollapsed ()) {
-        window.location = $(this).prop ('href')
-      }
-    })
+      $('.ui-lightbox-video, .ui-lightbox-iframe').magnificPopup ({
+        disableOn: 700,
+        type: 'iframe',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: false,
+        fixedContentPos: false
+      })
 
-    notificationsScrollConfig = $.extend (notificationsScrollConfig, scrollConfig, { height: 225 })
-
-    notifications.find ('.notification-list').slimScroll (notificationsScrollConfig)
+      $('.ui-lightbox-gallery').magnificPopup ({
+        delegate: 'a',
+        type: 'image',
+        tLoading: 'Loading image #%curr%...',
+        mainClass: 'mfp-img-mobile',
+        gallery: {
+          enabled: true,
+          navigateByImgClick: true,
+          preload: [0,1]
+        },
+        image: {
+          tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+          titleSrc: function(item) {
+            return item.el.attr('title') + '<small>by Marsel Van Oosten</small>'
+          }
+        }
+      })
+    }
   }
 
-  return {
-    initNavEnhanced: initNavEnhanced
-    , initNavHover: initNavHover
-    , initSidebarNav: initSidebarNav
-    , initNavbarNotifications: initNavbarNotifications
+  return {    
+    navEnhancedInit: navEnhancedInit,
+    navHoverInit: navHoverInit,
 
-    , initBackToTop: initBackToTop
-    , isLayoutCollapsed: isLayoutCollapsed
-    , initLayoutToggles: initLayoutToggles
+    initAccordions: initAccordions,   
+    initFormValidation: initFormValidation,
+    initTooltips: initTooltips,
+    initBackToTop: initBackToTop,    
+    initLightbox: initLightbox,
+    isLayoutCollapsed: isLayoutCollapsed,
 
-    , layoutColors: getLayoutColors ('slate')
+    layoutColors: getLayoutColors ()
   }
 
 }()

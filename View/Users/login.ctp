@@ -7,7 +7,7 @@
     echo $this->Session->flash('flash', array('element' => 'message'));
     echo $this->Session->flash('auth', array('element' => 'message'));
   ?>
-    <h3><?php echo __('Welcome back to WM Tipp.'); ?></h3>
+    <h3><?php echo __('Welcome back to EM Tipp.'); ?></h3>
 
     <h5><?php echo __('Good luck with your tipps!'); ?></h5>
 

@@ -24,21 +24,22 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+
 <head>
     <title>
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
     </title>
 
-	<?php echo $this->Html->charset(); ?>
-    <meta name="description" content="WM Tippspiel von Ralf Dannhauer">
+  	<?php echo $this->Html->charset(); ?>
+    <meta name="description" content="EM Tippspiel von Ralf Dannhauer">
     <meta name="author" content="Ralf Dannhauer">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Font: Open Sans -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300,700">
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:400,300,700">
 
 
     <?php
@@ -52,14 +53,14 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
 
         //<!-- App CSS -->
         echo $this->Html->css('mvpready-admin');
-        echo $this->Html->css('mvpready-flat');
         echo $this->Html->css('custom');
         echo $this->Html->css('parsley');
 
+        //<!-- Load jQuery upfront -->
+        echo $this->Html->script('libs/jquery.min');
 
         echo $this->fetch('meta');
         echo $this->fetch('css');
-        echo $this->Html->script('libs/jquery-1.10.2.min');
         echo $this->fetch('script');
     ?>
   <!-- Favicon -->
@@ -73,7 +74,7 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
 </head>
 <body class="<?php echo $bodyClass; ?>">
   <div id="wrapper">
-    <header class="navbar navbar-inverse" role="banner">
+    <header class="navbar" role="banner">
       <div class="container">
         <div class="navbar-header">
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -83,9 +84,7 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
           <a href="/" class="navbar-brand navbar-brand-img">
             <?php echo $this->Html->image('logo.png', $options = array('alt' => 'WM Tipppsiel')); ?> 
           </a>
-        </div> <!-- /.navbar-header -->
 
-        <nav class="collapse navbar-collapse" role="navigation">
           <?php if($this->Session->check('Auth.User')) { ?>
             <ul class="nav navbar-nav noticebar navbar-left">
 
@@ -94,29 +93,88 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
                 "matchesNotTipped" => $this->requestAction('/matches/checktipps/5'),
                 "questionsNotTipped" => $this->requestAction('/questions/checktipps/17')
               ));  ?> 
-
-
-              <!--  messages -->
-              <?php echo $this->element('messages');  ?> 
             </ul>
           <?php  } ?>
+        </div> <!-- /.navbar-header -->
+        <nav class="collapse navbar-collapse" role="navigation">
 
           <ul class="nav navbar-nav navbar-right">    
+
+
+
+          <?php if ($this->Session->read('Auth.User.role') == 'admin') { ?>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                <span>Admin&nbsp;</span>
+                <i class="fa fa-caret-down navbar-caret"></i>
+              </a>
+
+
+            <ul class="dropdown-menu" role="menu">
+            <li >
+              <a href="/admin/matches">
+              <i class="fa fa-dollar"></i> 
+              &nbsp;&nbsp;<?php echo __('Matches');?>
+              </a>
+            </li>
+            <li >
+              <a href="/admin/users">
+              <i class="fa fa-user"></i> 
+              &nbsp;&nbsp;<?php echo __('Users');?>
+              </a>
+            </li>
+            <li >
+              <a href="/admin/groups">
+              <i class="fa fa-lock"></i> 
+              &nbsp;&nbsp;<?php echo __('Groups');?>
+              </a>
+            </li>
+            <li >
+              <a href="/admin/rounds">
+              <i class="fa fa-bullhorn"></i> 
+              &nbsp;&nbsp;<?php echo __('Rounds');?>
+              </a>
+            </li>
+            <li >
+              <a href="/admin/questions">
+              <i class="fa fa-question"></i> 
+              &nbsp;&nbsp;<?php echo __('Questions');?>
+              </a>
+            </li>
+            </ul>
+            </li>
+          <?php } ?>
+
+
+
+
             <?php if($this->Session->check('Auth.User')) { ?>
-            <li>
-              <a href="/users/switchLang/deu">
+            <li class="dropdown">
+              <?php if ($this->Session->read('Config.language') != 'eng') { ?>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
                 <?php echo $this->Html->image('de.gif'); ?>
+                <i class="fa fa-caret-down navbar-caret"></i>
               </a>
-            </li>
-            <li>
-              <a href="/users/switchLang/eng">
+              <?php } else { ?>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
                 <?php echo $this->Html->image('gb.gif'); ?>
+                <i class="fa fa-caret-down navbar-caret"></i>
               </a>
-            </li>
-            <li>
-              <a href="/rules">
-                <?php echo __('Rules'); ?>
-              </a>
+              <?php } ?>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a href="/users/switchLang/deu">
+                    <?php echo $this->Html->image('de.gif'); ?>
+                      &nbsp;&nbsp;Deutsch
+                  </a>
+                </li>
+                <li>
+                  <a href="/users/switchLang/eng">
+                    <?php echo $this->Html->image('gb.gif'); ?>
+                    &nbsp;&nbsp;English
+                  </a>
+                </li>
+              </ul>
             </li>
             <li class="dropdown navbar-profile">
               <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
@@ -160,24 +218,57 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
                   <a href="/">Home</a>
                 </li>    
               <?php } ?>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                <?php echo $this->Html->image('de.gif'); ?>
+                <i class="fa fa-caret-down navbar-caret"></i>
+              </a>
+
+
+            <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="/users/switchLang/deu">
+                <?php echo $this->Html->image('de.gif'); ?>
+                    &nbsp;&nbsp;Deutsch
+              </a>
+            </li>
+            <li>
+              <a href="/users/switchLang/eng">
+                <?php echo $this->Html->image('gb.gif'); ?>
+                &nbsp;&nbsp;English
+              </a>
+            </li>
+            </ul>
+            </li>
+
             <?php } ?>
           </ul>
         </nav>
       </div> <!-- /.container -->
-
     </header>
+    <div class="mainnav ">
+      <div class="container">  
+        <?php 
+          echo $this->Session->flash('flash', array('element' => 'message'));
+          echo $this->Session->flash('auth', array('element' => 'message'));
+        ?>
+      </div> <!-- /.container -->
+    </div><!-- /.mainnav -->
+    <div class="content">
+
     <?php echo $this->fetch('content'); ?>
+
+    </div> <!-- /#content -->
 
   </div> <!-- /#wrapper -->
 
   <footer class="footer">
     <div class="container">
-      <p class="pull-left">Copyright &copy; 2014 Ralf Dannhauer.</p>
-      <p class="pull-right"><a href="/impressum"><?php echo __('Imprint'); ?></a></p>
+      <p class="pull-left">&nbsp;<a href="/imprint"><?php echo __('Imprint'); ?></a></p>
+      <p class="text-center">Copyright &copy; 2016 Ralf Dannhauer.</p>
     </div>
   </footer>
-
-
+  <a id="back-to-top" href="#top" style="display: block;"><i class="fa fa-chevron-up"></i></a>
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Core JS -->
@@ -185,13 +276,16 @@ $cakeDescription = __d('cake_dev', 'WM 2014 Tippspiel');
     //<!-- Bootstrap core JavaScript
     //================================================== -->
     //<!-- Core JS -->
+    //echo $this->Html->script('libs/jquery.min');
     echo $this->Html->script('libs/bootstrap.min');
     //<!-- Plugins JS -->
+    echo $this->Html->script('libs/jquery.slimscroll.min');
     echo $this->Html->script('plugins/parsley/parsley2');
     echo $this->Html->script('plugins/parsley/i18n/de');
 
     //<!-- App JS -->
     echo $this->Html->script('mvpready-core');
+    echo $this->Html->script('mvpready-helpers');
     echo $this->Html->script('tippspiel-app');
     echo $this->fetch('scriptBottom');
   ?>

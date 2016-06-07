@@ -33,6 +33,7 @@
   Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
   Router::connect('/regeln', array('controller' => 'pages', 'action' => 'display', 'regeln'));
 	Router::connect('/rules', array('controller' => 'pages', 'action' => 'display', 'rules'));
+  Router::connect('/imprint', array('controller' => 'pages', 'action' => 'display', 'imprint'));
   Router::connect('/schedule', array('controller' => 'matches', 'action' => 'schedule'));
   Router::connect('/grouptables', array('controller' => 'matches', 'action' => 'grouptables'));
   Router::connect('/tippabgabe', array('controller' => 'tipps', 'action' => 'entertipps'));

@@ -7,68 +7,74 @@
   }
 
 ?>
-<div id="feedStream">
-<div id="shoutbox" class="share-widget clearfix">
-  <div class="row">
-    <div class="col-md-9">
-      <?php 
-        echo $this->Form->create('Feed', array(
-          'action' => 'add',
-          'id' => 'FeedAddForm'
-        )); 
-        echo $this->Form->textarea('text', array(
-            'id' => 'shouttext',
-            'rows' => 1,
-            'label' => false,
-            'class' => 'form-control',
-            'div' => false,
-            'placeholder' => __("Share what you've been up to...")
-          ));
-      ?>
-    </div>
-    <div class="col-md-3">
-    <?php
-      echo $this->Form->button(__('Post'), array(
-        'type' => 'submit',
-        'escape' => true,
-        'class' => 'btn btn-primary'
-        )); 
-    ?>
-    </div>
-    <?php echo $this->Form->end();  ?>
-  </div>
-</div> <!-- /.share-widget -->
 
-<?php foreach ($feeds as $key => $feed) {  ?>
-  <div class="feed-item" id="feed-<?php echo $feed['Feed']['id'] ?>">
+<div class="portlet-body">
+  <div id="shoutbox" class="share-widget clearfix">
+    <div class="row">
+      <div class="col-md-9">
+        <?php 
+          echo $this->Form->create('Feed', array(
+            'action' => 'add',
+            'id' => 'FeedAddForm'
+          )); 
+          echo $this->Form->textarea('text', array(
+              'id' => 'shouttext',
+              'rows' => 1,
+              'label' => false,
+              'class' => 'form-control',
+              'div' => false,
+              'placeholder' => __("Share what you've been up to...")
+            ));
+        ?>
+      </div>
+      <div class="col-md-3">
+      <?php
+        echo $this->Form->button(__('Post'), array(
+          'type' => 'submit',
+          'escape' => true,
+          'class' => 'btn btn-primary'
+          )); 
+      ?>
+      </div>
+      <?php echo $this->Form->end();  ?>
+    </div>
+  </div> <!-- /.share-widget -->
+
+  <?php foreach ($feeds as $key => $feed) {  ?>
+  <div class="feed-item feed-item-idea" id="feed-<?php echo $feed['Feed']['id'] ?>">
+    <div class="feed-icon bg-primary">
+      <i class="fa fa-comments-o"></i>
+    </div> <!-- /.feed-icon -->
+    <div class="feed-subject">
+      <p><?php echo $feed['User']['username'] ?></p>
+    </div> <!-- /.feed-subject -->
     <div class="feed-content">
       <ul class="icons-list">
-        <li><a href="javascript:;"><?php echo $feed['User']['username'] ?></a> &nbsp;
+        <li>
+          <i class="icon-li fa fa-quote-left"></i>
           <?php if ($feed['Feed']['message_id'] != '') {
             echo __('has commented message') . substr($feed['Message']['title'], 0, 20) . '...' ;
-          }
-          ?>
+          }?>
           <?=h($feed['Feed']['text']); ?> 
         </li>
       </ul>
     </div> <!-- /.feed-content -->
     <?php $id = String::uuid(); ?>
     <div class="feed-actions" id="<?php echo $id ?>">
-        <span class="pull-right"><i class="fa fa-clock-o"></i>
-          <?php 
-            $date = DateTime::createFromFormat('Y-m-d H:i:s', $feed['Feed']['created']);
-            $diff = time() - $date->getTimestamp();
-            if ($diff < 3600) {
-              echo 'vor ' . round($diff / 60, 0) . ' Min.';
-            } elseif ($diff < 84000) {
-              echo 'vor ' . round($diff / 3600, 0) . ' Std.';
-            } else {
-              echo 'vor ' . round($diff / 84000, 0) . ' Tagen';
-            }
-          ?>
-        </span> 
-        <?php echo $this->element('feedlike', array('feed' => $feed));  ?>
-        <a class="pull-left" href="javascript:tippspiel_admin.showcommentbox({feed:'<?php echo $feed['Feed']['id'] ?>', target:'<?php echo $id; ?>'});"> <?php echo __('comment it') ?></a>
+      <span class="pull-right"><i class="fa fa-clock-o"></i>
+        <?php 
+          $date = DateTime::createFromFormat('Y-m-d H:i:s', $feed['Feed']['created']);
+          $diff = time() - $date->getTimestamp();
+          if ($diff < 3600) {
+            echo 'vor ' . round($diff / 60, 0) . ' Min.';
+          } elseif ($diff < 84000) {
+            echo 'vor ' . round($diff / 3600, 0) . ' Std.';
+          } else {
+            echo 'vor ' . round($diff / 84000, 0) . ' Tagen';
+          }
+        ?>
+      </span> 
+      <?php echo $this->element('feedlike', array('feed' => $feed));  ?>
     </div> <!-- /.feed-actions -->
     <?php foreach ($feed['ChildFeed'] as $ckey => $comment) {  ?>
       <?php $id = String::uuid(); ?>
@@ -84,7 +90,7 @@
           <span class="pull-right"><i class="fa fa-clock-o"></i>
             <?php 
               $date = DateTime::createFromFormat('Y-m-d H:i:s', $comment['created']);
-              $diff = time() - $date->getTimestamp();
+              $diff = strtotime($this->Session->read('currentdatetime')) - $date->getTimestamp();
               if ($diff < 3600) {
                 if (round($diff / 60, 0) == 0) {
                   echo __('jetzt');
@@ -100,35 +106,35 @@
           </span> 
           <?php echo $this->element('feedlike', array(
           'feed' => array('Feed' => $comment, 'Like' => $comment['Like'])));  ?>
-        <a class="pull-left" href="javascript:tippspiel_admin.showcommentbox({feed:'<?php echo $feed['Feed']['id'] ?>', target:'<?php echo $id; ?>'});"> <?php echo __('comment it') ?></a>
         </div> <!-- /.feed-actions -->
       </div> <!-- /.feed-item -->
     <?php } ?>
+    <a class="pull-left" href="javascript:tippspiel_admin.showcommentbox({feed:'<?php echo $feed['Feed']['id'] ?>', target:'<?php echo $id; ?>'});" > <?php echo __('comment it') ?></a>
   </div> <!-- /.feed-item -->
-<?php } ?>
+  <?php } ?>
 
-            <?php
-              $params = $this->Paginator->params();
-              if ($paging) {
-            ?>
-              <div class="pagination pagination-centered">
-                  <ul class="pagination">
-                  <?php
-                    if ( $paging['Feed']['prevPage'] == 1) {
-                      echo '<li class="prev"><a rel="prev" onclick="tippspiel_admin.loadStreamPage(' . ($paging['Feed']['page'] - 1) . ');">Vorherige</a></li>';
-                    } else {
-                      echo '<li class="prev disabled"><a onclick="return false;">Vorherige</a></li>';
-                    }
-                    if ( $paging['Feed']['nextPage'] == 1) {
-                      echo '<li class="next"><a rel="next" onclick="tippspiel_admin.loadStreamPage(' . ($paging['Feed']['page'] + 1) . ');" >Nächste</a></li>';
-                    } else {
-                      echo '<li class="next disabled"><a onclick="return false;">Nächste</a></li>';
-                    }
-                    ?>
-
-                  </ul>
-              </div>
-            <?php } ?>
+  <?php
+    $params = $this->Paginator->params();
+    if ($paging) {
+  ?>
+  <div class="pagination pagination-centered">
+    <ul class="pagination">
+    <?php
+      if ( $paging['Feed']['prevPage'] == 1) {
+        echo '<li class="prev"><a rel="prev" onclick="tippspiel_admin.loadStreamPage(' . ($paging['Feed']['page'] - 1) . ');">Vorherige</a></li>';
+      } else {
+        echo '<li class="prev disabled"><a onclick="return false;">Vorherige</a></li>';
+      }
+      if ( $paging['Feed']['nextPage'] == 1) {
+        echo '<li class="next"><a rel="next" onclick="tippspiel_admin.loadStreamPage(' . ($paging['Feed']['page'] + 1) . ');" >Nächste</a></li>';
+      } else {
+        echo '<li class="next disabled"><a onclick="return false;">Nächste</a></li>';
+      }
+      ?>
+    </ul>
+  </div>
+  <?php } ?>
+</div> <!-- /.portlet-body -->
 
 <div id="shoutboxholder" style="display: none;">
   <div class="row shoutboxtemplate">
@@ -166,8 +172,6 @@
     <?php echo $this->Form->end();  ?>
   </div>
 </div>
-</div>
-
 
 <script type="text/javascript">
 $("#FeedAddForm").submit(function(e) {

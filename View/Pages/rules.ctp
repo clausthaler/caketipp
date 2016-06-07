@@ -8,7 +8,7 @@
   <div class="container">
     <div class="row">
     <!-- start: Main Menu -->
-    <?php echo $this->element('menu', array("active" => "matches")); ?>
+    <?php echo $this->element('menu', array("active" => "rules")); ?>
     <!-- end: Main Menu -->
       <div class="col-md-9 col-sm-8 layout-main">
 

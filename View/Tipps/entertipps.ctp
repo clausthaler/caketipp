@@ -53,7 +53,7 @@
           echo '</tr>';
 
           foreach ($matches as $key => $match) {
-            if ($match['Match']['kickoff'] > time()) {
+            if ($match['Match']['kickoff'] > strtotime($this->Session->read('currentdatetime'))) {
             echo '<tr>';
             echo '<td>';
             echo __(date("D", $match['Match']['kickoff'])) . ', ';
@@ -90,7 +90,7 @@
             }
             echo '</td>';
             echo '<td class="col-xs-2" style="text-align: center;">';
-            if ($match['Match']['due'] > time() && $match['Match']['isfixed'] == 1) {
+            if ($match['Match']['due'] > strtotime($this->Session->read('currentdatetime')) && $match['Match']['isfixed'] == 1) {
               echo '<div class="form-group">';
               echo $this->Form->input('Tipp.' . $match['Match']['id'] . '.points1', array(
                 'type'=>'select',

@@ -211,21 +211,27 @@ var tippspiel_admin = function () {
 
 	return {
 		init: function () {
-			// Layouts
-			mvpready_core.navEnhancedInit ()
-			mvpready_core.navHoverInit ({ delay: { show: 250, hide: 350 } })      
-			initLayoutToggles ()
-			initNoticeBar ()
+      // Layouts
+      mvpready_core.initNavEnhanced ()
+      mvpready_core.initNavHover ({ delay: { show: 250, hide: 350 } })
+
+      mvpready_core.initNavbarNotifications ()
+      mvpready_core.initLayoutToggles ()
+      mvpready_core.initBackToTop ()
+
+      // Components
+      mvpready_helpers.initAccordions ()
+      mvpready_helpers.initFormValidation ()
+      mvpready_helpers.initTooltips ()
+      mvpready_helpers.initLightbox ()
+      mvpready_helpers.initSelect ()
+      mvpready_helpers.initIcheck ()
+      mvpready_helpers.initDataTableHelper ()
+      mvpready_helpers.initiTimePicker ()
+      mvpready_helpers.initDatePicker ()
+      mvpready_helpers.initColorPicker ()
 
       setMatchname ()
-
-
-			// Components
-			mvpready_core.initAccordions ()		
-			mvpready_core.initFormValidation ()
-			mvpready_core.initTooltips ()
-			mvpready_core.initBackToTop ()		
-			mvpready_core.initLightbox ()
 		},
     loadTippsOverview: loadTippsOverview,
     loadRoundTipps: loadRoundTipps,

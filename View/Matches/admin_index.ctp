@@ -90,7 +90,7 @@
                 <td class="actions">
                 <?php
                 if ($match['Match']['isfinished'] != 1) {
-                  if ($match['Match']['kickoff'] < time()) {
+                  if ($match['Match']['kickoff'] < strtotime($this->Session->read('currentdatetime'))) {
                     echo $this->Html->link(__('Enter Result'), array(
                         'action' => 'result', 
                         $match['Match']['id']),

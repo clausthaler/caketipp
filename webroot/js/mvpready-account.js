@@ -5,8 +5,8 @@
 * ========================================================
 *
 * File: mvpready-account.js
-* Description: General template styles, including bootstrap components
-* Version: 1.0.0
+* Theme Version: 3.0.0
+* Bootstrap Version: 3.3.6
 * Author: Jumpstart Themes
 * Website: http://mvpready.com
 *

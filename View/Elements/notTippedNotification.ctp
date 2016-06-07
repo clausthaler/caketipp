@@ -13,12 +13,13 @@ if (count($questionsNotTipped) > 0) {
   $count = $count + count($questionsNotTipped);
 }
 ?> 
-<li class="dropdown">
+<li class="dropdown navbar-notification">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    <i class="fa fa-bell"></i>
-    <span class="navbar-visible-collapsed">&nbsp;<?php echo __('Notifications'); ?>&nbsp;</span>
+    <i class="fa fa-bell navbar-notification-icon"></i>
+    <span class="visible-xs-inline">&nbsp;Notifications</span>
+
     <?php if ($count > 0) { ?>
-      <span class="badge badge-primary"><?php echo $count ?></span>
+      <b class="badge badge-primary"><?php echo $count ?></b>
     <?php } ?>
   </a>
   <?php if ($count > 0) { ?>

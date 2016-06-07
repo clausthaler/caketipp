@@ -2,3 +2,4 @@ Config/core.php
 Config/database.php
 Config/email.php
 tmp
+db_dumps

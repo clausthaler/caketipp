@@ -16,7 +16,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'EM 2014 Tippspiel');
+$cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
 ?>
 
 <!DOCTYPE html>

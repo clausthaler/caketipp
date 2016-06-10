@@ -77,6 +77,8 @@ class AppController extends Controller {
         if (!$this->Session->check('currentdatetime')) {
           $this->Session->write('currentdatetime', date ('Y-m-d H:i' , time()));
         }
+      } else {
+        $this->Session->write('currentdatetime', date ('Y-m-d H:i' , time()));
       }
       $this->set('bodyClass', '');
       $this->Auth->authenticate = array(

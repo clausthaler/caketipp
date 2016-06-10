@@ -90,10 +90,15 @@
                       <th><?php echo __('Team 1'); ?></th>
                       <th>&nbsp;</th>
                       <th><?php echo __('Team 2'); ?></th>
+                      <th style="text-align: center;">Tipp</th>
                     </tr>
                   </thead>
                   <tbody>
-                  <?php $matches = $this->requestAction('matches/nextmatches/7' ); ?>
+                  <?php 
+                    $nextmatches = $this->requestAction('matches/nextmatches/7');
+                    $matches = $nextmatches['nextmatches'];
+                    $tipps = Hash::combine($nextmatches['tipps'], '{n}.Tipp.match_id', '{n}.Tipp'); 
+                  ?>
                   <?php foreach ($matches as $id => $match) { ?>
                     <tr>
                       <td>
@@ -122,6 +127,16 @@
                         echo $match['Team2']['name']; 
                       ?>
                       </td>
+                      <td class="col-xs-3" style="text-align: center;">
+                      <?php 
+                      if (isset($tipps[$match['Match']['id']]['points_team1'])) { 
+                        echo $tipps[$match['Match']['id']]['points_team1'] . ':' . $tipps[$match['Match']['id']]['points_team2'];
+                      } else {
+                        echo '<a href="/entertipps" class="btn btn-xs btn-info">' .  __('Tippenter') . '</a>';
+                      }
+                      ?>
+                      </td>
+
                     </tr>
                   <?php } ?>
                   </tbody>

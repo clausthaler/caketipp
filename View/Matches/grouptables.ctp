@@ -1,5 +1,6 @@
 <?php 
 $matches = Hash::combine($matches, '{n}.Match.id', '{n}.Match', '{n}.Match.group_id');
+//print_r($matches);
 $tipps = Hash::combine($tipps, '{n}.Tipp.match_id', '{n}.Tipp');
 $ladders = Hash::combine($ladders, '{n}.Ladder.id', '{n}.Ladder', '{n}.Ladder.group_id');
 $teams = Hash::combine($teams, '{n}.Team.id', '{n}.Team');

@@ -35,20 +35,6 @@ var tippspiel_admin = function () {
     });
   }
 
-  var loadRoundTipps = function (round) {
-    var request = $.ajax({
-      url: "/entertipps/" + round,
-      dataType: "html"
-    });
-    
-    request.done(function( msg ) {
-      $( "#entertipps" ).html( msg );
-    });
-    request.fail(function( jqXHR, textStatus ) {
-      alert( "Request failed: " + textStatus );
-    });
-  }
-
   var refreshTippsStatistics = function () {
     var tipper = $('#TipperSelect option:selected').val();
 
@@ -209,26 +195,32 @@ var tippspiel_admin = function () {
 
 
 
-	return {
-		init: function () {
-			// Layouts
-			mvpready_core.navEnhancedInit ()
-			mvpready_core.navHoverInit ({ delay: { show: 250, hide: 350 } })      
-			initLayoutToggles ()
-			initNoticeBar ()
+  return {
+    init: function () {
+
+      // Layouts
+      mvpready_core.initNavHover ({ delay: { show: 250, hide: 350 } })
+
+      mvpready_core.initNavbarNotifications ()
+      mvpready_core.initSidebarNav ()
+      mvpready_core.initLayoutToggles ()
+      mvpready_core.initBackToTop ()
+
+      // Components
+      mvpready_helpers.initAccordions ()
+      mvpready_helpers.initFormValidation ()
+      mvpready_helpers.initTooltips ()
+      mvpready_helpers.initLightbox ()
+      mvpready_helpers.initSelect ()
+      mvpready_helpers.initIcheck ()
+      mvpready_helpers.initDataTableHelper ()
+      mvpready_helpers.initiTimePicker ()
+      mvpready_helpers.initDatePicker ()
+      mvpready_helpers.initColorPicker ()
 
       setMatchname ()
-
-
-			// Components
-			mvpready_core.initAccordions ()		
-			mvpready_core.initFormValidation ()
-			mvpready_core.initTooltips ()
-			mvpready_core.initBackToTop ()		
-			mvpready_core.initLightbox ()
-		},
+    },
     loadTippsOverview: loadTippsOverview,
-    loadRoundTipps: loadRoundTipps,
     refreshTippsOverview: refreshTippsOverview,
     messagerefresh: messagerefresh,
     togglelike: togglelike,
@@ -238,10 +230,14 @@ var tippspiel_admin = function () {
     toggleMessagelike: toggleMessagelike,
     refreshGroupTables: refreshGroupTables,
     refreshTippsStatistics: refreshTippsStatistics
-	}
+  }
 
 }()
 
 $(function () {
-	tippspiel_admin.init ()
+  tippspiel_admin.init ();
+  $('#summernote-basic-demo').summernote ({ 
+    height: 150 
+  })
+  
 })

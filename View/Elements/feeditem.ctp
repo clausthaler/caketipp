@@ -11,7 +11,7 @@
         <span class="pull-right"><i class="fa fa-clock-o"></i>
           <?php 
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $feed['Feed']['created']);
-            $diff = time() - $date->getTimestamp();
+            $diff = strtotime($this->Session->read('currentdatetime')) - $date->getTimestamp();
             if ($diff < 3600) {
               echo 'vor ' . round($diff / 60, 0) . ' Min.';
             } elseif ($diff < 84000) {
@@ -38,7 +38,7 @@
           <span class="pull-right"><i class="fa fa-clock-o"></i>
             <?php 
               $date = DateTime::createFromFormat('Y-m-d H:i:s', $comment['created']);
-              $diff = time() - $date->getTimestamp();
+              $diff = strtotime($this->Session->read('currentdatetime')) - $date->getTimestamp();
               if ($diff < 3600) {
                 if (round($diff / 60, 0) == 0) {
                   echo __('jetzt');

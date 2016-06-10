@@ -25,50 +25,48 @@ $cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <head>
-    <title>
+  <title>
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
-    </title>
-
-	<?php echo $this->Html->charset(); ?>
-    <meta name="description" content="EM Tippspiel von Ralf Dannhauer">
-    <meta name="author" content="Ralf Dannhauer">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Google Font: Open Sans -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300,700">
+  </title>
 
 
-    <?php
-        echo $this->Html->meta('icon');
 
-        //<!-- Font Awesome CSS -->
-        echo $this->Html->css('font-awesome.min');
-
-        //<!-- Bootstrap CSS -->
-        echo $this->Html->css('bootstrap.min');
-
-        //<!-- App CSS -->
-        echo $this->Html->css('mvpready-admin');
-        echo $this->Html->css('mvpready-flat');
-        echo $this->Html->css('custom');
-        echo $this->Html->css('parsley');
+  <?php echo $this->Html->charset(); ?>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EM Tippspiel von Ralf Dannhauer">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:400,300,700">
 
 
-        echo $this->fetch('meta');
-        echo $this->fetch('css');
-        echo $this->Html->script('libs/jquery-1.10.2.min');
-        echo $this->fetch('script');
+  <?php
+    echo $this->Html->meta('icon');
+
+    //<!-- Font Awesome CSS -->
+    echo $this->Html->css('font-awesome.min');
+
+    //<!-- Bootstrap CSS -->
+    echo $this->Html->css('bootstrap.min');
+
+    //<!-- App CSS -->
+    echo $this->Html->css('mvpready-admin');
+    echo $this->Html->css('custom');
+
+
+    echo $this->fetch('meta');
+    echo $this->fetch('css');
+    echo $this->Html->script('libs/jquery.min');
+    echo $this->fetch('script');
     ?>
   <!-- Favicon -->
   <link rel="shortcut icon" href="favicon.ico">
 
+
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
 <body class="<?php echo $bodyClass; ?>">
@@ -94,10 +92,6 @@ $cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
                 "matchesNotTipped" => $this->requestAction('/matches/checktipps/5'),
                 "questionsNotTipped" => $this->requestAction('/questions/checktipps/17')
               ));  ?> 
-
-
-              <!--  messages -->
-              <?php echo $this->element('messages');  ?> 
             </ul>
           <?php  } ?>
 
@@ -173,7 +167,7 @@ $cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
   <footer class="footer">
     <div class="container">
       <p class="pull-left">Copyright &copy; 2016 Ralf Dannhauer.</p>
-      <p class="pull-right"><a href="/impressum"><?php echo __('Imprint'); ?></a></p>
+      <p class="pull-right"><a href="/imprint"><?php echo __('Imprint'); ?></a></p>
     </div>
   </footer>
 
@@ -187,11 +181,13 @@ $cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
     //<!-- Core JS -->
     echo $this->Html->script('libs/bootstrap.min');
     //<!-- Plugins JS -->
+    echo $this->Html->script('libs/jquery.slimscroll');
     echo $this->Html->script('plugins/parsley/parsley2');
     echo $this->Html->script('plugins/parsley/i18n/de');
 
     //<!-- App JS -->
     echo $this->Html->script('mvpready-core');
+    echo $this->Html->script('mvpready-helpers');
     echo $this->Html->script('tippspiel-app');
     echo $this->fetch('scriptBottom');
   ?>

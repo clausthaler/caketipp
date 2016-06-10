@@ -40,7 +40,7 @@
             echo $question['Question']['points'];
             echo '</td>';
             echo '<td class="col-xs-2" style="text-align: center;">';
-            if ($question['Question']['due'] > time()) {
+            if ($question['Question']['due'] > strtotime($this->Session->read('currentdatetime'))) {
               echo $this->Form->input('Question.' . $question['Question']['id'] , array(
                 'type'=>'select',
                 'label' => false,

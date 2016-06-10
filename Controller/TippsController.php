@@ -46,16 +46,17 @@ class TippsController extends AppController {
         // validate the entries and clean up the array
         $tippErrors = array();
         foreach ($this->request->data['Tipp'] as $matchid => $tippresult) {
-          if (!isset($tippmatches[$matchid]) || $tippmatches[$matchid] < strtotime($this->Session->read('currentdatetime'))) {
+          // check if match due is over
+          if (!isset($tippmatches[$matchid]) 
+            || $tippmatches[$matchid] < strtotime($this->Session->read('currentdatetime'))
+            || !is_numeric($tippresult['points1']) && !is_numeric($tippresult['points2'])
+            ) {
             unset($this->request->data['Tipp'][$matchid]);
           } else {
-            if (!is_numeric($tippresult['points1']) && !is_numeric($tippresult['points2'])) {
+            // check tipp results are valid
+            if (!is_numeric($tippresult['points1']) || !is_numeric($tippresult['points2'])) {
+              array_push($tippErrors, $matchid);
               unset($this->request->data['Tipp'][$matchid]);
-            } else {
-              if (!is_numeric($tippresult['points1']) || !is_numeric($tippresult['points2'])) {
-                array_push($tippErrors, $matchid);
-                unset($this->request->data['Tipp'][$matchid]);
-              }
             }
           }
         }
@@ -79,7 +80,7 @@ class TippsController extends AppController {
         if (empty($tippErrors) ) {
           $this->Session->setFlash(__('Tipp saved successfully.'));
         } else {
-          $this->Session->setFlash(__('Tipp could not be saved. Please correct errors and try again. Tipps are shown like they are saved at the moment'));
+          $this->Session->setFlash(__('Not all Tipps could be saved. Please correct errors and try again. Tipps are shown like they are saved at the moment'), 'default' , array('class' => 'warning'));
         }
       }
 
@@ -89,7 +90,7 @@ class TippsController extends AppController {
       // show actual round
       $this->Match->recursive = -1;
       $nextmatch = $this->Match->find('first', array(
-        'conditions' => array('Match.due >' => time()), 
+        'conditions' => array('Match.due >' => strtotime($this->Session->read('currentdatetime'))), 
         'fields' => array('Match.round_id'),
         'order' => array('Match.due asc')));
       if (isset($nextmatch['Match']['round_id'])) {
@@ -108,14 +109,28 @@ class TippsController extends AppController {
   	$rounds = $this->Round->find('all', array('fields' => array('id', 'name', 'shortname')));
   	$groups = $this->Group->find('all', array('fields' => array('id', 'name', 'shortname')));
   	$this->set(compact('teams', 'groups', 'rounds'));
+    $roundstotipp = Hash::extract($this->Match->query('select distinct round_id from matches where due >' . strtotime($this->Session->read('currentdatetime')) . ' order by round_id'), '{n}.matches.round_id');
+    foreach ($roundstotipp as $round => $roundid) {
+      $matches2tipp[$roundid] = $this->Match->find(
+        'all', array(
+          'conditions' => array(
+            'Match.round_id' => $roundid,
+            'Match.due >' => strtotime($this->Session->read('currentdatetime'))
+          ),
+          'order' => array(
+            'Match.round_id', 
+            'Match.datetime')));
+    }
     $matches = $this->Match->find(
-      'all', array(
-        'conditions' => array(
-          'Match.round_id' => $id)
-        , 'order' => array(
-          'Match.round_id', 
-          'Match.datetime')));
-    $this->set('matches', $matches);
+        'all', array(
+          'conditions' => array(
+            'Match.due >' => strtotime($this->Session->read('currentdatetime'))
+          ),
+          'fields' => array('id'),
+          'order' => array(
+            'Match.round_id', 
+            'Match.datetime')));
+    $this->set('matches2tipp', $matches2tipp);
     $this->set('roundId', $id);
     $this->set('tipps', $this->Tipp->find(
       'all', array(
@@ -387,7 +402,6 @@ order by sum desc) c');
       // todo: set current round according to date
       $tipproundid = $rounds[0]['Round']['id'];
     }
-
     $rounds = Hash::combine($rounds, '{n}.Round.id', '{n}.Round'); 
 
     $this->Group->recursive = -1;
@@ -446,7 +460,9 @@ order by sum desc) c');
       $tomatch = $this->params['named']['to_match'];
     } else {
       if ($tipproundid == 1) {
-        $toM = $this->Tipp->query("select max(id) as 'lastgame' from matches where round_id = " . $tipproundid . " and kickoff < " . time() );
+//  Don't know why I limited to  and kickoff < " . time()
+//        $toM = $this->Tipp->query("select max(kickoff) as 'lastgame' from matches where round_id = " . $tipproundid . " and kickoff < " . time() );
+        $toM = $this->Tipp->query("select max(kickoff) as 'lastgame' from matches where round_id = " . $tipproundid );
         $tomatch = $toM[0][0]['lastgame'];
         $conditions['Match.id <='] = $tomatch;
       } else {

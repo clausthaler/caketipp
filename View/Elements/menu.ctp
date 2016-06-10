@@ -18,6 +18,12 @@
       &nbsp;&nbsp;<?php echo __('Dashboard');?>
       </a>
     </li>
+    <li <?php if ($active == 'entertipps') { echo ' class="active" '; } ?>>
+      <a href="/entertipps">
+      <i class="fa fa-bullseye"></i> 
+      &nbsp;&nbsp;<?php echo __('Tippenter');?>
+      </a>
+    </li>
     <li <?php if ($active == 'tippoverview') { echo ' class="active" '; } ?>>
       <a href="/tipps/ranking">
       <i class="fa fa-dashboard"></i> 
@@ -46,12 +52,6 @@
       <a href="/grouptables">
       <i class="fa fa-table"></i> 
       &nbsp;&nbsp;<?php echo __('Group tables');?>
-      </a>
-    </li>
-    <li <?php if ($active == 'entertipps') { echo ' class="active" '; } ?>>
-      <a href="/entertipps">
-      <i class="fa fa-bullseye"></i> 
-      &nbsp;&nbsp;<?php echo __('Tippenter');?>
       </a>
     </li>
     <li <?php if ($active == 'enterbonus') { echo ' class="active" '; } ?>>

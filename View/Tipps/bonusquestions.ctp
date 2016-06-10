@@ -45,13 +45,16 @@
                   <td><?php echo $question['points'] ; ?></td>
                   <td>
                     <?php 
-                    echo $this->Html->image($teams[$question['team_id']]['iconurl']) . '&nbsp;';
-                    echo $teams[$question['team_id']]['name'] ; ?>
+                    if ($question['team_id'] <> 0) {
+                      echo $this->Html->image($teams[$question['team_id']]['iconurl']) . '&nbsp;';
+                      echo $teams[$question['team_id']]['name'] ;
+                    } else {
+                      echo('-');
+                    } 
+                    ?>
                   </td>
                 </tr>
-              <?php 
-              ?>
-            <?php endforeach; ?>
+              <?php endforeach; ?>
             </table>  
           </section> <!-- /.demo-section -->
           <br>

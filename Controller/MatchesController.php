@@ -235,7 +235,7 @@ class MatchesController extends AppController {
           $groupmatches = $this->Match->find('all', 
             array('conditions' => array(
               'Match.group_id' => $groupid,
-              'Match.kickoff <' => time())));
+              'Match.kickoff <' => strtotime($this->Session->read('currentdatetime')))));
           foreach ($groupmatches as $key => $gmatch) {
             $team1_id = $gmatch['Match']['team1_id'];
             $team2_id = $gmatch['Match']['team2_id'];
@@ -418,20 +418,31 @@ class MatchesController extends AppController {
  *
  * @return void
  */
+
+
+
   public function nextmatches($nbr = null) {
     if (!$nbr) {
       $nbr = 5;
     }
     $this->Match->recursive = 0;
     $nextMatches = $this->Match->find('all', array(
-      'conditions' => array('Match.kickoff >' => time()),
+      'conditions' => array('Match.kickoff >' => strtotime($this->Session->read('currentdatetime'))),
       'order' => 'Match.kickoff',
       'limit' => $nbr));
-
+    $this->Tipp->recursive = -1;
+    $tipps = $this->Tipp->find(
+      'all', array(
+        'conditions' => array(
+          'Tipp.type' => 0,
+          'Tipp.match_id' => Hash::extract($nextMatches, '{n}.Match.id'),
+          'Tipp.user_id' => $this->Auth->user('id'))));
     if ($this->request->is('requested')) {
-      return $nextMatches;
+      return array('nextmatches' => $nextMatches,
+                    'tipps' => $tipps);
     } else {
       $this->set('nextMatches', $nextMatches);
+      $this->set('tipps', $tipps);
     }
   }
   public function test() {

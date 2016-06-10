@@ -176,3 +176,9 @@ div.error-message {
 .chartuser label {
   margin-left: 3px;
 }
+
+.nexttipps {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+}

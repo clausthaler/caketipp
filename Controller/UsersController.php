@@ -511,7 +511,7 @@ class UsersController extends AppController {
 					print_r('drin!');
 					$this->Auth->loginRedirect = '/';
 				}
-				$this->Session->setFlash(sprintf(__d('users', '%s you have successfully logged in'), $this->Auth->user('username')));
+//				$this->Session->setFlash(sprintf(__d('users', '%s you have successfully logged in'), $this->Auth->user('username')));
 				if (!empty($this->request->data)) {
 					$data = $this->request->data[$this->modelClass];
 					if (empty($this->request->data[$this->modelClass]['remember_me'])) {
@@ -593,7 +593,7 @@ class UsersController extends AppController {
 		$this->Cookie->destroy();
 		}
 		$this->RememberMe->destroyCookie();
-		$this->Session->setFlash(sprintf(__d('users', '%s you have successfully logged out'), $user[$this->{$this->modelClass}->displayField]));
+//		$this->Session->setFlash(sprintf(__d('users', '%s you have successfully logged out'), $user[$this->{$this->modelClass}->displayField]));
 		$this->redirect($this->Auth->logout());
 	}
 

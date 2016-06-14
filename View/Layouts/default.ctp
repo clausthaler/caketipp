@@ -93,7 +93,7 @@ $cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
             <span class="sr-only">Toggle navigation</span>
             <i class="fa fa-cog"></i>
           </button>
-          <a href="/" class="navbar-brand navbar-brand-img">
+          <a href="/home" class="navbar-brand navbar-brand-img">
             <?php echo $this->Html->image('logo.png', $options = array('alt' => 'EM Tipppsiel')); ?> 
           </a>
         </div> <!-- /.navbar-header -->

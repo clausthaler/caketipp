@@ -11,34 +11,44 @@
           <li class="">
             <a href="/home">Home</a>
           </li>
+          <li class="">
+            <a href="/dashboard">Old Home</a>
+          </li>
 
           <li class="dropdown">
             <a href="./index.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-              Dashboards
+              <?php echo __('Enter Tipps');?>
               <i class="mainnav-caret"></i>
             </a>
 
             <ul class="dropdown-menu" role="menu">
-              <?php if (Configure::read('mode') == 1) { ?>
-              <li>
-                <a href="/">
-                <i class="fa fa-clock-o"></i> 
-                Testzeit:&nbsp;&nbsp;<?php echo $this->Session->read('currentdatetime'); ?>
-                </a>
-              </li>
-              <?php } ?>
-              <li <?php if ($active == 'dashboard') { echo ' class="active" '; } ?>>
-                <a href="/">
-                <i class="fa fa-dashboard"></i> 
-                &nbsp;&nbsp;<?php echo __('Dashboard');?>
-                </a>
-              </li>
               <li <?php if ($active == 'entertipps') { echo ' class="active" '; } ?>>
                 <a href="/entertipps">
                 <i class="fa fa-bullseye"></i> 
                 &nbsp;&nbsp;<?php echo __('Tippenter');?>
                 </a>
               </li>
+              <li <?php if ($active == 'enterbonus') { echo ' class="active" '; } ?>>
+                <a href="/enterbonus">
+                <i class="fa fa-question"></i> 
+                &nbsp;&nbsp;<?php echo __('Bonus questions');?>
+                </a>
+              </li>
+              <li <?php if ($active == 'schedule') { echo ' class="active" '; } ?>>
+                <a href="/schedule">
+                <i class="fa fa-table"></i> 
+                &nbsp;&nbsp;<?php echo __('Schedule');?>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="./index.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+              <?php echo __('Results');?>
+              <i class="mainnav-caret"></i>
+            </a>
+
+            <ul class="dropdown-menu" role="menu">
               <li <?php if ($active == 'tippoverview') { echo ' class="active" '; } ?>>
                 <a href="/tipps/ranking">
                 <i class="fa fa-dashboard"></i> 
@@ -51,34 +61,10 @@
                 &nbsp;&nbsp;<?php echo __('Tipp statistics');?>
                 </a>
               </li>
-              <li <?php if ($active == 'blog') { echo ' class="active" '; } ?>>
-                <a href="/blog">
-                <i class="fa fa-book"></i> 
-                &nbsp;&nbsp;<?php echo __('Blog');?>
-                </a>
-              </li>
-              <li <?php if ($active == 'schedule') { echo ' class="active" '; } ?>>
-                <a href="/schedule">
-                <i class="fa fa-table"></i> 
-                &nbsp;&nbsp;<?php echo __('Schedule');?>
-                </a>
-              </li>
               <li <?php if ($active == 'grouptables') { echo ' class="active" '; } ?>>
                 <a href="/grouptables">
                 <i class="fa fa-table"></i> 
                 &nbsp;&nbsp;<?php echo __('Group tables');?>
-                </a>
-              </li>
-              <li <?php if ($active == 'enterbonus') { echo ' class="active" '; } ?>>
-                <a href="/enterbonus">
-                <i class="fa fa-question"></i> 
-                &nbsp;&nbsp;<?php echo __('Bonus questions');?>
-                </a>
-              </li>
-              <li <?php if ($active == 'profile') { echo ' class="active" '; } ?>>
-                <a href="/profile">
-                <i class="fa fa-user"></i> 
-                &nbsp;&nbsp;<?php echo __('Profile');?>
                 </a>
               </li>
             </ul>

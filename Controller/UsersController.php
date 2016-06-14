@@ -384,6 +384,8 @@ class UsersController extends AppController {
 	public function admin_edit($userId = null) {
 		try {
 			$result = $this->{$this->modelClass}->edit($userId, $this->request->data);
+			echo "Hi";
+			print_r($result);
 			if ($result === true) {
 				$this->Session->setFlash(__d('users', 'User saved'));
 				$this->redirect(array('action' => 'index'));
@@ -394,7 +396,6 @@ class UsersController extends AppController {
 			$this->Session->setFlash($e->getMessage());
 			$this->redirect(array('action' => 'index'));
 		}
-
 		if (empty($this->request->data)) {
 			$this->request->data = $this->{$this->modelClass}->read(null, $userId);
 		}

@@ -109,6 +109,46 @@ class FeedsController extends AppController {
  *
  * @return void
  */
+  public function blogadd() {
+    if ($this->request->is('post')) {
+      $this->Feed->create();
+      if ($this->request->is('ajax')) {
+        $this->request->data['Feed']['user_id'] = $this->Auth->user('id'); 
+        if ($this->Feed->save($this->request->data)) {
+          $this->Feed->recursive = 2;
+          if (isset($this->request->data['Feed']['parent_id'])) {
+            //parent id set -> return the complete feed with comments
+            $this->set('feed', $this->Feed->read(null, $this->request->data['Feed']['parent_id']));
+          } else {
+            $this->set('feed', $this->Feed->read(null, $this->Feed->id));
+          }
+          $this->render('/Elements/blogfeeditem');
+        }
+      }
+    }
+  }
+
+
+  public function blogcomment() {
+    if ($this->request->is('post')) {
+      $this->Feed->create();
+      if ($this->request->is('ajax')) {
+        $this->request->data['Feed']['user_id'] = $this->Auth->user('id'); 
+        if ($this->Feed->save($this->request->data)) {
+          $this->Feed->recursive = 2;
+          $this->set('feed', $this->Feed->read(null, $this->Feed->id));
+          $this->render('/Elements/blogfeeditem');
+        }
+      }
+    }
+  }
+
+
+/**
+ * add method
+ *
+ * @return void
+ */
 	public function add() {
 		if ($this->request->is('post')) {
       $this->Feed->create();

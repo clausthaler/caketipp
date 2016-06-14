@@ -390,6 +390,30 @@ order by sum desc) c');
       $this->set('roundselected', $roundselected);
     }
   }
+
+
+  public function toptipps() {
+    if ($this->request->is('requested')) {
+      // find last 5 matches
+      $this->Match->recursive = -1;
+      $matches = $this->Match->find(
+        'all', array(
+          'fields' => array('id','name','points_team1','points_team2','extratime'),
+          'conditions' => array(
+            'isfinished' => 1), 
+          'order' => array('Match.datetime desc'),
+          'limit' => 5));
+      $matchlist = Hash::extract( $matches, '{n}.Match.id');
+
+      $this->Tipp->recursive = 1;
+      return $toptipps = $this->Tipp->find(
+        'all', array(
+          'conditions' => array(
+            'Tipp.match_id' => $matchlist),
+          'order' => 'points desc',
+          'limit' => 10));
+    }
+  }  
   /**
    * 
    */

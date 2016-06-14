@@ -53,7 +53,7 @@
                           }
                           echo '<td style="width:30px">';
                           if (!empty($tipper['photo'])) {
-                            echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $tipper[' photo_dir'] .  DS . 'small_' . $tipper['photo'], array('style' => 'max-width:30px; max- height:30px;'));
+                            echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $tipper['photo_dir'] .  DS . 'small_' . $tipper['photo'], array('style' => 'max-width:30px; max-height:30px;'));
                           } else {
                             echo '&nbsp;';
                           }
@@ -147,13 +147,43 @@
             </div>
       </div>
       <div class="col-md-6">
+
         <div class="portlet portlet-boxed">
           <div class="portlet-body">
-            <div id="summernote-basic-demo"></div>
-          <?php 
-            $feeds = $this->requestAction('feeds/stream' ); 
-            echo $this->element('feedstream', array('feeds' => $feeds));
-          ?>
+            <div id="showpostbox">
+              <a href="javascript:tippspiel_admin.showpostbox()" type="button" class="btn btn-primary btn-xs"><?php echo __('Say something') ?></a>
+              <br/>
+              <br/>
+            </div>
+            <div id="postbox" style="display:none">
+              <p>
+                <a href="javascript:tippspiel_admin.hidepostbox()"  type="button" class="btn btn-default btn-xs"><?php echo __('Cancel') ?></a>
+                <a href="javascript:tippspiel_admin.postblogitem()" id="saveblogitem" type="button" class="btn btn-primary btn-xs"><?php echo __('Post!') ?></a>
+                <div class="share-widget clearfix">
+                  <div id="summernote"></div>
+                  <?php 
+                    echo $this->Form->create('Feed', array(
+                      'parsley' => false,
+                      'id' => 'postBoxForm',
+                      'action' => 'blogadd',
+                      'style' => 'display:none',
+                      'id' => 'postboxform'
+                    )); 
+                    echo $this->Form->textarea('text', array(
+                      'label' => false
+                    ));
+                    echo $this->Form->end();
+                  ?>
+                </div> <!-- /.share-widget -->
+
+              </p>
+            </div>
+            <?php 
+              $feeds = $this->requestAction('feeds/stream' ); 
+              echo $this->element('blogstream', array('feeds' => $feeds));
+            ?>
+
+            <br class="visible-xs">
           </div>
         </div>
       </div> <!-- /.col -->

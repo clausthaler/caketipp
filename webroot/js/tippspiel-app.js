@@ -163,11 +163,91 @@ var tippspiel_admin = function () {
     $( "#feedStream" ).load( "/feeds/stream/page:" + page );
   }
 
+  var showpostbox = function() {
+    $( "#showpostbox" ).fadeOut( "100", function() {
+      $('#summernote').summernote({
+        focus: true,
+        toolbar: [
+          // [groupName, [list of button]]
+          ['style', ['bold', 'italic', 'underline', 'clear']],
+//          ['fontsize', ['fontsize']],
+//          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+//          ['height', ['height']],
+          ['insert',['picture','link','video']]
+        ],
+        maximumImageFileSize: 1048576
+      });
+
+      $( "#postbox" ).fadeIn("100");
+    });
+  }
+
+  var hidepostbox = function() {
+    $( "#postbox" ).fadeOut( "100", function() {
+      $( "#showpostbox" ).fadeIn("100");
+    });
+  }
+
   var loadUserInfoModal = function(username) {
     $('#userInfoModal').removeData('bs.modal');
     $('#userInfoModal').modal({remote: '/users/userinfo/' + username });
     $('#userInfoModal').modal('show');
   }
+
+  var showblogcommentbox = function(params) {
+
+    var $newbox = $( ".shoutboxtemplate" ).clone();
+    $( ".shoutboxchild" ).remove();
+    $newbox.addClass('shoutboxchild').removeClass('shoutboxtemplate');
+    $newbox.prependTo( "#" + params.target);
+    $('.shoutboxchild input.ModalFeedId').val(params.feed);
+    $('.shoutboxchild form').submit(function(e) {
+      var postData = $(this).serializeArray();
+      var formURL = $(this).attr("action");
+      if ( $('.shoutboxchild textarea').val() != '' ) {    
+        $.ajax({
+          url : formURL,
+          type: "POST",
+          data : postData,
+          success:function(data, textStatus, jqXHR) {
+            $( "#feed-" + params.feed).replaceWith( data );
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            alert( "Request failed: " + textStatus );
+          }
+        });
+      }
+      e.preventDefault(); //STOP default action
+      //    e.unbind(); //unbind. to stop multiple form submit.
+    });
+  }
+
+  var postblogitem = function(params) {
+    if (!$('#summernote').summernote('isEmpty')) {
+      $('form#postboxform textarea').val($('#summernote').summernote('code'));
+      var postData = $('form#postboxform').serialize();
+      var formURL = $('form#postboxform').attr("action");
+      $.ajax({
+        url : formURL,
+        type: "POST",
+        data : postData,
+        success:function(data, textStatus, jqXHR) {
+          $( "#postbox" ).fadeOut( "100", function() {
+            $('#summernote').summernote('code', '');
+            $( "#showpostbox" ).fadeIn("100");
+            $( "#postbox").after(data);
+          });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          alert( "Request failed: " + textStatus );
+        }
+      });
+
+    };
+
+  }
+
 
   var showcommentbox = function(params) {
     var $newbox = $( ".shoutboxtemplate" ).clone();
@@ -194,9 +274,6 @@ var tippspiel_admin = function () {
       e.preventDefault(); //STOP default action
       //    e.unbind(); //unbind. to stop multiple form submit.
     });
-
-//    $( ".shoutboxtemplate" ).clone().appendTo( "#feedaction-" + feedid);
-//    console.log($( "#feedaction-" + feedid ).html());
   }
 
 
@@ -236,7 +313,11 @@ var tippspiel_admin = function () {
     toggleMessagelike: toggleMessagelike,
     refreshGroupTables: refreshGroupTables,
     refreshTippsStatistics: refreshTippsStatistics,
-    loadUserInfoModal: loadUserInfoModal
+    loadUserInfoModal: loadUserInfoModal,
+    showpostbox: showpostbox,
+    hidepostbox: hidepostbox,
+    showblogcommentbox: showblogcommentbox,
+    postblogitem: postblogitem
   }
 
 }()
@@ -245,11 +326,6 @@ $(function () {
 
     $(".userinfo-modal").click(function() {
       tippspiel_admin.loadUserInfoModal($(this).data('user'));
-//        alert($(this).data("user"));
     });
-/*  tippspiel_admin.init ();
-  $('#summernote-basic-demo').summernote ({ 
-    height: 150 
-  }) */
   
 })

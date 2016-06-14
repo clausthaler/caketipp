@@ -47,8 +47,8 @@
           <?php if ($feed['Feed']['message_id'] != '') {
             echo __('has commented message') . substr($feed['Message']['title'], 0, 20) . '...' ;
           }
+            echo $feed['Feed']['text'];
           ?>
-          <?=h($feed['Feed']['text']); ?> 
         </li>
       </ul>
     </div> <!-- /.feed-content -->

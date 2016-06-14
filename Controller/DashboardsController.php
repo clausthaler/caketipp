@@ -45,6 +45,7 @@ class DashboardsController extends AppController {
  */
     public $uses = array('Match', 'Feed', 'Tipp');
 
+
 /**
  * Displays a view
  *

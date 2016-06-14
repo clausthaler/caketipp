@@ -295,6 +295,8 @@ class UsersController extends AppController {
 			foreach ($this->request->data['User'] as $key => $value) {
 				if ($key <> 'email' &&
 					$key <> 'recieve_emails' &&
+					$key <> 'name' &&
+					$key <> 'aboutme' &&
 					$key <> 'recieve_reminders' && 
 					$key <> 'photo') {
 					unset($this->request->data['User'][$key]);

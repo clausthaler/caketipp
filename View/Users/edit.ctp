@@ -54,6 +54,18 @@
                   'after'=>'</div>'));
               ?>
               <div class="form-group">
+                <label for="UserName" class="col-md-3"><?php echo __d('users', 'About me'); ?></label>
+                <div class="col-md-7">
+                  <?php 
+                    echo $this->Form->textarea('aboutme', array(
+                      'label' => false,
+                      'style' => 'width:100%',
+                      'required' => false,
+                      'placeholder' => __d('users', 'About me')));
+                  ?>
+                </div>
+              </div>
+              <div class="form-group">
                 <label for="UserName" class="col-md-3"><?php echo __('Image'); ?></label>
                 <div class="col-md-7">
                 <?php

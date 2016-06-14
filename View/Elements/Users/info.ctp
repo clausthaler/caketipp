@@ -6,6 +6,7 @@
 		</div> <!-- /.modal-header -->
 
 		<div class="modal-body">
+      <p><?php echo $user['User']['aboutme'] ?></p>
           <?php 
           if (!empty($user['User']['photo'])) {
           	echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $user['User']['photo_dir'] .  DS . 'big_' . $user['User']['photo'], array('style' => 'width:100%'));

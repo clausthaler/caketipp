@@ -826,7 +826,6 @@ class User extends AppModel {
  * @return mixed True on successfully save else post data as array
  */
 	public function edit($userId = null, $postData = null) {
-		die();
 		$user = $this->getUserForEditing($userId);
 		$this->set($user);
 		if (empty($user)) {

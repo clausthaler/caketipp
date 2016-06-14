@@ -13,7 +13,7 @@ App::uses('CakeEmail', 'Network/Email');
 App::uses('AppController', 'Controller');
 
 /**
- * Users Users Controller
+ * Users Controller
  *
  * @package       Users
  * @subpackage    Users.Controller
@@ -259,6 +259,21 @@ class UsersController extends AppController {
 	}
 
 /**
+ * Shows user info for modal
+ *
+ * @param string $slug User Slug
+ * @return void
+ */
+	public function userinfo($slug = null) {
+//	    if ($this->request->is('ajax')) {
+			$this->layout = 'ajax';
+			$this->set('user', $this->{$this->modelClass}->view($slug));
+      		$this->render('/Elements/Users/info');
+//      	}
+	}
+
+
+/**
  * Edit
  *
  * @param string $id User ID
@@ -269,23 +284,24 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid User'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-
+			App::uses('Sanitize', 'Utility');
 			$this->User->read(null, $this->Auth->user('id'));
-			if (!empty($this->request->data['User']['email'])) {
-				$this->User->set('email', $this->request->data['User']['email']);
-			}
-      // set session date time when in test mode
-      if (Configure::read('mode') == 1 ) {
-        $this->Session->write('currentdatetime', $this->request->data['User']['currentdatetime']);
-      }
 
-      if (!empty($this->request->data['User']['recieve_emails'])) {
-        $this->User->set('recieve_emails', $this->request->data['User']['recieve_emails']);
-      }
-      if (!empty($this->request->data['User']['recieve_reminders'])) {
-        $this->User->set('recieve_reminders', $this->request->data['User']['recieve_reminders']);
-      }
-			if ($this->User->save()) {
+			// set session date time when in test mode
+	      	if (Configure::read('mode') == 1 ) {
+    	    	$this->Session->write('currentdatetime', $this->request->data['User']['currentdatetime']);
+      		}
+
+			foreach ($this->request->data['User'] as $key => $value) {
+				if ($key <> 'email' &&
+					$key <> 'recieve_emails' &&
+					$key <> 'recieve_reminders' && 
+					$key <> 'photo') {
+					unset($this->request->data['User'][$key]);
+				}
+			}
+
+			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The profile has been updated.'));
 				return $this->redirect(array('controller' => 'dashboards', 'action' => 'index'));
 			} else {
@@ -293,9 +309,9 @@ class UsersController extends AppController {
 			}
 		} else {
 			$this->request->data = $this->User->read(null, $this->Auth->user('id'));
-      if (Configure::read('mode') == 1) {
-        $this->request->data['User']['currentdatetime'] = $this->Session->read('currentdatetime');
-      }
+      		if (Configure::read('mode') == 1) {
+        		$this->request->data['User']['currentdatetime'] = $this->Session->read('currentdatetime');
+      		}
 		}
 	}
 

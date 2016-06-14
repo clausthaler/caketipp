@@ -163,6 +163,12 @@ var tippspiel_admin = function () {
     $( "#feedStream" ).load( "/feeds/stream/page:" + page );
   }
 
+  var loadUserInfoModal = function(username) {
+    $('#userInfoModal').removeData('bs.modal');
+    $('#userInfoModal').modal({remote: '/users/userinfo/' + username });
+    $('#userInfoModal').modal('show');
+  }
+
   var showcommentbox = function(params) {
     var $newbox = $( ".shoutboxtemplate" ).clone();
     $( ".shoutboxchild" ).remove();
@@ -229,15 +235,21 @@ var tippspiel_admin = function () {
     loadStreamPage: loadStreamPage,
     toggleMessagelike: toggleMessagelike,
     refreshGroupTables: refreshGroupTables,
-    refreshTippsStatistics: refreshTippsStatistics
+    refreshTippsStatistics: refreshTippsStatistics,
+    loadUserInfoModal: loadUserInfoModal
   }
 
 }()
 
 $(function () {
-  tippspiel_admin.init ();
+
+    $(".userinfo-modal").click(function() {
+      tippspiel_admin.loadUserInfoModal($(this).data('user'));
+//        alert($(this).data("user"));
+    });
+/*  tippspiel_admin.init ();
   $('#summernote-basic-demo').summernote ({ 
     height: 150 
-  })
+  }) */
   
 })

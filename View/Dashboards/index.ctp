@@ -40,18 +40,18 @@
                     foreach ($tippers as $id => $tipper) {
                       if ($id == $this->Session->read('Auth.User.id')) {
                         $found = true;
-                        echo '<tr style="background-color:lightgreen">';
+                        echo '<tr style="background-color:lightgreen" class="userinfo-modal" data-user="' . $tipper['username'] . '">';
                         if ($tipper['sum'] == $lastsum) {
-                          echo '<td>&nbsp;</td>';
+                          echo '<td><a data-toggle="modal" href="#userInfoModal">&nbsp;</a></td>';
                         } else {
-                          echo '<td>' . $count . '</td>';
+                          echo '<td><a data-toggle="modal" href="#userInfoModal">' . $count . '</a></td>';
                         }
                         echo '<td>' . $tipper['username'] . '</td>';
                         echo '<td>' . $tipper['sum'] . '</td>';
                         echo '</tr>';
                       } else {
                         if ($count < 9 || ($count == 9 || $count == 10) && $found ) {
-                          echo '<tr>';
+                          echo '<tr class="userinfo-modal" data-user="' . $tipper['username'] . '">';
                           if ($tipper['sum'] == $lastsum) {
                             echo '<td>&nbsp;</td>';
                           } else {
@@ -154,3 +154,9 @@
     </div> <!-- /.row -->
   </div> <!-- /.container -->
 </div> <!-- .content -->
+<div id="userInfoModal" class="modal fade" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div> <!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>

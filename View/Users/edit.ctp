@@ -20,7 +20,8 @@
                 'action' => 'edit',
                 'id' => 'EditForm',
                 'class' => 'form-horizontal',
-                'role' => 'form'
+                'role' => 'form',
+                'type' => 'file'
               )); ?>
         
               <div class="form-group">
@@ -41,7 +42,32 @@
                   'placeholder' => __d('users', 'Email'),
                   'between'=>'<div class="col-md-7">',
                   'after'=>'</div>'));
+                echo $this->Form->input('name', array(
+                  'label' => array('class' => 'col-md-3',
+                    'text' => __d('users', 'Name')),
+                  'class' => 'form-control',
+                  'tabindex' => '3',
+                  'div' => array('class' => 'form-group'),
+                  'required' => false,
+                  'placeholder' => __d('users', 'Name'),
+                  'between'=>'<div class="col-md-7">',
+                  'after'=>'</div>'));
               ?>
+              <div class="form-group">
+                <label for="UserName" class="col-md-3"><?php echo __('Image'); ?></label>
+                <div class="col-md-7">
+                <?php
+                  echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $this->request->data['User']['photo_dir'] .  DS . $this->request->data['User']['photo']
+                    , array('style' => 'width:100%'));
+                  echo $this->Form->input('User.photo', 
+                    array(
+                      'type' => 'file',
+                      'label' => false)); 
+                  echo $this->Form->input('User.photo_dir', array('type' => 'hidden'));
+                ?>
+                </div>
+              </div>
+
               <div class="form-group">
                 <label class="col-md-3"><?php echo __('Notifications'); ?></label>
                 <div class="col-md-7">
@@ -49,13 +75,13 @@
                   'div' => array('class' => 'checkbox'),
                   'type' => 'checkbox',
                   'label' => __('Admins are allowed to send emails.'),
-                  'tabindex' => '3')); 
+                  'tabindex' => '5')); 
                 ?>
                 <?php echo $this->Form->input('recieve_reminders', array(
                   'div' => array('class' => 'checkbox'),
                   'type' => 'checkbox',
                   'label' => __('I want to get email reminders for outstanding tipps.'),
-                  'tabindex' => '4')); 
+                  'tabindex' => '6')); 
                 ?>
                 </div> <!-- /.col -->
               </div> <!-- /.form-group -->
@@ -65,7 +91,7 @@
                 'label' => array('class' => 'col-md-3',
                   'text' => __('Current Datetime')),
                 'class' => 'form-control',
-                'tabindex' => '5',
+                'tabindex' => '7',
                 'div' => array('class' => 'form-group'),
                 'type' => 'text',
                 'required' => false,

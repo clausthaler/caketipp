@@ -328,7 +328,7 @@ class TippsController extends AppController {
 
   public function ranking() {
     if ($this->request->is('requested')) {
-     return $users = $this->User->query('select * from (select a.id "id", a.username "username", (select sum(b.points) from tipps b where a.id = b.user_id) "sum" from users a
+     return $users = $this->User->query('select * from (select a.id "id", a.username "username", a.photo "photo", a.photo_dir "photo_dir", (select sum(b.points) from tipps b where a.id = b.user_id) "sum" from users a
 order by sum desc) c');
     } else {
       $this->Round->recursive = -1;

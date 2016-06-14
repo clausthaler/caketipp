@@ -92,6 +92,7 @@ CakePlugin::load('Migrations');
 CakePlugin::load('Utils');
 CakePlugin::load('Search');
 CakePlugin::load('ParsleyHelper');
+CakePlugin::load('Upload');
 
 Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',

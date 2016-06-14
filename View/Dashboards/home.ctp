@@ -35,7 +35,7 @@
                         }
                         echo '<td style="width:30px">';
                         if (!empty($tipper['photo'])) {
-                          echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $tipper['photo_dir'] .  DS . $tipper['photo'], array('style' => 'max-width:30px; max-height:30px;'));
+                          echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $tipper['photo_dir'] .  DS . 'small_' . $tipper['photo'], array('style' => 'max-width:30px; max-height:30px;'));
                         } else {
                           echo '&nbsp;';
                         }
@@ -53,7 +53,7 @@
                           }
                           echo '<td style="width:30px">';
                           if (!empty($tipper['photo'])) {
-                            echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $tipper[' photo_dir'] .  DS . $tipper['photo'], array('style' => 'max-width:30px; max- height:30px;'));
+                            echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $tipper[' photo_dir'] .  DS . 'small_' . $tipper['photo'], array('style' => 'max-width:30px; max- height:30px;'));
                           } else {
                             echo '&nbsp;';
                           }

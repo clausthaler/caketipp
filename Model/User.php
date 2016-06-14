@@ -58,8 +58,14 @@ class User extends AppModel {
 			'photo' => array(
                 'fields' => array(
                     'dir' => 'photo_dir'
-                )
-            )
+                ),
+				'thumbnailSizes' => array(
+    	           'big' => '1024w',
+        	       'small' => '240w',
+            	   'thumb' => '30w'
+           		),
+				'thumbnailMethod' => 'php'
+            ),
         ),
 		'Containable'
 	);

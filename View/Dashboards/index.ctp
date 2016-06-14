@@ -25,6 +25,7 @@
                   <thead>
                     <tr>
                       <th><?php echo __('Pos'); ?></th>
+                      <th>&nbsp;</th>
                       <th><?php echo __('Name'); ?></th>
                       <th><?php echo __('Points'); ?></th>
                     </tr>
@@ -46,6 +47,13 @@
                         } else {
                           echo '<td><a data-toggle="modal" href="#userInfoModal">' . $count . '</a></td>';
                         }
+                        echo '<td style="width:30px">';
+                        if (!empty($tipper['photo'])) {
+                          echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $tipper['photo_dir'] .  DS . 'small_' . $tipper['photo'], array('style' => 'max-width:30px; max-height:30px;'));
+                        } else {
+                          echo '&nbsp;';
+                        }
+                        echo '</td>';
                         echo '<td>' . $tipper['username'] . '</td>';
                         echo '<td>' . $tipper['sum'] . '</td>';
                         echo '</tr>';
@@ -57,6 +65,13 @@
                           } else {
                             echo '<td>' . $count . '</td>';
                           }
+                          echo '<td style="width:30px">';
+                          if (!empty($tipper['photo'])) {
+                            echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $tipper['photo_dir'] .  DS . 'small_' . $tipper['photo'], array('style' => 'max-width:30px; max-height:30px;'));
+                          } else {
+                            echo '&nbsp;';
+                          }
+                          echo '</td>';
                           echo '<td>' . $tipper['username'] . '</td>';
                           echo '<td>' . $tipper['sum'] . '</td>';
                           echo '</tr>';

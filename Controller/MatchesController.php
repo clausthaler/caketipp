@@ -354,12 +354,28 @@ class MatchesController extends AppController {
     ;
     $this->set('matches', $matches); 
 
+    // find matches that cannot be tipped not to show future tipps of other tippers
+    $this->Match->recursive = -1;
+    $limitmatches = $this->Match->find(
+      'all', 
+      array('order' => array(
+        'Match.round_id', 
+        'Match.datetime'),
+        'conditions' => array(
+          'group_id' => Hash::extract($groups, '{n}.Group.id'),
+          'due <' => strtotime($this->Session->read('currentdatetime'))))
+    );
+    if ($this->Auth->user('id') == $user['User']['id']) {
+      $limitmatches = $matches;
+    }
+    
+
     $this->Tipp->recursive = -1;
     $tipps = $this->Tipp->find('all',
       array(
         'order' => 'Tipp.match_id',
         'conditions' => array(
-          'Tipp.match_id' => Hash::extract($matches, '{n}.Match.id'),
+          'Tipp.match_id' => Hash::extract($limitmatches, '{n}.Match.id'),
           'Tipp.user_id' => $user['User']['id'])));
     $this->set('tipps', $tipps);
 

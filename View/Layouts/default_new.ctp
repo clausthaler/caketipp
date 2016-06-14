@@ -131,7 +131,11 @@ $cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
             </li>
             <li class="dropdown navbar-profile">
               <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
-                <?php echo $this->Html->image($this->Gravatar->get_gravatar($this->Session->read('Auth.User.email')), array('alt' => $this->Session->read('Auth.User.username'), 'class' => 'navbar-profile-avatar')); ?>
+                <?php 
+                  if (!file_exists(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $this->Session->read('Auth.User.id') .  DS . 'small_' . $this->Session->read('Auth.User.photo'))) {
+                    echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $this->Session->read('Auth.User.id') .  DS . 'small_' . $this->Session->read('Auth.User.photo'), array('alt' => $this->Session->read('Auth.User.username'), 'class' => 'navbar-profile-avatar')); 
+                  }
+                ?>
                 <span><?php echo $this->Session->read('Auth.User.username'); ?> &nbsp;</span>
               </a>
 

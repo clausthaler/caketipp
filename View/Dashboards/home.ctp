@@ -2,6 +2,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
+        <?php if ($this->Session->read('Auth.User.role') == 'admin') { ?>
+        <?php 
+          $currentmatches = $this->requestAction('matches/openresults');
+        ?>
         <div class="portlet portlet-boxed">
           <div class="portlet-body">
             <table class="table table-condensed">
@@ -14,9 +18,6 @@
                 </tr>
               </thead>
               <tbody>
-              <?php 
-                $currentmatches = $this->requestAction('matches/openresults');
-              ?>
               <?php foreach ($currentmatches as $id => $match) { ?>
                 <tr>
                   <td>
@@ -65,6 +66,7 @@
             </table>
           </div>
         </div>
+        <?php } ?>
 
 
             <div class="portlet portlet-boxed">

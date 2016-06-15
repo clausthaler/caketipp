@@ -51,7 +51,9 @@
                   <td>
                     <?php
                     echo $this->Html->link(__('Enter Result'), array(
-                        'action' => 'result', 
+                        'controller' => 'matches',
+                        'action' => 'result',
+                        'admin' => true, 
                         $match['Match']['id']),
                         array('class' => 'btn btn-xs btn-success'));
                     ?>

@@ -2,6 +2,69 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
+        <div class="portlet portlet-boxed">
+          <div class="portlet-body">
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th><?php echo __('Date'); ?></th>
+                  <th><?php echo __('Match'); ?></th>
+                  <th style="text-align: center;"><?php echo __('Result'); ?></th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php 
+                $currentmatches = $this->requestAction('matches/openresults');
+              ?>
+              <?php foreach ($currentmatches as $id => $match) { ?>
+                <tr>
+                  <td>
+                  <?php 
+                    echo __(date("D", $match['Match']['kickoff'])) . ', ';
+                    echo date("d.m", $match['Match']['kickoff']); 
+                    echo '&nbsp;<small>' . date("H:i", $match['Match']['kickoff']) . ' </small>'; 
+                  ?>
+                  </td>
+                  <td>
+                  <?php 
+                    if (!empty($match['Team1']['iconurl'])) {
+                      echo $this->Html->image($match['Team1']['iconurl']);
+                    }
+                    echo "&nbsp;";
+                    echo $match['Team1']['name']; 
+                    echo " - ";
+                    if (!empty($match['Team2']['iconurl'])) {
+                      echo $this->Html->image($match['Team2']['iconurl']);
+                    }
+                    echo "&nbsp;";
+                    echo $match['Team2']['name']; 
+                  ?>
+                  </td>
+                  <td style="text-align: center;">
+                  <?php 
+                  if (is_numeric($match['Match']['points_team1'])) { 
+                    echo $match['Match']['points_team1'] . ':' . $match['Match']['points_team2'];
+                  }
+                  ?>
+                  </td>
+                  <td>
+                    <?php
+                    echo $this->Html->link(__('Enter Result'), array(
+                        'action' => 'result', 
+                        $match['Match']['id']),
+                        array('class' => 'btn btn-xs btn-success'));
+                    ?>
+                  </td>
+
+                </tr>
+              <?php } ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
             <div class="portlet portlet-boxed">
               <div class="portlet-header">
                 <h4 class="portlet-title"><?php echo __('Ranking'); ?> </h4>

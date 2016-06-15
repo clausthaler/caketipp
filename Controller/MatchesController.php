@@ -462,6 +462,20 @@ class MatchesController extends AppController {
       $this->set('tipps', $tipps);
     }
   }
+
+  public function openresults() {
+    if ($this->request->is('requested')) {
+      $this->Match->recursive = 0;
+      $currentMatches = $this->Match->find('all', array(
+        'conditions' => array(
+          'Match.kickoff <' => strtotime($this->Session->read('currentdatetime')),
+          'Match.isfinished <>' => 1),
+        'order' => 'Match.kickoff'));
+        return $currentMatches;
+    }
+    die();
+  }
+
   public function test() {
         // get all tippers that want to be reminded
 #    $users = $this->User->find('list', array(

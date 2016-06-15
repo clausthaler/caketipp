@@ -32,6 +32,10 @@ msgstr "Punkteabstand zur Spitze"
 msgid "Points timeline"
 msgstr "Punkteverlauf"
 
+msgid "Results"
+msgstr "Ergebnisse"
+
+
 msgid "Personal ranking"
 msgstr "Platzierungsverlauf"
 

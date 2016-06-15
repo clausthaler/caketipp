@@ -304,6 +304,7 @@ class MatchesController extends AppController {
  * @return void
  */
   public function schedule() {
+    $this->layout = 'default_new';
     $this->Team->recursive = -1;
     $this->Group->recursive = -1;
     $this->Round->recursive = -1;

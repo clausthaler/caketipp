@@ -11,9 +11,6 @@
           <li class="">
             <a href="/home">Home</a>
           </li>
-          <li class="">
-            <a href="/dashboard">Old Home</a>
-          </li>
 
           <li class="dropdown">
             <a href="./index.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">

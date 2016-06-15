@@ -71,7 +71,7 @@
           <h4 class="content-title"><u>General Questions</u></h4>
 
           <p>
-            <?php echo __('This is a private tipping game for the world cup. If you have been invited, you are welcome to take part.') ?>
+            <?php echo __('This is a private football tipping game. If you have been invited, you are welcome to take part.') ?>
           </p>
           <p>
             <?php echo __('Allthough this is a fun oriented private tipping game there are a couple of rules found here:') ;

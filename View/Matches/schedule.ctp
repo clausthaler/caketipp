@@ -1,27 +1,17 @@
-<div class="mainnav">
-  <?php 
-    echo $this->Session->flash('flash', array('element' => 'message'));
-    echo $this->Session->flash('auth', array('element' => 'message'));
-  ?>
-</div> <!-- /.mainnav -->
 <div class="content">
   <div class="container">
     <div class="row">
-    <!-- start: Main Menu -->
-    <?php echo $this->element('menu', array("active" => "schedule")); ?>
-    <!-- end: Main Menu -->
-      <div class="col-md-9 col-sm-8 layout-main">
-        <div id="settings-content" class="tab-content stacked-content">
-          <div class="tab-pane fade in active" id="profile-tab">
-            <h3 class="content-title"><u><?php echo __('Schedule'); ?></u></h3>
-
+      <div class="portlet portlet-boxed">
+        <div class="portlet-header">
+          <h5 class="portlet-title"><?php echo __('Schedule'); ?></h5>
+        </div>
+        <div class="portlet-body">
             <?php
              $teams = Hash::combine($teams, '{n}.Team.id', '{n}.Team'); 
              $rounds = Hash::combine($rounds, '{n}.Round.id', '{n}.Round'); 
              $groups = Hash::combine($groups, '{n}.Group.id', '{n}.Group'); 
              $matches = Hash::combine($matches, '{n}.Match.id', '{n}.Match', '{n}.Match.round_id');
             ?>           
-            <!-- start: Content -->
             <?php 
             foreach ($matches as $key => $round) {
               echo '<h4>' . $rounds[$key]['name'] . '</h4>';
@@ -79,15 +69,11 @@
               echo "</table>";
               # code...
             }
-            #print_r(Hash::sort($matches, '{n}.Match.round_id', 'asc'));
-#            print_r($matches);
-
             ?>
              <!-- /.Content -->
 
-          </div> <!-- /.tab-pane -->
-        </div> <!-- /.tab-content -->
-      </div> <!-- /.col -->
+        </div> <!-- /.portlet-body -->
+      </div> <!-- /.portlet -->
     </div> <!-- /.row -->
   </div> <!-- /.container -->
 </div> <!-- .content -->

@@ -164,10 +164,11 @@ class TippsController extends AppController {
  * @return void
  */
   public function enterbonus() {
+    $this->layout = 'default_new';
     $this->Team->recursive = -1;
     $teams = $this->Team->find('list', array(
       'fields' => array('id', 'name'),
-      'conditions' => array('Team.iso <>' => null)));
+      'conditions' => array('group_id >=' => 1)));
     if ($this->request->is('post')) {
       // validate the entries and clean up the array
       $tippErrors = array();
@@ -201,9 +202,18 @@ class TippsController extends AppController {
         $this->Session->setFlash(__('Tipps could not be saved. Please correct errors and try again. Tipps are shown like they are saved at the moment'));
       }
     }
-    $this->Question->recursive = -1;
-    $this->Tipp->recursive = -1;
     $this->set(compact('teams'));
+    $this->Question->recursive = -1;
+    $this->Tipp->recursive = 0;
+    $this->Tipp->bindModel(
+        array('belongsTo' => array(
+                'Team' => array(
+                    'foreignKey' => 'team_id'
+                )
+            )
+        )
+    );
+
     $questions = $this->Question->find('all');
 
     $this->set('questions', $questions);

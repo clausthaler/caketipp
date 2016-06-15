@@ -39,8 +39,6 @@ $tippladders = Hash::combine($tippladders, '{n}.Ladder.id', '{n}.Ladder', '{n}.L
         <?php foreach ($groups as $groupkey => $group) { ?>
         <?php 
           $groupid = $group['Group']['id']; 
-//          print_r($ladders);
-//          print_r($tippladders);
           $ladders[$groupid] = Hash::combine($ladders[$groupid], '{n}.team_id', '{n}'); 
           $tippladders[$groupid] = Hash::combine($tippladders[$groupid], '{n}.team_id', '{n}'); 
         ?>

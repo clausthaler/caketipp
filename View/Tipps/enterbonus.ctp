@@ -1,19 +1,14 @@
-<div class="mainnav">
-  <?php 
-    echo $this->Session->flash('flash', array('element' => 'message'));
-    echo $this->Session->flash('auth', array('element' => 'message'));
-  ?>
-</div> <!-- /.mainnav -->
 <div class="content">
   <div class="container">
     <div class="row">
-    <!-- start: Main Menu -->
-    <?php echo $this->element('menu', array("active" => "enterbonus")); ?>
-    <!-- end: Main Menu -->
-      <div class="col-md-9 col-sm-8 layout-main">
-        <section>
+      <div class="portlet portlet-boxed">
+        <div class="portlet-header">
+          <h5 class="portlet-title"><?php echo __('Schedule'); ?></h5>
+        </div>
+        <div class="portlet-body">
         <?php
-          $tipps = Hash::combine($tipps, '{n}.Tipp.question_id', '{n}.Tipp'); 
+          $saveable = false;
+          $tipps = Hash::combine($tipps, '{n}.Tipp.question_id', '{n}'); 
           echo $this->Form->create('Tipp', array(
             'action' => 'enterbonus',
             'role' => 'form'
@@ -24,7 +19,7 @@
           echo '<th>' . __('Date') . '</th>';
           echo '<th>' . __('Question') . '</th>';
           echo '<th>' . __('Points') . '</th>';
-          echo '<th class="col-xs-2" style="text-align: center;">' . __('Tipp') . '</th>';
+          echo '<th class="col-xs-2">' . __('Tipp') . '</th>';
           echo '</tr>';
           foreach ($questions as $key => $question) {
             echo '<tr>';
@@ -39,32 +34,40 @@
             echo '<td>';
             echo $question['Question']['points'];
             echo '</td>';
-            echo '<td class="col-xs-2" style="text-align: center;">';
+            echo '<td class="col-xs-2">';
             if ($question['Question']['due'] > strtotime($this->Session->read('currentdatetime'))) {
+              $saveable = true;
               echo $this->Form->input('Question.' . $question['Question']['id'] , array(
                 'type'=>'select',
                 'label' => false,
                 'empty' => true,
                 'div' => false,
                 'options' => $teams,
-                'value' => isset($tipps[$question['Question']['id']]['team_id']) ? $tipps[$question['Question']['id']]['team_id'] : false));
+                'value' => isset($tipps[$question['Question']['id']]['Tipp']['team_id']) ? $tipps[$question['Question']['id']]['Tipp']['team_id'] : false));
             } else {
-              echo isset($tipps[$question['Question']['id']]['team_id']) ? $teams[$tipps[$question['Question']['id']]['team_id']] : ' ' ;
+              if (isset($tipps[$question['Question']['id']]['Tipp']['team_id'])) {
+                echo $this->Html->image($tipps[$question['Question']['id']]['Team']['iconurl']) . '&nbsp;';
+                echo  $tipps[$question['Question']['id']]['Team']['name'];
+              } else {
+                echo ' ';
+              }
             }
             echo '</td>';
             echo '</tr>';
 
           }
           echo "</table>";
-          echo $this->Form->button(__('Save'), array(
-            'type' => 'submit',
-            'escape' => true,
-            'class' => 'btn btn-primary'
-            )); 
+          if ($saveable) {
+            echo $this->Form->button(__('Save'), array(
+              'type' => 'submit',
+              'escape' => true,
+              'class' => 'btn btn-primary'
+              )); 
+          }
           echo $this->Form->end(); 
           ?>
-      </section> <!-- /.demo-section -->
-      </div> <!-- /.col -->
+        </div><!-- /.portlet-body -->
+      </div> <!-- /.portlet -->
     </div> <!-- /.row -->
   </div> <!-- /.container -->
 </div> <!-- .content -->

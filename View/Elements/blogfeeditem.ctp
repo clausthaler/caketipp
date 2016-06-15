@@ -1,5 +1,6 @@
 <div class="feed-item" id="feed-<?php echo $feed['Feed']['id'] ?>">
-    <div class="feed-icon bg-tertiary">
+
+    <div class="feed-icon bg-tertiary userinfo-modal" data-user="<?php echo $feed['User']['username']?>">
       <?php
       if (!empty($feed['User']['photo'])) {
         if (file_exists(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $feed['User']['photo_dir'] .  DS . 'small_' . $feed['User']['photo'])) {
@@ -29,7 +30,7 @@
           ?>
           <?php echo $this->element('feedlike', array('feed' => $feed));  ?>
         </span> 
-      <p><a href="javascript:;"><?php echo $feed['User']['username'] ?></a></p>
+      <p><a href="javascript:;"  class="userinfo-modal" data-user="<?php echo $feed['User']['username']?>"><?php echo $feed['User']['username'] ?></a></p>
     </div> <!-- /.feed-subject -->
 
     <div class="feed-content">
@@ -59,7 +60,8 @@
                 'feed' => array('Feed' => $comment, 'Like' => $comment['Like'])));  
               ?>
           </span> 
-          <p><a href="javascript:;"><?php echo $comment['User']['username'] ?></a></p>
+          <p>
+            <a href="javascript:;"  class="userinfo-modal" data-user="<?php echo $comment['User']['username']?>"><?php echo $comment['User']['username'] ?></a></p>
         </div> <!-- /.feed-subject -->
 
         <div class="feed-content">

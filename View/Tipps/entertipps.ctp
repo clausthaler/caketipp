@@ -1,17 +1,9 @@
 <div id="entertipps">
-<div class="mainnav">
-  <?php 
-    echo $this->Session->flash('flash', array('element' => 'message'));
-    echo $this->Session->flash('auth', array('element' => 'message'));
-  ?>
-</div> <!-- /.mainnav -->
 <div class="content">
   <div class="container">
     <div class="row">
-    <!-- start: Main Menu -->
-    <?php echo $this->element('menu', array("active" => "entertipps")); ?>
-    <!-- end: Main Menu -->
-      <div class="col-md-9 col-sm-8 layout-main">
+      <div class="portlet portlet-boxed">
+        <div class="portlet-body">
       <section>
       <?php
         $teams = Hash::combine($teams, '{n}.Team.id', '{n}.Team'); 
@@ -35,7 +27,6 @@
               'class' => 'btn btn-primary'
             )); 
           echo '</div>';
-          echo '<br><br>';
           foreach ($matches2tipp as $round => $matches) {
             echo '<h4>' . $rounds[$round]['name']  . '</h4>';
 
@@ -114,7 +105,8 @@
           echo $this->Form->end(); 
           ?>
       </section> <!-- /.demo-section -->
-      </div> <!-- /.col -->
+        </div> <!-- /.portlet body -->
+      </div> <!-- /.portlet -->
     </div> <!-- /.row -->
   </div> <!-- /.container -->
 </div> <!-- .content -->

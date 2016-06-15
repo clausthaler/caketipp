@@ -34,6 +34,12 @@
                 &nbsp;&nbsp;<?php echo __('Bonus questions');?>
                 </a>
               </li>
+              <li <?php if ($active == 'tipptables') { echo ' class="active" '; } ?>>
+                <a href="/tipptables">
+                <i class="fa fa-table"></i> 
+                &nbsp;&nbsp;<?php echo __('Tipp tables');?>
+                </a>
+              </li>
               <li <?php if ($active == 'schedule') { echo ' class="active" '; } ?>>
                 <a href="/schedule">
                 <i class="fa fa-table"></i> 

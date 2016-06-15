@@ -35,6 +35,12 @@ msgstr "Punkteverlauf"
 msgid "Personal ranking"
 msgstr "Platzierungsverlauf"
 
+msgid "Enter Tipps"
+msgstr "Tipps erfassen"
+
+msgid "Tipp tables"
+msgstr "Tipptabellen"
+
 msgid "Show group bonus for"
 msgstr "Gruppen Bonuspunkte anzeigen für"
 

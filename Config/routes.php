@@ -37,6 +37,7 @@
   Router::connect('/imprint', array('controller' => 'pages', 'action' => 'display', 'imprint'));
   Router::connect('/schedule', array('controller' => 'matches', 'action' => 'schedule'));
   Router::connect('/grouptables', array('controller' => 'matches', 'action' => 'grouptables'));
+  Router::connect('/tipptables', array('controller' => 'tipps', 'action' => 'tipptables'));
   Router::connect('/tippabgabe', array('controller' => 'tipps', 'action' => 'entertipps'));
   Router::connect('/entertipps/*', array('controller' => 'tipps', 'action' => 'entertipps'));
   Router::connect('/enterbonus', array('controller' => 'tipps', 'action' => 'enterbonus'));

@@ -125,6 +125,11 @@ div.error-message {
     margin-bottom: 10px;
 }
 
+
+.feed-content img {
+  max-width: 100% !important;
+}
+
 .feed-item .feed-content,
 .feed-item .feed-actions,
 .feed-item .feed-comment {

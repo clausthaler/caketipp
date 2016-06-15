@@ -39,6 +39,11 @@ div.error-message {
   padding-left: 30px;
 }
 
+.feed-content img {
+  max-width: 100% !important;
+}
+
+
 /* !Social Feed */
 /* ----------------------------------------------- 
 .feed-item {

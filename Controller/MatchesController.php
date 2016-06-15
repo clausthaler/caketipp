@@ -464,16 +464,17 @@ class MatchesController extends AppController {
   }
 
   public function openresults() {
-    if ($this->request->is('requested')) {
+//    if ($this->request->is('requested')) {
       $this->Match->recursive = 0;
       $currentMatches = $this->Match->find('all', array(
         'conditions' => array(
           'Match.kickoff <' => strtotime($this->Session->read('currentdatetime')),
           'Match.isfinished <>' => 1),
         'order' => 'Match.kickoff'));
+      $this->render = false;
         return $currentMatches;
-    }
-    die();
+//    }
+//    die();
   }
 
   public function test() {

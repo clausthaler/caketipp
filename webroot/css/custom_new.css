@@ -14,6 +14,9 @@ div.error-message {
     color: #FF0000;
 }
 
+.dropdown-backdrop {
+  position: static;
+}
 .content {
   padding-top: 20px;
 }

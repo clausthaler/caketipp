@@ -95,12 +95,6 @@ class AppController extends Controller {
       } else {
         Configure::write('Config.language', 'deu');
       }
-      if ($this->Auth->user('username')) {
-        $this->Session->destroy();
-        # code...
-      }
-
       $this->RememberMe->restoreLoginFromCookie();
-//      
     }
 }

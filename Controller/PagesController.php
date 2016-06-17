@@ -61,7 +61,7 @@ class PagesController extends AppController {
 
 		if ($this->Session->check('Auth.User') && $path[0] == 'home') {
 			$this->redirect(
-	            array('controller' => 'dashboards', 'action' => 'index')
+	            array('controller' => 'dashboards', 'action' => 'home')
 	        );
    		}
 

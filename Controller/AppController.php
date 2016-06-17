@@ -95,6 +95,6 @@ class AppController extends Controller {
       } else {
         Configure::write('Config.language', 'deu');
       }
-      $this->RememberMe->restoreLoginFromCookie();
+//      $this->RememberMe->restoreLoginFromCookie();
     }
 }

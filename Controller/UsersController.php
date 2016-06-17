@@ -305,7 +305,7 @@ class UsersController extends AppController {
 
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The profile has been updated.'));
-				return $this->redirect(array('controller' => 'dashboards', 'action' => 'index'));
+				return $this->redirect(array('controller' => 'dashboards', 'action' => 'home'));
 			} else {
 				$this->Session->setFlash(__('Error saving the profile. Please, try again.'));
 			}

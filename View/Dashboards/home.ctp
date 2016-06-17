@@ -7,7 +7,7 @@
           $currentmatches = $this->requestAction('matches/openresults');
           if (!empty($currentmatches)) { ?>
             <div class="portlet portlet-boxed">
-              <div class="portlet-body">
+              <div class="portlet-body table-responsive">
                 <table class="table table-condensed">
                   <thead>
                     <tr>
@@ -74,7 +74,7 @@
               <div class="portlet-header">
                 <h4 class="portlet-title"><?php echo __('Ranking'); ?> </h4>
               </div>
-              <div class="portlet-body">
+              <div class="portlet-body table-responsive">
                 <table class="table table-condensed">
                   <thead>
                     <tr>
@@ -151,7 +151,7 @@
               <div class="portlet-header">
                 <h4 class="portlet-title"><?php echo __('Next matches'); ?> </h4>
               </div>
-              <div class="portlet-body">
+              <div class="portlet-body table-responsive">
                 <table class="table table-condensed">
                   <thead>
                     <tr>

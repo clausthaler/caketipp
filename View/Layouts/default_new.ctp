@@ -18,7 +18,6 @@
 
 $cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
 ?>
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -89,7 +88,7 @@ $cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
 </head>
 <body class="<?php echo $bodyClass; ?>">
   <div id="wrapper">
-    <header class="navbar navbar-inverse" role="banner">
+    <header class="navbar" role="banner">
       <div class="container">
         <div class="navbar-header">
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -103,7 +102,7 @@ $cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
 
         <nav class="collapse navbar-collapse" role="navigation">
           <?php if($this->Session->check('Auth.User')) { ?>
-            <ul class="nav navbar-nav noticebar navbar-left">
+            <ul class="nav navbar-nav navbar-left">
 
               <!--  notifications -->
               <?php echo $this->element('notTippedNotification', array(

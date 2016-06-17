@@ -282,10 +282,10 @@ var tippspiel_admin = function () {
     init: function () {
 
       // Layouts
+      mvpready_core.initNavEnhanced ()
       mvpready_core.initNavHover ({ delay: { show: 250, hide: 350 } })
-
       mvpready_core.initNavbarNotifications ()
-      mvpready_core.initSidebarNav ()
+//      mvpready_core.initSidebarNav ()
       mvpready_core.initLayoutToggles ()
       mvpready_core.initBackToTop ()
 

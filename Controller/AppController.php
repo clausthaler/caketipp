@@ -85,16 +85,22 @@ class AppController extends Controller {
         'Form' => array(
             'fields' => array(
               'username' => 'email',
-                'password' => 'password'),
-                'userModel' => 'User',
+              'password' => 'password'),
+              'userModel' => 'User',
                 'scope' => array(
-                  $this->modelClass . '.active' => 1,
-                  $this->modelClass . '.email_verified' => 1)));
+                  'User.active' => 1,
+                  'User.email_verified' => 1)));
       if ($this->Session->check('Config.language')) {
         Configure::write('Config.language', $this->Session->read('Config.language'));
       } else {
         Configure::write('Config.language', 'deu');
       }
-//      $this->RememberMe->restoreLoginFromCookie();
+      if ($this->Auth->user('username')) {
+        $this->Session->destroy();
+        # code...
+      }
+
+      $this->RememberMe->restoreLoginFromCookie();
+//      
     }
 }

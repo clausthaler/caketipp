@@ -1,4 +1,4 @@
-<div id="tippsoverview">
+<div id="tippsoverview table-responsive">
   <div class="content">
     <div class="container">
       <div class="row">

@@ -628,12 +628,6 @@ order by sum desc) c');
         'order' => array('Match.datetime')));
     $this->set('matches', $matches);
     $matchlist = Hash::extract( $matches, '{n}.Match.kickoff');
-
-    if (time() > $matchlist[0] && time() > ($matchlist[count($matchlist) -1 ] + 7200)) {
-      $this->set('show', 'matches');
-    } else {
-      $this->set('show', 'ranking');
-    }
     
     foreach ($users as $userid => $user) {
       $this->Tipp->recursive = -1;
@@ -654,6 +648,17 @@ order by sum desc) c');
 
     $this->set('matches', $matches);
     $this->set('users', $users);
+    $userlist = $this->User->query('select * from (select a.id "id", a.username "username", a.photo '
+      .'"photo", a.photo_dir "photo_dir", (select sum(b.points) from tipps b where a.id = b.user_id' 
+      .'  and b.match_id in (' . join(',', Hash::extract( $matches, '{n}.Match.id')) . ')) "sum" from users a order by sum desc) c');
+    $this->set('userlist', $userlist);
+    
+    if (time() > $matchlist[0] && time() > ($matchlist[count($matchlist) -1 ] + 7200)) {
+      $this->set('show', 'matches');
+    } else {
+      $this->set('show', 'ranking');
+    }
+
     $this->set(compact('teams', 'groups', 'matchlist', 'rounds', 'roundsselarr', 'tipproundid', 'fromtomatches', 'roundselected', 'frommatch', 'tomatch'));
     
     if ($dashboard) {

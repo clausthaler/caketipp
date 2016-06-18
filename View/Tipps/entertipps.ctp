@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="portlet portlet-boxed">
-        <div class="portlet-body">
+        <div class="portlet-body table-responsive">
       <section>
       <?php
         $teams = Hash::combine($teams, '{n}.Team.id', '{n}.Team'); 

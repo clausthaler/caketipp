@@ -2,7 +2,7 @@
   <div class="content">
     <div class="container">
         <div class="portlet portlet-boxed">
-          <div class="portlet-body">
+          <div class="portlet-body table-responsive">
             <section>
               <div class="row">
                 <div class="col-xs-3">

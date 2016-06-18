@@ -26,8 +26,9 @@
             echo '<tr>' . $mth2 . '</tr>';
             echo '<tr>' . $mth3 . '</tr>';
             $pos = 1;
-            $lasttotal = 0;
-            foreach ($users as $userkey => $user) {
+
+            foreach ($userlist as $c => $listuser) {
+              $user = $users[$listuser['c']['id']];
               if ($pos > 14) {
                 $addclass = ' rankingextrarow' ;
               } else {
@@ -38,13 +39,6 @@
               } else {
                 echo '<tr class="' . $addclass . '">';
               }
-              /*  
-              if ($user['roundtotal'] != $lasttotal) {
-                echo '<td>' . $pos . '</td>';
-              } else {
-                echo '<td>&nbsp;</td>';
-              }
-              */
               echo '<td>'; 
               if (!empty($user['photo'])) {
                 echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $user['photo_dir'] .  DS . 'small_' . $user['photo'], array('style' => 'max-width:30px; max-height:30px;'));
@@ -55,8 +49,13 @@
                 // only show tipps when tipp due is over or current user
                 if ($match['Match']['due'] < strtotime($this->Session->read('currentdatetime')) || $user['username'] == $this->Session->read('Auth.User.username')) {
                   // show if exists tipp
+                  if ($match['Match']['kickoff'] < strtotime($this->Session->read('currentdatetime')) && $match['Match']['isfinished'] != 1) {
+                    $style = ';background-color:lightyellow;color:red';
+                  } else {
+                    $style = '';
+                  }
                   if (isset($user['Tipps'][$match['Match']['id']])) {
-                    echo '<td style="text-align: center;">';
+                    echo '<td style="text-align: center;' . $style . '">';
                     echo $user['Tipps'][$match['Match']['id']]['points_team1'] 
                     . ':' 
                     . $user['Tipps'][$match['Match']['id']]['points_team2'];
@@ -67,7 +66,7 @@
                     echo '</td>';
                     }
                   } else {
-                    echo '<td style="text-align:center">&nbsp;</td>'; 
+                    echo '<td style="text-align:center' . $style . '">&nbsp;</td>'; 
                   }
                   # code...
                 } else {
@@ -75,8 +74,7 @@
                 }
               }              
   
-              echo '<td style="text-align: center;">' . $user['roundtotal'] . '</td>';
-              $lasttotal = $user['roundtotal'];
+              echo '<td style="text-align: center;">' . $listuser['c']['sum'] . '</td>';
               $pos++;
             }
           echo '</table>';

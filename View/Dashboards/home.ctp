@@ -95,8 +95,6 @@
 
         <div id="rankingTabContent" class="tab-content">
 
-          <?php print_r($show); ?>
-
           <?php 
           if ($show <> 'matches') {
             echo '<div class="tab-pane fade " id="today">';

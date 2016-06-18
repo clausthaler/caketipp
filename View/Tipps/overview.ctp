@@ -1,56 +1,47 @@
 <div id="tippsoverview">
-  <div class="mainnav">
-    <?php 
-      echo $this->Session->flash('flash', array('element' => 'message'));
-      echo $this->Session->flash('auth', array('element' => 'message'));
-    ?>
-  </div> <!-- /.mainnav -->
   <div class="content">
     <div class="container">
-      <div class="row">
-        <!-- start: Main Menu -->
-        <?php echo $this->element('menu', array("active" => "tippoverview")); ?>
-        <!-- end: Main Menu -->
-        <div class="col-md-9 col-sm-8 layout-main">
-        <section>
-          <div class="row">
-            <div class="col-xs-3">
-              <label><?php echo __('View'); ?></label>
-              <?php echo $this->Form->select('RoundSelect', $roundsselarr, 
-                array(
-                  'class' => 'form-control',
-                  'empty' => false,
-                  'onchange' => 'tippspiel_admin.refreshTippsOverview("round")',
-                  'value' => $roundselected)); 
-              ?>
-            </div>
-            <div class="col-xs-3">
-            <label><?php echo __('Match from'); ?></label>
-            <?php echo $this->Form->select('MatchFrom', $fromtomatches, 
-              array(
-                'class' => 'form-control',
-                'onchange' => 'tippspiel_admin.refreshTippsOverview("from")',
-                'value' => $frommatch)); 
-            ?>
-            </div>
-            <div class="col-xs-3">
-            <label><?php echo __('to'); ?></label>
-            <?php echo $this->Form->select('MatchTo', $fromtomatches, 
-              array(
-                'class' => 'form-control',
-                'onchange' => 'tippspiel_admin.refreshTippsOverview("to")',
-                'value' => $tomatch)); 
-            ?>
-            </div>
-          </div>
-          <br><br>
-        </section> <!-- /.demo-section -->
-        <div class="row">
+        <div class="portlet portlet-boxed">
+          <div class="portlet-body">
+            <section>
+              <div class="row">
+                <div class="col-xs-3">
+                  <label><?php echo __('View'); ?></label>
+                  <?php echo $this->Form->select('RoundSelect', $roundsselarr, 
+                    array(
+                      'class' => 'form-control',
+                      'empty' => false,
+                      'onchange' => 'tippspiel_admin.refreshTippsOverview("round")',
+                      'value' => $roundselected)); 
+                  ?>
+                </div>
+                <div class="col-xs-3">
+                <label><?php echo __('Match from'); ?></label>
+                <?php echo $this->Form->select('MatchFrom', $fromtomatches, 
+                  array(
+                    'class' => 'form-control',
+                    'onchange' => 'tippspiel_admin.refreshTippsOverview("from")',
+                    'value' => $frommatch)); 
+                ?>
+                </div>
+                <div class="col-xs-3">
+                <label><?php echo __('to'); ?></label>
+                <?php echo $this->Form->select('MatchTo', $fromtomatches, 
+                  array(
+                    'class' => 'form-control',
+                    'onchange' => 'tippspiel_admin.refreshTippsOverview("to")',
+                    'value' => $tomatch)); 
+                ?>
+                </div>
+              </div>
+              <br><br>
+            </section> <!-- /.demo-section -->
+            <div class="row">
             <div class="col-xs-3 pull-right">
               <a href="" onClick="$( '#MatchSchedule' ).toggle();return false;"><?php echo __('show / hide schedule'); ?></a>
             </div>
-        </div>
-        <section id="MatchSchedule" style="display:none;">
+            </div>
+            <section id="MatchSchedule" style="display:none;">
           <!-- start: Content -->
           <?php
             echo '<h4>' . $rounds[$tipproundid]['name']  . '</h4>';
@@ -111,9 +102,9 @@
             }
             echo "</table>";
             ?>
-        </section> <!-- /.demo-section -->
-        <section style="overflow:scroll;">
-        <?php
+            </section> <!-- /.demo-section -->
+            <section style="overflow:scroll;">
+            <?php
           //calculate match table headers first
           $mth1 = '';
           $mth2 = '';
@@ -187,10 +178,10 @@
             }
           echo '</table>';
           ?>
-        </section> <!-- /.demo-section -->
+            </section> <!-- /.demo-section -->
+          </div> <!-- /.portlet-body -->
   
-        </div> <!-- /.col -->
-      </div> <!-- /.row -->
+        </div> <!-- /.portlet -->
     </div> <!-- /.container -->
   </div> <!-- .content -->
 </div>

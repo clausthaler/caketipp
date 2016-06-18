@@ -59,7 +59,27 @@ class DashboardsController extends AppController {
     public function home() {
       $this->layout = 'default_new';
       $this->set('title_for_layout', 'User Dashboard');
+
+      $date = new DateTime;
+      $date->setTimestamp(time());
+      $date->setTime( 0, 0, 0);
+      $fromkickoff = $date->getTimestamp();
+      $date->setTime( 23, 59, 0);
+      $tokickoff = $date->getTimestamp();
+
+      $this->Match->recursive = -1;
+      $matches = $this->Match->find(
+        'all', array(
+          'fields' => array('id', 'kickoff'),
+          'conditions' => array(
+            'Match.kickoff BETWEEN ? AND ?' => array($fromkickoff, $tokickoff)), 
+          'order' => array('Match.datetime')));
+      $matchlist = Hash::extract( $matches, '{n}.Match.kickoff');
+
+      if (time() > $matchlist[0]['kickoff'] && time() < ($matchlist[count($matchlist) -1 ]['kickoff'] + 7200)) {      
+        $this->set('show', 'matches');
+      } else {
+        $this->set('show', 'ranking');
+      }
     }
-
-
 }

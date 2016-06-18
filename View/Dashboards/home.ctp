@@ -70,11 +70,50 @@
         } ?>
 
 
-            <div class="portlet portlet-boxed">
-              <div class="portlet-header">
-                <h4 class="portlet-title"><?php echo __('Ranking'); ?> </h4>
-              </div>
-              <div class="portlet-body table-responsive">
+        <div class="portlet portlet-boxed">
+        <div class="portlet-body">
+
+        <ul id="rankingTab" class="nav nav-pills">
+          <?php if ($show <> 'matches') {
+            echo '<li class="active">';
+          } else {
+            echo '<li>';
+          }
+          ?>
+            <a href="#ranking" data-toggle="tab"><?php echo __('Ranking'); ?></a>
+          </li>
+
+          <?php if ($show == 'matches') {
+            echo '<li class="active">';
+          } else {
+            echo '<li>';
+          }
+          ?>
+            <a href="#today" data-toggle="tab"><?php echo __('Matches today'); ?></a>
+          </li>
+        </ul>
+
+        <div id="rankingTabContent" class="tab-content">
+
+          <?php print_r($show); ?>
+
+          <?php 
+          if ($show <> 'matches') {
+            echo '<div class="tab-pane fade " id="today">';
+          } else {
+            echo '<div class="tab-pane fade in active" id="today">';
+          } ?>
+            <?php print_r($this->requestAction('tipps/dayranking/1')); ?>
+          </div> <!-- /.tab-pane -->
+
+          <?php 
+          if ($show <> 'matches') {
+            echo '<div class="tab-pane fade in active" id="ranking">';
+          } else {
+            echo '<div class="tab-pane fade" id="ranking">';
+          } ?>
+            <div class="table-responsive">
+
                 <table class="table table-condensed">
                   <thead>
                     <tr>
@@ -144,7 +183,14 @@
                     } ?>
                   </tbody>
                 </table>
-                <a href="/ranking" class="btn btn-xs btn-info"><?php echo __('Complete Ranking') ?></a>
+                <a href="/ranking" class="btn btn-xs btn-info"><?php echo __('Complete Ranking') ?></a>            </div>
+          </div> <!-- /.tab-pane -->
+
+        </div> <!-- /.tab-content -->
+
+
+
+
               </div>
             </div>
             <div class="portlet portlet-boxed">

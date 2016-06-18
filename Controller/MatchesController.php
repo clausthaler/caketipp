@@ -22,6 +22,11 @@ class MatchesController extends AppController {
       )
   );
 
+  public function beforeFilter()  {
+    parent::beforeFilter();
+    $this->Auth->allow('updatefixture');
+  }
+
   public function array_orderby() {
     $args = func_get_args();
     $data = array_shift($args);
@@ -416,7 +421,7 @@ class MatchesController extends AppController {
  */
   public function checktipps($days = null) {
     if (!$days) {
-      $days = 7;
+      $days = 2;
     }
     $nextMatches = $this->Match->query("SELECT * FROM matches a  WHERE a.due <= UNIX_TIMESTAMP() + " . $days * 86400 . 
       " AND a.kickoff >= UNIX_TIMESTAMP() AND a.isfixed = 1 AND NOT EXISTS (SELECT 'X' FROM tipps b " .
@@ -490,6 +495,16 @@ class MatchesController extends AppController {
         'due >' => strtotime($this->Session->read('currentdatetime'))),
       'fields' => array('id')));
     print_r($matches);
+  }
+
+  public function updatefixture() {
+    if ($this->request->is('post')) {
+      $this->log($this->request);
+    die();
+
+    } else {
+      die();
+    }
   }
 
 }

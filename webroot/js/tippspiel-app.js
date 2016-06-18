@@ -122,18 +122,22 @@ var tippspiel_admin = function () {
         if ($('#RoundSelect option:selected').val() == 'bonus') {
           loadTippsOverview('/tipps/bonusquestions');
         } else {
-          if (type == 'round') {
-            params = defineroundgroup();
+          if ($('#RoundSelect option:selected').val() == 'dayranking') {
+            loadTippsOverview('/tipps/dayranking');
           } else {
-            params = defineroundgroup();
-            if ($('#MatchFrom option:selected').val() != '') {
-              params = params + '/from_match:' + $('#MatchFrom option:selected').val();
+            if (type == 'round') {
+              params = defineroundgroup();
+            } else {
+              params = defineroundgroup();
+              if ($('#MatchFrom option:selected').val() != '') {
+                params = params + '/from_match:' + $('#MatchFrom option:selected').val();
+              };
+              if ($('#MatchTo option:selected').val() != '') {
+                params = params + '/to_match:' + $('#MatchTo option:selected').val();
+              };
             };
-            if ($('#MatchTo option:selected').val() != '') {
-              params = params + '/to_match:' + $('#MatchTo option:selected').val();
-            };
-          };
-        loadTippsOverview('/tipps/overview/' + params);
+            loadTippsOverview('/tipps/overview/' + params);
+          }
         }
       }      
     }
@@ -181,6 +185,10 @@ var tippspiel_admin = function () {
 
       $( "#postbox" ).fadeIn("100");
     });
+  }
+
+  var toggleextrarows = function() {
+    $( ".rankingextrarow").toggle();
   }
 
   var hidepostbox = function() {
@@ -317,7 +325,8 @@ var tippspiel_admin = function () {
     showpostbox: showpostbox,
     hidepostbox: hidepostbox,
     showblogcommentbox: showblogcommentbox,
-    postblogitem: postblogitem
+    postblogitem: postblogitem,
+    toggleextrarows: toggleextrarows
   }
 
 }()

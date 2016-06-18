@@ -21,6 +21,10 @@ div.error-message {
   padding-top: 20px;
 }
 
+.rankingextrarow {
+  display: none;
+}
+
 /* Home Feed stream */
 .feed-subject {
   margin-bottom:.75em;

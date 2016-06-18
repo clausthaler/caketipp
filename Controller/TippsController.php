@@ -359,6 +359,12 @@ class TippsController extends AppController {
      return $users = $this->User->query('select * from (select a.id "id", a.username "username", a.photo "photo", a.photo_dir "photo_dir", (select sum(b.points) from tipps b where a.id = b.user_id) "sum" from users a
 order by sum desc) c');
     } else {
+      if ($this->request->is('ajax')) {
+        $this->layout = false;
+      } else {
+        $this->layout = 'default_new';
+      }
+
       $this->Round->recursive = -1;
       $rounds = $this->Round->find('all', array('fields' => array('id', 'name', 'groupstage', 'shortname', 'slug')));
       $selrounds = Hash::combine($rounds, '{n}.Round.id', '{n}.Round'); 
@@ -373,6 +379,7 @@ order by sum desc) c');
 
       // generate the round select values
       $roundsselarr = array('overview' => __('Ranking'));
+      $roundsselarr['dayranking'] = __('Ranking today');
       foreach ($selrounds as $rkey => $round) {
         if ($round['groupstage'] == 1) {
           $roundsselarr[$rkey] =  __($round['name']) . ' ' .  __('all');
@@ -446,6 +453,12 @@ order by sum desc) c');
    * 
    */
   public function overview() {
+    if ($this->request->is('ajax')) {
+      $this->layout = false;
+    } else {
+      $this->layout = 'default_new';
+    }
+
     $this->Round->recursive = -1;
     $rounds = $this->Round->find('all', array('fields' => array('id', 'name', 'groupstage', 'shortname', 'slug')));
     if (isset($this->params['named']['round']) && array_key_exists($this->params['named']['round'], Hash::combine($rounds, '{n}.Round.id'))) {
@@ -472,6 +485,7 @@ order by sum desc) c');
 
     // generate the round select values
     $roundsselarr = array('overview' => __('Ranking'));
+    $roundsselarr['dayranking'] = __('Ranking today');
     foreach ($rounds as $rkey => $round) {
       if ($round['groupstage'] == 1) {
         $roundsselarr[$rkey] =  __($round['name']) . ' ' .  __('all');
@@ -554,6 +568,98 @@ order by sum desc) c');
     $this->set(compact('teams', 'groups', 'matchlist', 'rounds', 'roundsselarr', 'tipproundid', 'fromtomatches', 'roundselected', 'frommatch', 'tomatch'));
   }
 
+  public function dayranking($dashboard = false) {
+    if ($this->request->is('ajax')) {
+      $this->layout = false;
+    } else {
+      $this->layout = 'default_new';
+    }
+
+    $this->Round->recursive = -1;
+    $rounds = $this->Round->find('all', array('fields' => array('id', 'name', 'groupstage', 'shortname', 'slug')));
+    $rounds = Hash::combine($rounds, '{n}.Round.id', '{n}.Round'); 
+
+    $this->Group->recursive = -1;
+    $groups = $this->Group->find('all', array(
+      'fields' => array('id', 'name', 'shortname', 'slug', 'round_id')));
+    $roundgroups = Hash::combine($groups, '{n}.Group.id', '{n}.Group', '{n}.Group.round_id'); 
+    $groups = Hash::combine($groups, '{n}.Group.id', '{n}.Group'); 
+
+    $this->Team->recursive = -1;
+    $teams = $this->Team->find('all', array('fields' => array('id', 'name', 'iconurl', 'iso')));
+    $teams = Hash::combine($teams, '{n}.Team.id', '{n}.Team'); 
+
+    $this->User->recursive = -1;
+    $users = $this->User->find('all', array('fields' => array('id', 'username', 'photo', 'photo_dir')));
+    $users = Hash::combine($users, '{n}.User.id', '{n}.User'); 
+
+    // generate the round select values
+    $roundsselarr = array('overview' => __('Ranking'));
+    $roundsselarr['dayranking'] = __('Ranking today');
+    foreach ($rounds as $rkey => $round) {
+      if ($round['groupstage'] == 1) {
+        $roundsselarr[$rkey] =  __($round['name']) . ' ' .  __('all');
+        foreach ($roundgroups[$rkey] as $gkey => $rgroup) {
+          $roundsselarr[$rkey . '-' . $gkey] =  '  ' . __($round['name']) . ' ' .  __($rgroup['name']);
+        }
+      } else {
+        $roundsselarr[$rkey] =  __($round['name']);
+      }
+    }
+    $roundsselarr['bonus'] = __('Bonus questions');
+    $roundsselarr['timeline'] = __('Ranking timeline');
+    $roundselected = 'dayranking';
+
+    // generate the from and to match select list
+    $this->Match->recursive = -1;
+
+    $date = new DateTime;
+    $date->setTimestamp(time());
+    $date->setTime( 0, 0, 0);
+    $fromkickoff = $date->getTimestamp();
+    $date->setTime( 23, 59, 0);
+    $tokickoff = $date->getTimestamp();
+
+    $matches = $this->Match->find(
+      'all', array(
+        'fields' => array('id','name','kickoff', 'due', 'group_id','team1_id', 'team2_id','round_id','points_team1','points_team2','extratime', 'isfinished'),
+        'conditions' => array(
+          'Match.kickoff BETWEEN ? AND ?' => array($fromkickoff, $tokickoff)), 
+        'order' => array('Match.datetime')));
+    $this->set('matches', $matches);
+    $matchlist = Hash::extract( $matches, '{n}.Match.id');
+    if (time() > $matchlist[0]['kickoff'] && time() > ($matchlist[count($matchlist) -1 ]['kickoff'] + 7200)) {
+      $this->set('show', 'matches');
+    } else {
+      $this->set('show', 'ranking');
+    }
+    
+    foreach ($users as $userid => $user) {
+      $this->Tipp->recursive = -1;
+      $usertipps = $this->Tipp->find(
+      'all', array(
+        'conditions' => array(
+          'Tipp.match_id' => $matchlist,
+          'Tipp.user_id' => $userid)));    
+      $users[$userid]['Tipps'] = Hash::combine($usertipps, '{n}.Tipp.match_id', '{n}.Tipp');
+      $total = $this->Tipp->find('first', array('conditions' => array(
+          'Tipp.match_id' => $matchlist,
+          'Tipp.user_id' => $userid),
+          'fields'=>array('SUM(Tipp.points) as total')));
+      $users[$userid]['roundtotal'] = $total[0]['total'];
+        # code...
+    }
+    $users = Hash::sort($users, '{s}.roundtotal', 'desc');
+
+    $this->set('matches', $matches);
+    $this->set('users', $users);
+    $this->set(compact('teams', 'groups', 'matchlist', 'rounds', 'roundsselarr', 'tipproundid', 'fromtomatches', 'roundselected', 'frommatch', 'tomatch'));
+    
+    if ($dashboard) {
+      $this->render('dayrankingdashboard');
+    }
+  }
+
   public function statistics($username = null) {
     if (!$username) {
       $user['User'] = $this->Auth->user();
@@ -598,6 +704,12 @@ order by sum desc) c');
   }
 
   public function bonusquestions() {
+    if ($this->request->is('ajax')) {
+      $this->layout = false;
+    } else {
+      $this->layout = 'default_new';
+    }
+
     $possibleanswers = array(
       '1' => array('139'),     // Weltmeister
       '2' => array('1469')      // Torschütze
@@ -617,6 +729,7 @@ order by sum desc) c');
 
     // generate the round select values
     $roundsselarr = array('overview' => __('Ranking'));
+    $roundsselarr['dayranking'] = __('Ranking today');
     foreach ($selrounds as $rkey => $round) {
       if ($round['groupstage'] == 1) {
         $roundsselarr[$rkey] =  __($round['name']) . ' ' .  __('all');
@@ -776,6 +889,7 @@ order by sum desc) c');
 
       // generate the round select values
       $roundsselarr = array('overview' => __('Ranking'));
+    $roundsselarr['dayranking'] = __('Ranking today');
       foreach ($selrounds as $rkey => $round) {
         if ($round['groupstage'] == 1) {
           $roundsselarr[$rkey] =  __($round['name']) . ' ' .  __('all');

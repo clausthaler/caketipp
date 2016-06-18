@@ -41,6 +41,7 @@
   Router::connect('/tippabgabe', array('controller' => 'tipps', 'action' => 'entertipps'));
   Router::connect('/entertipps/*', array('controller' => 'tipps', 'action' => 'entertipps'));
   Router::connect('/enterbonus', array('controller' => 'tipps', 'action' => 'enterbonus'));
+  Router::connect('/dayranking', array('controller' => 'tipps', 'action' => 'dayranking'));
   Router::connect('/ranking', array('controller' => 'tipps', 'action' => 'ranking'));
   Router::connect('/toptipps', array('controller' => 'tipps', 'action' => 'toptipps'));
   Router::connect('/blog', array('controller' => 'messages', 'action' => 'blog'));

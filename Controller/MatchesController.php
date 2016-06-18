@@ -24,7 +24,7 @@ class MatchesController extends AppController {
 
   public function beforeFilter()  {
     parent::beforeFilter();
-    $this->Auth->allow('updatefixture');
+    $this->Auth->allow('matchupdate');
   }
 
   public function array_orderby() {
@@ -497,14 +497,9 @@ class MatchesController extends AppController {
     print_r($matches);
   }
 
-  public function updatefixture() {
-    if ($this->request->is('post')) {
+  public function matchupdate($filename = null) {
       $this->log($this->request);
-    die();
-
-    } else {
       die();
-    }
   }
 
 }

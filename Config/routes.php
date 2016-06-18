@@ -44,6 +44,7 @@
   Router::connect('/dayranking', array('controller' => 'tipps', 'action' => 'dayranking'));
   Router::connect('/ranking', array('controller' => 'tipps', 'action' => 'ranking'));
   Router::connect('/toptipps', array('controller' => 'tipps', 'action' => 'toptipps'));
+  Router::connect('/matchupdate', array('controller' => 'matches', 'action' => 'matchupdate'));
   Router::connect('/blog', array('controller' => 'messages', 'action' => 'blog'));
 
 /**

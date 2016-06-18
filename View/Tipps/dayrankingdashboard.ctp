@@ -1,4 +1,4 @@
-<div id="tippsoverview">
+<div id="tippsoverview table-responsive">
         <?php
           //calculate match table headers first
           $mth1 = '';
@@ -7,18 +7,17 @@
           $extratime = array('', __('et'), __('pen'));
           foreach ($matches as $key => $match) {
             if ($match['Match']['kickoff'] < strtotime($this->Session->read('currentdatetime')) && $match['Match']['isfinished'] != 1) {
-              $style = ';color:red';
+              $style = ';background-color:lightyellow;color:red';
             } else {
               $style = '';
             }
-            $mth1 = $mth1 . '<th style="text-align:center">' . $teams[$match['Match']['team1_id']]['iso'] . '</th>';
+            $mth1 = $mth1 . '<th style="text-align:center' . $style  . '">' . $teams[$match['Match']['team1_id']]['iso'] . '</th>';
             $mth2 = $mth2 . '<th style="text-align:center' . $style  . '">' . $match['Match']['points_team1'] . ':' . $match['Match']['points_team2'] . ' ' . $extratime[$match['Match']['extratime']] . '</th>';
-            $mth3 = $mth3 . '<th style="text-align:center">' . $teams[$match['Match']['team2_id']]['iso'] . '</th>';
+            $mth3 = $mth3 . '<th style="text-align:center' . $style  . '">' . $teams[$match['Match']['team2_id']]['iso'] . '</th>';
             # code...
           }
           echo '<table class="table table-condensed" cellpadding="0" cellspacing="0">';
             echo '<tr>';
-              echo '<th rowspan="3" style="vertical-align:bottom">' . __('Pos') . '</th>';
               echo '<th rowspan="3">&nbsp;</th>';
               echo '<th rowspan="3" style="vertical-align:bottom">' . __('Name') . '</th>';
               echo $mth1;
@@ -39,12 +38,13 @@
               } else {
                 echo '<tr class="' . $addclass . '">';
               }
-  
+              /*  
               if ($user['roundtotal'] != $lasttotal) {
                 echo '<td>' . $pos . '</td>';
               } else {
                 echo '<td>&nbsp;</td>';
               }
+              */
               echo '<td>'; 
               if (!empty($user['photo'])) {
                 echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $user['photo_dir'] .  DS . 'small_' . $user['photo'], array('style' => 'max-width:30px; max-height:30px;'));

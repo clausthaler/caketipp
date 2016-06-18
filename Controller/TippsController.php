@@ -640,8 +640,8 @@ order by sum desc) c');
       $usertipps = $this->Tipp->find(
       'all', array(
         'conditions' => array(
-          'Tipp.match_id' => $matchlist,
-          'Tipp.user_id' => $userid)));    
+          'Tipp.match_id' => Hash::extract( $matches, '{n}.Match.id'),
+          'Tipp.user_id' => $userid)));  
       $users[$userid]['Tipps'] = Hash::combine($usertipps, '{n}.Tipp.match_id', '{n}.Tipp');
       $total = $this->Tipp->find('first', array('conditions' => array(
           'Tipp.match_id' => $matchlist,

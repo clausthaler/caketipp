@@ -627,8 +627,9 @@ order by sum desc) c');
           'Match.kickoff BETWEEN ? AND ?' => array($fromkickoff, $tokickoff)), 
         'order' => array('Match.datetime')));
     $this->set('matches', $matches);
-    $matchlist = Hash::extract( $matches, '{n}.Match.id');
-    if (time() > $matchlist[0]['kickoff'] && time() > ($matchlist[count($matchlist) -1 ]['kickoff'] + 7200)) {
+    $matchlist = Hash::extract( $matches, '{n}.Match.kickoff');
+
+    if (time() > $matchlist[0] && time() > ($matchlist[count($matchlist) -1 ] + 7200)) {
       $this->set('show', 'matches');
     } else {
       $this->set('show', 'ranking');

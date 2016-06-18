@@ -76,7 +76,7 @@ class DashboardsController extends AppController {
           'order' => array('Match.datetime')));
       $matchlist = Hash::extract( $matches, '{n}.Match.kickoff');
 
-      if (time() > $matchlist[0]['kickoff'] && time() < ($matchlist[count($matchlist) -1 ]['kickoff'] + 7200)) {      
+      if (time() > $matchlist[0] && time() < ($matchlist[count($matchlist) -1 ] + 7200)) {      
         $this->set('show', 'matches');
       } else {
         $this->set('show', 'ranking');

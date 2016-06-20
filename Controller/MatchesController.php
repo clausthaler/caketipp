@@ -506,9 +506,9 @@ class MatchesController extends AppController {
           die();
         } else {
           $data = array('Match' => array(
-            ['id'] => $json->{'Id'},
-            ['points_team1'] => 0,
-            ['points_team2'] => 0
+            'id' => $json->{'Id'},
+            'points_team1' => 0,
+            'points_team2' => 0
             ));
           $this->log('game ' . $json->{'Id'} . ' has begun');
           $this->log($data);
@@ -526,8 +526,8 @@ class MatchesController extends AppController {
           die();
         } else {
           $data = array('Match' => array(
-            ['id'] => $json->{'Id'},
-            ['is_finished'] => 1
+            'id' => $json->{'Id'},
+            'is_finished' => 1
             ));
           $this->log('game ' . $json->{'Id'} . ' is finished');
           $this->log($data);

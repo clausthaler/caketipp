@@ -512,6 +512,7 @@ class MatchesController extends AppController {
             ));
           $this->log('game ' . $json->{'Id'} . ' has begun');
           $this->log($data);
+          $this->log($json);
           die();
           $this->updateresult($checkmatch, $data);
         }

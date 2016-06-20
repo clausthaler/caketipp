@@ -498,8 +498,180 @@ class MatchesController extends AppController {
   }
 
   public function matchupdate($filename = null) {
-      $this->log($filename);
-      die();
+    if ($json = json_decode(file_get_contents('/var/www/push.tipp4fun.eu/' . $filename))) {
+      if (substr($json->{'Updates'},0,15) == '[status:[TIMED:') {
+        // game has begun -> set result to 0:0
+        $checkmatch = $this->Match->findById($json->{'Id'} );
+        if (empty($checkmatch) || is_numeric($checkmatch['Match']['points_team1']) || is_numeric($checkmatch['Match']['points_team2'])) {
+          die();
+        } else {
+          $data = array('Match' => array(
+            ['id'] => $json->{'Id'},
+            ['points_team1'] => 0,
+            ['points_team2'] => 0
+            ));
+          $this->log('game ' . $json->{'Id'} . ' has begun');
+          $this->log($data);
+          die();
+          $this->updateresult($checkmatch, $data);
+        }
+        die();
+      }
+
+      if (substr($json->{'Updates'},0,15) == '[status:[IN_PLA') {
+        // game is finished -> change game status
+        $checkmatch = $this->Match->findById($json->{'Id'} );
+        if (empty($checkmatch) || !is_numeric($checkmatch['Match']['points_team1']) || !is_numeric($checkmatch['Match']['points_team2'])) {
+          die();
+        } else {
+          $data = array('Match' => array(
+            ['id'] => $json->{'Id'},
+            ['is_finished'] => 1
+            ));
+          $this->log('game ' . $json->{'Id'} . ' is finished');
+          $this->log($data);
+          die();
+          $this->updateresult($checkmatch, $data);
+        }
+        die();
+      }
+
+      if (substr($json->{'Updates'},0,15) == '[goalsAwayTeam:') {
+        // away team goal -> change result accordingly
+        $this->log('away team goal');
+        die();
+      }
+
+      if (substr($json->{'Updates'},0,15) == '[goalsHomeTeam:') {
+        // home team goal -> change result accordingly
+        $this->log('home team goal');
+        die();
+      }
+
+    }
   }
 
+  private function updateresult($checkmatch = null, $data = null) {
+    if ($checkmatch == null || $data == null) {
+      die();
+    }
+    if ($this->Match->save($data)) {
+        // calculate tipps
+      $realGoals1 = $data['Match']['points_team1'];
+      $realGoals2 = $data['Match']['points_team2'];
+      foreach ($checkmatch['Tipp'] as $key => $tipp) {
+        $tippGoals1 = $tipp['Tipp']['points_team1'];
+        $tippGoals2 = $tipp['Tipp']['points_team2'];
+        // completely correct score?
+        $points = 0;
+        if ($realGoals1 == $tippGoals1 && $realGoals2 == $tippGoals2) {
+          $points = 30;
+        } elseif (min(1, max(-1, $tippGoals1 - $tippGoals2)) == min(1, max(-1, $realGoals1 - $realGoals2))) {
+          $points = 12;
+  
+          //additional points for difference in total score
+          switch (abs(($tippGoals1 - $tippGoals2) - ($realGoals1 - $realGoals2))) {
+            case 0:
+              $points = $points + 8;
+              break;
+            case 1:
+              $points = $points + 4;
+              break;
+            case 2:
+              $points = $points + 2;
+              break;
+            case 3:
+              $points = $points + 1;
+              break;
+          }
+  
+            // additional points for difference in team score
+          switch (abs($tippGoals1 - $realGoals1) + abs($tippGoals2 - $realGoals2)) {
+            case 0:
+              $points = $points + 8;
+              break;
+            case 1:
+              $points = $points + 4;
+              break;
+            case 2:
+              $points = $points + 2;
+              break;
+            case 3:
+              $points = $points + 1;
+              break;
+          }
+        }
+        $tipp['Tipp']['points'] = $points;
+        $this->Match->Tipp->save($tipp);
+      }
+
+      if ($checkmatch['Round']['groupstage'] == 1) {
+        // recalculate group table
+        $groupteams = $this->Team->find('list', array('conditions' => array('Team.group_id' => $checkmatch['Match']['group_id'])));
+        // prepare working array
+        $arrladder = array();
+        foreach ($groupteams as $key => $groupteam) {
+          $arrgt = array(
+            'group_id' => $checkmatch['Match']['group_id'],
+            'type' => 'real',
+            'pos' => 0,
+            'team_id' => $key,
+            'matches' => 0,
+            'points' => 0,
+            'goodgoals' => 0,
+            'badgoals' => 0,
+            'goaldif' => 0,
+            'won' => 0,
+            'draw' => 0,
+            'lost' => 0);
+          $arrladder[$key] = $arrgt;
+        }
+        $groupmatches = $this->Match->find('all', 
+          array('conditions' => array(
+            'Match.group_id' => $checkmatch['Match']['group_id'])));
+        foreach ($groupmatches as $key => $gmatch) {
+          $team1_id = $gmatch['Match']['team1_id'];
+          $team2_id = $gmatch['Match']['team2_id'];
+          //goals
+          $arrladder[$team1_id]['goodgoals'] =  $arrladder[$team1_id]['goodgoals'] + $gmatch['Match']['points_team1'];
+          $arrladder[$team2_id]['goodgoals'] =  $arrladder[$team2_id]['goodgoals'] + $gmatch['Match']['points_team2'];
+          $arrladder[$team1_id]['badgoals'] =  $arrladder[$team1_id]['badgoals'] + $gmatch['Match']['points_team2'];
+          $arrladder[$team2_id]['badgoals'] =  $arrladder[$team2_id]['badgoals'] + $gmatch['Match']['points_team1'];
+          $arrladder[$team1_id]['goaldif'] =  $arrladder[$team1_id]['goodgoals'] - $arrladder[$team1_id]['badgoals'];
+          $arrladder[$team2_id]['goaldif'] =  $arrladder[$team2_id]['goodgoals'] - $arrladder[$team2_id]['badgoals'];
+          //matches
+          $arrladder[$team1_id]['matches']++;
+          $arrladder[$team2_id]['matches']++;
+          //points, won, drw, lost
+          if ($gmatch['Match']['points_team1'] == $gmatch['Match']['points_team2']) {
+            // let's call it a draw
+            $arrladder[$team1_id]['points']++;
+            $arrladder[$team2_id]['points']++;
+            $arrladder[$team1_id]['draw']++;
+            $arrladder[$team2_id]['draw']++;
+          } elseif ($gmatch['Match']['points_team1'] > $gmatch['Match']['points_team2']) {
+            // team 1 won
+            $arrladder[$team1_id]['points'] = $arrladder[$team1_id]['points'] + 3;
+            $arrladder[$team1_id]['won']++;
+            $arrladder[$team2_id]['lost']++;
+          } else {
+            // team 2 won
+            $arrladder[$team2_id]['points'] = $arrladder[$team2_id]['points'] + 3;
+            $arrladder[$team2_id]['won']++;
+            $arrladder[$team1_id]['lost']++;
+          }
+        }
+        $arrladder = $this->array_orderby($arrladder, 'points', SORT_DESC, 'goaldif', SORT_DESC, 'goodgoals', SORT_DESC);
+        $this->Ladder->deleteAll(array(
+          'Ladder.group_id' => $groupid,
+          'Ladder.type' => 'real' ), false);
+        foreach ($arrladder as $poskey => $newlader) {
+          $this->Ladder->create();
+          $newLadder['Ladder'] = $newlader;
+          $newLadder['Ladder']['pos'] = $poskey + 1;
+          $this->Ladder->save($newLadder);
+        }
+      }
+    }
+  }
 }

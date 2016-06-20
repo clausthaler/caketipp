@@ -1,12 +1,12 @@
-<div id="tippsoverview table-responsive">
+<div id="tippsoverview">
   <div class="content">
     <div class="container">
       <div class="row">
         <div class="portlet portlet-boxed">
-          <div class="portlet-body">
+          <div class="portlet-body table-responsive">
 
             <div class="row">
-            <div class="col-xs-3">
+            <div class="col-xs-5">
               <label><?php echo __('View'); ?></label>
               <?php echo $this->Form->select('RoundSelect', $roundsselarr, 
                 array(

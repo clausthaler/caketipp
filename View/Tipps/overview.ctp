@@ -1,4 +1,4 @@
-<div id="tippsoverview">
+<div id="tippsoverview"
   <div class="content">
     <div class="container">
         <div class="portlet portlet-boxed">

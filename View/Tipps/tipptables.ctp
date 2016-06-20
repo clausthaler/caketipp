@@ -6,7 +6,7 @@
         <div class="portlet-header">
           <h5 class="portlet-title"><?php echo $group['Group']['name']; ?> </h5>
         </div>
-        <div class="portlet-body">
+        <div class="portlet-body table-responsive">
           <div class="col-md-6">
             <table class="table table-condensed">
               <thead>

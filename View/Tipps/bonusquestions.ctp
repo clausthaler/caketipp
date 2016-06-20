@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="portlet portlet-boxed">
-          <div class="portlet-body">
+          <div class="portlet-body table-responsive">
             <div class="row">
               <div class="col-xs-3">
               <label><?php echo __('View'); ?></label>

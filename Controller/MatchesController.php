@@ -498,7 +498,7 @@ class MatchesController extends AppController {
   }
 
   public function matchupdate($filename = null) {
-      $this->log($this->request);
+      $this->log($filename);
       die();
   }
 

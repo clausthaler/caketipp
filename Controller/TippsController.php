@@ -667,6 +667,7 @@ order by sum desc) c');
   }
 
   public function statistics($username = null) {
+    $this->layout = 'default_new';
     if (!$username) {
       $user['User'] = $this->Auth->user();
     } else {

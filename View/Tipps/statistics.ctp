@@ -10,19 +10,12 @@
   $this->Html->script('plugins/flot/jquery.flot.stack', array('block' => 'scriptBottom'));
 ?>
 <div id="tippstatistics">
-<div class="mainnav">
-  <?php 
-    echo $this->Session->flash('flash', array('element' => 'message'));
-    echo $this->Session->flash('auth', array('element' => 'message'));
-  ?>
-</div> <!-- /.mainnav -->
-<div class="content">
-  <div class="container">
-    <div class="row">
-      <!-- start: Main Menu -->
-      <?php echo $this->element('menu', array("active" => "statistics")); ?>
-      <!-- end: Main Menu -->
-      <div class="col-md-9">
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="portlet portlet-boxed">
+          <div class="portlet-body table-responsive">
+            <div class="col-md-9">
         <div class="row form-group">
           <?php echo $this->Form->label('TipperSelect', __('Show statistics for'), 'col-md-3'); ?>
           <div class="col-md-4">
@@ -120,10 +113,12 @@
             <div id="pointstimeline" class="chart-holder"></div>
           </div> <!-- /.portlet-body -->
         </div> <!-- /.portlet -->      
-      </div> <!-- /.col -->
-    </div> <!-- /.row -->
-  </div> <!-- /.container -->
-</div> <!-- .content -->
+            </div> <!-- /.col -->
+          </div> <!-- /.portlet-body -->
+        </div> <!-- /.portlet -->
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+  </div> <!-- .content -->
 </div>
 <script type="text/javascript">
 $(function () {

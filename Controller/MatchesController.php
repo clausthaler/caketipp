@@ -566,6 +566,8 @@ class MatchesController extends AppController {
     if ($checkmatch == null || $data == null) {
       die();
     }
+    $this->log($checkmatch);
+    die();
     if ($this->Match->save($data)) {
         // calculate tipps
       $realGoals1 = $data['Match']['points_team1'];

@@ -612,8 +612,6 @@ class MatchesController extends AppController {
               break;
           }
         }
-        $this->log($tippGoals1 . ' - ' . $realGoals1 . ' - ' . $tippGoals2 . ' - ' . $realGoals2);
-        $this->log($tipp);
         $tipp['points'] = $points;
         $this->Match->Tipp->save(array('Tipp' => $tipp));
       }
@@ -643,6 +641,8 @@ class MatchesController extends AppController {
         $groupmatches = $this->Match->find('all', 
           array('conditions' => array(
             'Match.group_id' => $checkmatch['Match']['group_id'])));
+        $this->log($groupmatches);
+        die();
         foreach ($groupmatches as $key => $gmatch) {
           $team1_id = $gmatch['Match']['team1_id'];
           $team2_id = $gmatch['Match']['team2_id'];

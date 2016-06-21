@@ -521,6 +521,7 @@ class MatchesController extends AppController {
         die();
       }
       if (substr($json['Updates'],0,15) == '[status:[IN_PLA') {
+        $this->log('Status Spielende erkannt');
         // game is finished -> change game status
         if (!is_numeric($checkmatch['Match']['points_team1']) || !is_numeric($checkmatch['Match']['points_team2'])) {
           $this->log('Bedingungen nicht erfüllt. Abbruch!');
@@ -536,19 +537,21 @@ class MatchesController extends AppController {
       }
 
       if (substr($json['Updates'],0,15) == '[goalsAwayTeam:') {
+        $this->log('Status Auswärtstor erkannt');
         // away team goal -> change result accordingly
         $parts = explode(':', $json['Updates']);
         $this->log($parts);
         $newscore = rtrim(array_pop($parts), ']');
         $newdata['Match'] = $checkmatch['Match'];
         $newdata['Match']['points_team2'] = rtrim(array_pop($parts), ']');
-        $this->log('away team goal');
+        $this->log('Aktualisiere Spiel mit Daten:');
         $this->log($newdata);
         $this->updateresult($checkmatch, $newdata);
         die();
       }
 
       if (substr($json['Updates'],0,15) == '[goalsHomeTeam:') {
+        $this->log('Status Heimtor erkannt');
         // home team goal -> change result accordingly
         $parts = explode(':', $json['Updates']);
         $this->log($parts);
@@ -556,7 +559,7 @@ class MatchesController extends AppController {
         $this->log($newscore);
         $newdata['Match'] = $checkmatch['Match'];
         $newdata['Match']['points_team1'] = $newscore;
-        $this->log('home team goal');
+        $this->log('Aktualisiere Spiel mit Daten:');
         $this->log($newdata);
         $this->updateresult($checkmatch, $newdata);
         die();

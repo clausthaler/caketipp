@@ -688,7 +688,6 @@ class MatchesController extends AppController {
           'Ladder.group_id' => $groupid,
           'Ladder.type' => 'real' ), false);
         foreach ($arrladder as $poskey => $newlader) {
-          $this->log($newlader);
           $this->Ladder->create();
           $newLadder['Ladder'] = $newlader;
           $newLadder['Ladder']['pos'] = $poskey + 1;

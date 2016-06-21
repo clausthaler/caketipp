@@ -641,8 +641,6 @@ class MatchesController extends AppController {
         $groupmatches = $this->Match->find('all', 
           array('conditions' => array(
             'Match.group_id' => $checkmatch['Match']['group_id'])));
-        $this->log($groupmatches);
-        die();
         foreach ($groupmatches as $key => $gmatch) {
           $team1_id = $gmatch['Match']['team1_id'];
           $team2_id = $gmatch['Match']['team2_id'];
@@ -683,7 +681,7 @@ class MatchesController extends AppController {
           $this->Ladder->create();
           $newLadder['Ladder'] = $newlader;
           $newLadder['Ladder']['pos'] = $poskey + 1;
-          $this->Ladder->save($newLadder);
+          $this->log($this->Ladder->save($newLadder));
         }
       }
     }

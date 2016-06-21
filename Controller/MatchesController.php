@@ -498,8 +498,8 @@ class MatchesController extends AppController {
   }
 
   public function matchupdate($filename = null) {
-    if ($json = json_decode(file_get_contents('/var/www/push.tipp4fun.eu/' . $filename)), true) {
-      $this->log('game ' . $json->{'Id'} . ' has begun');
+    if ($json =  json_decode(file_get_contents('/var/www/push.tipp4fun.eu/' . $filename), true)) {
+      $this->log($json);
       die();
       if (substr($json->{'Updates'},0,15) == '[status:[TIMED:') {
         // game has begun -> set result to 0:0

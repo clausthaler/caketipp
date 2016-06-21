@@ -524,7 +524,7 @@ class MatchesController extends AppController {
         } else {
           $data = array('Match' => array(
             'id' => $json['Id'],
-            'is_finished' => 1
+            'isfinished' => 1
             ));
           $this->log('game ' . $json['Id'] . ' is finished');
           $this->log($data);

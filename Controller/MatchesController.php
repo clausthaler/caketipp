@@ -500,12 +500,13 @@ class MatchesController extends AppController {
   public function matchupdate($filename = null) {
     if ($json =  json_decode(file_get_contents('/var/www/push.tipp4fun.eu/' . $filename), true)) {
       $checkmatch = $this->Match->findById($json['Id'] );
-      $this->log($checkmatch);
       if (empty($checkmatch)) {
           die();
       }
+      $this->log('Checkmatch ' . $checkmatch['Match']['id'] . ' gefunden');
 
       if (substr($json['Updates'],0,15) == '[status:[TIMED:') {
+        $this->log('Status Spielbeginn erkannt');
         // game has begun -> set result to 0:0
         if (is_numeric($checkmatch['Match']['points_team1']) || is_numeric($checkmatch['Match']['points_team2']) || $checkmatch['Match']['is_fixed'] <> 1) {
           die();

@@ -519,6 +519,7 @@ class MatchesController extends AppController {
       if (substr($json->{'Updates'},0,15) == '[status:[IN_PLA') {
         // game is finished -> change game status
         $checkmatch = $this->Match->findById($json->{'Id'} );
+        $this->log($checkmatch);
         if (empty($checkmatch) || !is_numeric($checkmatch['Match']['points_team1']) || !is_numeric($checkmatch['Match']['points_team2'])) {
           die();
         } else {
@@ -545,6 +546,7 @@ class MatchesController extends AppController {
         $this->log('home team goal');
         die();
       }
+      die();
 
     }
   }

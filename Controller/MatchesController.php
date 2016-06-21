@@ -538,6 +538,7 @@ class MatchesController extends AppController {
       if (substr($json['Updates'],0,15) == '[goalsAwayTeam:') {
         // away team goal -> change result accordingly
         $parts = explode(':', $json['Updates']);
+        $this->log(array_pop($parts));
         $newscore = rtrim(array_pop($parts), ']');
         $newdata['Match'] = $checkmatch['Match'];
         $newdata['Match']['points_team2'] = rtrim(array_pop($parts), ']');

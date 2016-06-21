@@ -618,13 +618,14 @@ class MatchesController extends AppController {
 
       if ($checkmatch['Round']['groupstage'] == 1) {
         // recalculate group table
-        $groupteams = $this->Team->find('list', array('conditions' => array('Team.group_id' => $checkmatch['Match']['group_id'])));
+        $groupid = $checkmatch['Match']['group_id'];
+        $groupteams = $this->Team->find('list', array('conditions' => array('Team.group_id' => $groupid)));
         $this->log($groupteams);
         // prepare working array
         $arrladder = array();
         foreach ($groupteams as $key => $groupteam) {
           $arrgt = array(
-            'group_id' => $checkmatch['Match']['group_id'],
+            'group_id' => $groupid,
             'type' => 'real',
             'pos' => 0,
             'team_id' => $key,
@@ -638,9 +639,11 @@ class MatchesController extends AppController {
             'lost' => 0);
           $arrladder[$key] = $arrgt;
         }
+        $this->Match->recursive = -1;
+
         $groupmatches = $this->Match->find('all', 
           array('conditions' => array(
-            'Match.group_id' => $checkmatch['Match']['group_id'])));
+            'Match.group_id' => $groupid)));
         foreach ($groupmatches as $key => $gmatch) {
           $team1_id = $gmatch['Match']['team1_id'];
           $team2_id = $gmatch['Match']['team2_id'];

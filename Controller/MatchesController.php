@@ -651,40 +651,42 @@ class MatchesController extends AppController {
 
         $groupmatches = $this->Match->find('all', 
           array('conditions' => array(
-            'Match.group_id' => $groupid,
-            'Match.isfinished' => 1)));
+            'Match.group_id' => $groupid)));
         foreach ($groupmatches as $key => $gmatch) {
-          $team1_id = $gmatch['Match']['team1_id'];
-          $team2_id = $gmatch['Match']['team2_id'];
-          //goals
-          $arrladder[$team1_id]['goodgoals'] =  $arrladder[$team1_id]['goodgoals'] + $gmatch['Match']['points_team1'];
-          $arrladder[$team2_id]['goodgoals'] =  $arrladder[$team2_id]['goodgoals'] + $gmatch['Match']['points_team2'];
-          $arrladder[$team1_id]['badgoals'] =  $arrladder[$team1_id]['badgoals'] + $gmatch['Match']['points_team2'];
-          $arrladder[$team2_id]['badgoals'] =  $arrladder[$team2_id]['badgoals'] + $gmatch['Match']['points_team1'];
-          $arrladder[$team1_id]['goaldif'] =  $arrladder[$team1_id]['goodgoals'] - $arrladder[$team1_id]['badgoals'];
-          $arrladder[$team2_id]['goaldif'] =  $arrladder[$team2_id]['goodgoals'] - $arrladder[$team2_id]['badgoals'];
-          //matches
-          $arrladder[$team1_id]['matches']++;
-          $arrladder[$team2_id]['matches']++;
-          //points, won, drw, lost
-          if ($gmatch['Match']['points_team1'] == $gmatch['Match']['points_team2']) {
-            // let's call it a draw
-            $arrladder[$team1_id]['points']++;
-            $arrladder[$team2_id]['points']++;
-            $arrladder[$team1_id]['draw']++;
-            $arrladder[$team2_id]['draw']++;
-          } elseif ($gmatch['Match']['points_team1'] > $gmatch['Match']['points_team2']) {
-            // team 1 won
-            $arrladder[$team1_id]['points'] = $arrladder[$team1_id]['points'] + 3;
-            $arrladder[$team1_id]['won']++;
-            $arrladder[$team2_id]['lost']++;
-          } else {
-            // team 2 won
-            $arrladder[$team2_id]['points'] = $arrladder[$team2_id]['points'] + 3;
-            $arrladder[$team2_id]['won']++;
-            $arrladder[$team1_id]['lost']++;
+          if (is_numeric($gmatch['Match']['points_team1']) && is_numeric($gmatch['Match']['points_team2'])  {
+            $team1_id = $gmatch['Match']['team1_id'];
+            $team2_id = $gmatch['Match']['team2_id'];
+            //goals
+            $arrladder[$team1_id]['goodgoals'] =  $arrladder[$team1_id]['goodgoals'] + $gmatch['Match']['points_team1'];
+            $arrladder[$team2_id]['goodgoals'] =  $arrladder[$team2_id]['goodgoals'] + $gmatch['Match']['points_team2'];
+            $arrladder[$team1_id]['badgoals'] =  $arrladder[$team1_id]['badgoals'] + $gmatch['Match']['points_team2'];
+            $arrladder[$team2_id]['badgoals'] =  $arrladder[$team2_id]['badgoals'] + $gmatch['Match']['points_team1'];
+            $arrladder[$team1_id]['goaldif'] =  $arrladder[$team1_id]['goodgoals'] - $arrladder[$team1_id]['badgoals'];
+            $arrladder[$team2_id]['goaldif'] =  $arrladder[$team2_id]['goodgoals'] - $arrladder[$team2_id]['badgoals'];
+            //matches
+            $arrladder[$team1_id]['matches']++;
+            $arrladder[$team2_id]['matches']++;
+            //points, won, drw, lost
+            if ($gmatch['Match']['points_team1'] == $gmatch['Match']['points_team2']) {
+              // let's call it a draw
+              $arrladder[$team1_id]['points']++;
+              $arrladder[$team2_id]['points']++;
+              $arrladder[$team1_id]['draw']++;
+              $arrladder[$team2_id]['draw']++;
+            } elseif ($gmatch['Match']['points_team1'] > $gmatch['Match']['points_team2']) {
+              // team 1 won
+              $arrladder[$team1_id]['points'] = $arrladder[$team1_id]['points'] + 3;
+              $arrladder[$team1_id]['won']++;
+              $arrladder[$team2_id]['lost']++;
+            } else {
+              // team 2 won
+              $arrladder[$team2_id]['points'] = $arrladder[$team2_id]['points'] + 3;
+              $arrladder[$team2_id]['won']++;
+              $arrladder[$team1_id]['lost']++;
+            }
           }
         }
+
         $arrladder = $this->array_orderby($arrladder, 'points', SORT_DESC, 'goaldif', SORT_DESC, 'goodgoals', SORT_DESC);
         $this->Ladder->deleteAll(array(
           'Ladder.group_id' => $groupid,

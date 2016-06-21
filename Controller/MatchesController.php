@@ -643,7 +643,8 @@ class MatchesController extends AppController {
 
         $groupmatches = $this->Match->find('all', 
           array('conditions' => array(
-            'Match.group_id' => $groupid)));
+            'Match.group_id' => $groupid,
+            'Match.isfinished' => 1)));
         foreach ($groupmatches as $key => $gmatch) {
           $team1_id = $gmatch['Match']['team1_id'];
           $team2_id = $gmatch['Match']['team2_id'];

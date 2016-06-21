@@ -509,13 +509,11 @@ class MatchesController extends AppController {
         if (is_numeric($checkmatch['Match']['points_team1']) || is_numeric($checkmatch['Match']['points_team2']) || $checkmatch['Match']['is_fixed'] <> 1) {
           die();
         } else {
-          $data = array('Match' => array(
-            'id' => $json['Id'],
-            'points_team1' => 0,
-            'points_team2' => 0
-            ));
+          $newdata['Match'] = $checkmatch['Match'];
+          $newdata['Match']['points_team1'] = 0;
+          $newdata['Match']['points_team2'] = 0;
           $this->log('game ' . $json['Id'] . ' has begun');
-          $this->updateresult($checkmatch, $data);
+          $this->updateresult($newdata, $data);
         }
         die();
       }
@@ -524,13 +522,11 @@ class MatchesController extends AppController {
         if (!is_numeric($checkmatch['Match']['points_team1']) || !is_numeric($checkmatch['Match']['points_team2'])) {
           die();
         } else {
-          $data = array('Match' => array(
-            'id' => $json['Id'],
-            'isfinished' => 1
-            ));
+          $newdata['Match'] = $checkmatch['Match'];
+          $newdata['Match']['isfinished'] = 1;
           $this->log('game ' . $json['Id'] . ' is finished');
           $this->log($data);
-          $this->updateresult($checkmatch, $data);
+          $this->updateresult($newdata, $data);
           die();
         }
       }

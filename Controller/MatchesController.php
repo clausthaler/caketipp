@@ -570,6 +570,7 @@ class MatchesController extends AppController {
         // calculate tipps
       $realGoals1 = $data['Match']['points_team1'];
       $realGoals2 = $data['Match']['points_team2'];
+      $this->log($checkmatch['Tipp']);
       foreach ($checkmatch['Tipp'] as $key => $tipp) {
         $tippGoals1 = $tipp['Tipp']['points_team1'];
         $tippGoals2 = $tipp['Tipp']['points_team2'];
@@ -619,6 +620,7 @@ class MatchesController extends AppController {
       if ($checkmatch['Round']['groupstage'] == 1) {
         // recalculate group table
         $groupteams = $this->Team->find('list', array('conditions' => array('Team.group_id' => $checkmatch['Match']['group_id'])));
+        $this->log($groupteams);
         // prepare working array
         $arrladder = array();
         foreach ($groupteams as $key => $groupteam) {

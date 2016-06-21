@@ -513,7 +513,7 @@ class MatchesController extends AppController {
           $newdata['Match']['points_team1'] = 0;
           $newdata['Match']['points_team2'] = 0;
           $this->log('game ' . $json['Id'] . ' has begun');
-          $this->updateresult($newdata, $data);
+          $this->updateresult($checkmatch, $newdata);
         }
         die();
       }
@@ -526,7 +526,7 @@ class MatchesController extends AppController {
           $newdata['Match']['isfinished'] = 1;
           $this->log('game ' . $json['Id'] . ' is finished');
           $this->log($data);
-          $this->updateresult($newdata, $data);
+          $this->updateresult($checkmatch, $newdata);
           die();
         }
       }
@@ -540,7 +540,7 @@ class MatchesController extends AppController {
         $newdata['Match']['points_team2'] = rtrim(array_pop($parts), ']');
         $this->log('away team goal');
         $this->log($newdata);
-        $this->updateresult($newdata, $data);
+        $this->updateresult($checkmatch, $newdata);
         die();
       }
 
@@ -554,7 +554,7 @@ class MatchesController extends AppController {
         $newdata['Match']['points_team1'] = $newscore;
         $this->log('home team goal');
         $this->log($newdata);
-        $this->updateresult($newdata, $data);
+        $this->updateresult($checkmatch, $newdata);
         die();
       }
 

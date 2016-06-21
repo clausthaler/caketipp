@@ -48,6 +48,7 @@
             <table class="table table-condensed">
             <thead>
               <tr>
+                <th>&nbsp;</th>
                 <th><?php echo __('Name'); ?></th>
                 <?php foreach ($questions as $key => $question) : ?>
                   <th><?php echo $question['name'] ; ?></th>
@@ -63,6 +64,11 @@
                 } else {
                   echo '<tr>';
                 }
+                echo '<td>'; 
+                if (!empty($user['photo'])) {
+                  echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $user['photo_dir'] .  DS . 'small_' . $user['photo'], array('style' => 'max-width:30px; max-height:30px;'));
+                }
+                echo '</td>'; 
                 echo '<td>' . $user['username'] . '</td>';
 
                 if (isset($tipps[$user['username']])) {

@@ -399,7 +399,8 @@ order by sum desc) c');
       $rounds['bonus'] = __('Bonus questions');
   
       $this->User->recursive = -1;
-      $users = $this->User->find('list', array('fields' => array('id', 'username')));
+      $users = $this->User->find('all', array('fields' => array('id', 'username', 'photo', 'photo_dir')));
+      $users = Hash::combine($users, '{n}.User.id', '{n}.User');
       $tipps = array();
       foreach ($users as $id => $user) {
         $select = 'select ';
@@ -480,7 +481,7 @@ order by sum desc) c');
     $teams = Hash::combine($teams, '{n}.Team.id', '{n}.Team'); 
 
     $this->User->recursive = -1;
-    $users = $this->User->find('all', array('fields' => array('id', 'username')));
+    $users = $this->User->find('all', array('fields' => array('id', 'username', 'photo', 'photo_dir')));
     $users = Hash::combine($users, '{n}.User.id', '{n}.User'); 
 
     // generate the round select values
@@ -763,7 +764,7 @@ order by sum desc) c');
     $tipps = Hash::combine($tipps, '{n}.Tipp.question_id', '{n}.Tipp', '{n}.User.username'); 
 
     $this->User->recursive = -1;
-    $users = $this->User->find('all', array('fields' => array('id', 'username'), 'order' => array('lower(User.username)')));
+    $users = $this->User->find('all', array('fields' => array('id', 'username', 'photo', 'photo_dir'), 'order' => array('lower(User.username)')));
     $users = Hash::combine($users, '{n}.User.id', '{n}.User'); 
 
     $this->Team->recursive = -1;

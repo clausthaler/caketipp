@@ -125,6 +125,7 @@
           echo '<table class="table table-condensed" cellpadding="0" cellspacing="0">';
             echo '<tr>';
               echo '<th rowspan="3" style="vertical-align:bottom">' . __('Pos') . '</th>';
+              echo '<th rowspan="3" style="vertical-align:bottom">&nbsp;</th>';
               echo '<th rowspan="3" style="vertical-align:bottom">' . __('Name') . '</th>';
               echo $mth1;
               echo '<th rowspan="3" style="vertical-align:bottom;text-align: center;">' . __('Points') . '</th>';
@@ -146,6 +147,11 @@
               } else {
                 echo '<td>&nbsp;</td>';
               }
+              echo '<td>'; 
+              if (!empty($user['photo'])) {
+                echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $user['photo_dir'] .  DS . 'small_' . $user['photo'], array('style' => 'max-width:30px; max-height:30px;'));
+              }
+              echo '</td>'; 
               echo '<td>' . $user['username'] . '</td>';
               foreach ($matches as $matchkey => $match) {
                 // only show tipps when tipp due is over or current user

@@ -23,6 +23,7 @@
             <thead>
               <tr>
                 <th><?php echo __('Pos'); ?></th>
+                <th>&nbsp;</th>
                 <th><?php echo __('Name'); ?></th>
                 <?php 
                 foreach ($rounds as $key => $round) {
@@ -47,7 +48,13 @@
                 } else {
                   echo '<td>' . $position . '</td>';
                 }
-                echo '<td>' . $users[$key] . '</td>';
+                echo '<td>'; 
+                  if (!empty($users[$key]['photo'])) {
+                    echo $this->Html->image(DS . 'files' . DS . 'user' . DS . 'photo'  . DS . $users[$key]['photo_dir'] .  DS . 'small_' . $users[$key]['photo'], array('style' => 'max-width:30px; max-height:30px;'));
+                  }
+                echo '</td>'; 
+
+                echo '<td>' . $users[$key]['username'] . '</td>';
                 foreach ($tipp as $round => $points) {
                   echo '<td>';
                   if (!$points) {

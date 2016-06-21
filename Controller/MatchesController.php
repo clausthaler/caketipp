@@ -612,6 +612,8 @@ class MatchesController extends AppController {
               break;
           }
         }
+        $this->log($tippGoals1 . ' - ' . $realGoals1 . ' - ' . $tippGoals2 . ' - ' . $realGoals2);
+        $this->log($tipp);
         $tipp['Tipp']['points'] = $points;
         $this->log($tipp);
         $this->Match->Tipp->save($tipp);

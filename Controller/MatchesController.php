@@ -653,7 +653,7 @@ class MatchesController extends AppController {
           array('conditions' => array(
             'Match.group_id' => $groupid)));
         foreach ($groupmatches as $key => $gmatch) {
-          if (is_numeric($gmatch['Match']['points_team1']) && is_numeric($gmatch['Match']['points_team2'])  {
+          if (is_numeric($gmatch['Match']['points_team1']) && is_numeric($gmatch['Match']['points_team2']))  {
             $team1_id = $gmatch['Match']['team1_id'];
             $team2_id = $gmatch['Match']['team2_id'];
             //goals

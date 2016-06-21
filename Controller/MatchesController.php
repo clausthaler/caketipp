@@ -571,7 +571,9 @@ class MatchesController extends AppController {
       die();
     }
     if ($this->Match->save($data)) {
-        // calculate tipps
+      $this->log('Spiel gespeichert, aktualisiere Tipps');
+
+      // calculate tipps
       $realGoals1 = $data['Match']['points_team1'];
       $realGoals2 = $data['Match']['points_team2'];
       foreach ($checkmatch['Tipp'] as $key => $tipp) {
@@ -623,8 +625,8 @@ class MatchesController extends AppController {
       if ($checkmatch['Round']['groupstage'] == 1) {
         // recalculate group table
         $groupid = $checkmatch['Match']['group_id'];
+        $this->log('Aktualisiere Gruppentabellen für Gruppe ' . $groupid);
         $groupteams = $this->Team->find('list', array('conditions' => array('Team.group_id' => $groupid)));
-        $this->log($groupteams);
         // prepare working array
         $arrladder = array();
         foreach ($groupteams as $key => $groupteam) {
@@ -690,7 +692,7 @@ class MatchesController extends AppController {
           $this->Ladder->create();
           $newLadder['Ladder'] = $newlader;
           $newLadder['Ladder']['pos'] = $poskey + 1;
-          $this->log($this->Ladder->save($newLadder));
+          $this->Ladder->save($newLadder);
         }
       }
     }

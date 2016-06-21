@@ -499,26 +499,27 @@ class MatchesController extends AppController {
 
   public function matchupdate($filename = null) {
     if ($json =  json_decode(file_get_contents('/var/www/push.tipp4fun.eu/' . $filename), true)) {
-      if (substr($json->{'Updates'},0,15) == '[status:[TIMED:') {
+      if (substr($json['Updates'],0,15) == '[status:[TIMED:') {
         // game has begun -> set result to 0:0
-        $checkmatch = $this->Match->findById($json->{'Id'} );
+        $checkmatch = $this->Match->findById($json['Id'] );
         if (empty($checkmatch) || is_numeric($checkmatch['Match']['points_team1']) || is_numeric($checkmatch['Match']['points_team2']) || $checkmatch['Match']['is_fixed'] <> 1) {
           die();
         } else {
           $data = array('Match' => array(
-            'id' => $json->{'Id'},
+            'id' => $json['Id'],
             'points_team1' => 0,
             'points_team2' => 0
             ));
-          $this->log('game ' . $json->{'Id'} . ' has begun');
+          $this->log('game ' . $json['Id'] . ' has begun');
           $this->updateresult($checkmatch, $data);
         }
         die();
       }
+      $this->$this->log(substr($json['Updates'],0,15) == '[status:[IN_PLA');
       $this->log(substr($json->{'Updates'},0,15));
-      if (substr($json->{'Updates'},0,15) == '[status:[IN_PLA') {
+      if (substr($json['Updates'],0,15) == '[status:[IN_PLA') {
         // game is finished -> change game status
-        $checkmatch = $this->Match->findById($json->{'Id'} );
+        $checkmatch = $this->Match->findById($json['Id'] );
         $this->log($checkmatch);
         if (empty($checkmatch) || !is_numeric($checkmatch['Match']['points_team1']) || !is_numeric($checkmatch['Match']['points_team2'])) {
           die();

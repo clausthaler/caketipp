@@ -14,7 +14,7 @@
             ?>           
             <?php 
             foreach ($matches as $key => $round) {
-              echo '<br/><br/>';
+              echo '<br/>';
               echo '<h4>' . $rounds[$key]['name'] . '</h4>';
               echo '<table class="table table-condensed" cellpadding="0" cellspacing="0">';
               echo '<tr>';

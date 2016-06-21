@@ -56,6 +56,7 @@ $cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
 
     echo $this->fetch('meta');
     echo $this->fetch('css');
+    echo $this->Html->script('libs/jquery.min');
     echo $this->fetch('script');
     ?>
   <!-- Favicon -->
@@ -218,7 +219,6 @@ $cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
     //<!-- Bootstrap core JavaScript
     //================================================== -->
     //<!-- Core JS -->
-    echo $this->Html->script('libs/jquery.min');
     echo $this->Html->script('libs/bootstrap.min');
     //<!-- Plugins JS -->
     echo $this->Html->script('libs/jquery.slimscroll');

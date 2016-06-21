@@ -500,6 +500,7 @@ class MatchesController extends AppController {
   public function matchupdate($filename = null) {
     if ($json =  json_decode(file_get_contents('/var/www/push.tipp4fun.eu/' . $filename), true)) {
       $checkmatch = $this->Match->findById($json['Id'] );
+      $this->log($checkmatch);
       if (empty($checkmatch)) {
           die();
       }

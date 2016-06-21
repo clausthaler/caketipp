@@ -536,14 +536,14 @@ class MatchesController extends AppController {
       }
 
       if (substr($json['Updates'],0,15) == '[goalsAwayTeam:') {
+        // away team goal -> change result accordingly
         $parts = explode(':', $json['Updates']);
         $newscore = rtrim(array_pop($parts), ']');
-        $data = array('Match' => array(
-          'id' => $json['Id'],
-          'points_team2' => intval($newscore)
-        ));
+        $newdata['Match'] = $checkmatch['Match'];
+        $newdata['Match']['points_team2'] = rtrim(array_pop($parts), ']');
         $this->log('away team goal');
-        $this->updateresult($checkmatch, $data);
+        $this->log($newdata);
+        $this->updateresult($newdata, $data);
         die();
       }
 
@@ -551,12 +551,11 @@ class MatchesController extends AppController {
         // home team goal -> change result accordingly
         $parts = explode(':', $json['Updates']);
         $newscore = rtrim(array_pop($parts), ']');
-        $data = array('Match' => array(
-          'id' => $json['Id'],
-          'points_team1' => intval($newscore)
-        ));
+        $newdata['Match'] = $checkmatch['Match'];
+        $newdata['Match']['points_team1'] = rtrim(array_pop($parts), ']');
         $this->log('home team goal');
-        $this->updateresult($checkmatch, $data);
+        $this->log($newdata);
+        $this->updateresult($newdata, $data);
         die();
       }
 

@@ -502,7 +502,7 @@ class MatchesController extends AppController {
       if (substr($json->{'Updates'},0,15) == '[status:[TIMED:') {
         // game has begun -> set result to 0:0
         $checkmatch = $this->Match->findById($json->{'Id'} );
-        if (empty($checkmatch) || is_numeric($checkmatch['Match']['points_team1']) || is_numeric($checkmatch['Match']['points_team2'])) {
+        if (empty($checkmatch) || is_numeric($checkmatch['Match']['points_team1']) || is_numeric($checkmatch['Match']['points_team2']) || $checkmatch['Match']['is_fixed'] <> 1) {
           die();
         } else {
           $data = array('Match' => array(

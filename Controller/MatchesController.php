@@ -682,7 +682,7 @@ class MatchesController extends AppController {
           $this->Ladder->create();
           $newLadder['Ladder'] = $newlader;
           $newLadder['Ladder']['pos'] = $poskey + 1;
-          $this->Ladder->save($newLadder);
+          $this->log($this->Ladder->save($newLadder));
         }
       }
     }

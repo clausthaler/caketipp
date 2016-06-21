@@ -553,8 +553,9 @@ class MatchesController extends AppController {
         $parts = explode(':', $json['Updates']);
         $this->log($parts);
         $newscore = rtrim(array_pop($parts), ']');
+        $this->log($newscore);
         $newdata['Match'] = $checkmatch['Match'];
-        $newdata['Match']['points_team1'] = rtrim(array_pop($parts), ']');
+        $newdata['Match']['points_team1'] = $newscore;
         $this->log('home team goal');
         $this->log($newdata);
         $this->updateresult($newdata, $data);

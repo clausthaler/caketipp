@@ -570,7 +570,6 @@ class MatchesController extends AppController {
         // calculate tipps
       $realGoals1 = $data['Match']['points_team1'];
       $realGoals2 = $data['Match']['points_team2'];
-      $this->log($checkmatch['Tipp']);
       foreach ($checkmatch['Tipp'] as $key => $tipp) {
         $tippGoals1 = $tipp['Tipp']['points_team1'];
         $tippGoals2 = $tipp['Tipp']['points_team2'];
@@ -614,6 +613,7 @@ class MatchesController extends AppController {
           }
         }
         $tipp['Tipp']['points'] = $points;
+        $this->log($tipp);
         $this->Match->Tipp->save($tipp);
       }
 

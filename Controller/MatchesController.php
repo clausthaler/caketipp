@@ -508,7 +508,8 @@ class MatchesController extends AppController {
       if (substr($json['Updates'],0,15) == '[status:[TIMED:') {
         $this->log('Status Spielbeginn erkannt');
         // game has begun -> set result to 0:0
-        if (is_numeric($checkmatch['Match']['points_team1']) || is_numeric($checkmatch['Match']['points_team2']) || $checkmatch['Match']['is_fixed'] <> 1) {
+        if (is_numeric($checkmatch['Match']['points_team1']) || is_numeric($checkmatch['Match']['points_team2']) || $checkmatch['Match']['isfixed'] <> 1) {
+          $this->log('Bedingungen nicht erfüllt. Abbruch!');
           die();
         } else {
           $newdata['Match'] = $checkmatch['Match'];
@@ -522,6 +523,7 @@ class MatchesController extends AppController {
       if (substr($json['Updates'],0,15) == '[status:[IN_PLA') {
         // game is finished -> change game status
         if (!is_numeric($checkmatch['Match']['points_team1']) || !is_numeric($checkmatch['Match']['points_team2'])) {
+          $this->log('Bedingungen nicht erfüllt. Abbruch!');
           die();
         } else {
           $newdata['Match'] = $checkmatch['Match'];

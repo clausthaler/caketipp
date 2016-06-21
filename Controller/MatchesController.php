@@ -499,10 +499,14 @@ class MatchesController extends AppController {
 
   public function matchupdate($filename = null) {
     if ($json =  json_decode(file_get_contents('/var/www/push.tipp4fun.eu/' . $filename), true)) {
+      $checkmatch = $this->Match->findById($json['Id'] );
+      if (empty($checkmatch)) {
+          die();
+      }
+
       if (substr($json['Updates'],0,15) == '[status:[TIMED:') {
         // game has begun -> set result to 0:0
-        $checkmatch = $this->Match->findById($json['Id'] );
-        if (empty($checkmatch) || is_numeric($checkmatch['Match']['points_team1']) || is_numeric($checkmatch['Match']['points_team2']) || $checkmatch['Match']['is_fixed'] <> 1) {
+        if (is_numeric($checkmatch['Match']['points_team1']) || is_numeric($checkmatch['Match']['points_team2']) || $checkmatch['Match']['is_fixed'] <> 1) {
           die();
         } else {
           $data = array('Match' => array(
@@ -517,9 +521,7 @@ class MatchesController extends AppController {
       }
       if (substr($json['Updates'],0,15) == '[status:[IN_PLA') {
         // game is finished -> change game status
-        $checkmatch = $this->Match->findById($json['Id'] );
-        $this->log($checkmatch);
-        if (empty($checkmatch) || !is_numeric($checkmatch['Match']['points_team1']) || !is_numeric($checkmatch['Match']['points_team2'])) {
+        if (!is_numeric($checkmatch['Match']['points_team1']) || !is_numeric($checkmatch['Match']['points_team2'])) {
           die();
         } else {
           $data = array('Match' => array(
@@ -528,25 +530,37 @@ class MatchesController extends AppController {
             ));
           $this->log('game ' . $json['Id'] . ' is finished');
           $this->log($data);
-          die();
           $this->updateresult($checkmatch, $data);
+          die();
         }
-        die();
       }
 
-      if (substr($json->{'Updates'},0,15) == '[goalsAwayTeam:') {
-        // away team goal -> change result accordingly
+      if (substr($json['Updates'],0,15) == '[goalsAwayTeam:') {
+        $parts = explode(':', $json['Updates']);
+        $newscore = rtrim(array_pop($parts), ']');
+        $data = array('Match' => array(
+          'id' => $json['Id'],
+          'points_team2' => intval($newscore)
+        ));
         $this->log('away team goal');
+        $this->updateresult($checkmatch, $data);
         die();
       }
 
-      if (substr($json->{'Updates'},0,15) == '[goalsHomeTeam:') {
+      if (substr($json['Updates'],0,15) == '[goalsHomeTeam:') {
         // home team goal -> change result accordingly
+        $parts = explode(':', $json['Updates']);
+        $newscore = rtrim(array_pop($parts), ']');
+        $data = array('Match' => array(
+          'id' => $json['Id'],
+          'points_team1' => intval($newscore)
+        ));
         $this->log('home team goal');
+        $this->updateresult($checkmatch, $data);
         die();
       }
-      die();
 
+      die();
     }
   }
 

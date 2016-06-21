@@ -1,4 +1,4 @@
-<div id="tippsoverview table-responsive">
+<div id="tippsoverview" class="table-responsive">
         <?php
           //calculate match table headers first
           $mth1 = '';

@@ -5,7 +5,7 @@
         <div class="portlet-header">
           <h5 class="portlet-title"><?php echo __('Schedule'); ?></h5>
         </div>
-        <div class="portlet-body">
+        <div class="portlet-body table-responsive">
             <?php
              $teams = Hash::combine($teams, '{n}.Team.id', '{n}.Team'); 
              $rounds = Hash::combine($rounds, '{n}.Round.id', '{n}.Round'); 

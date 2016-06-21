@@ -540,7 +540,9 @@ class MatchesController extends AppController {
         $this->log('Status Auswärtstor erkannt');
         // away team goal -> change result accordingly
         $parts = explode(':', $json['Updates']);
+        $this->log($parts);
         $newscore = rtrim(array_pop($parts), ']');
+        $this->log('Neuer Stand: ' . $newscore);
         $newdata['Match'] = $checkmatch['Match'];
         $newdata['Match']['points_team2'] = rtrim(array_pop($parts), ']');
         $this->log('Aktualisiere Spiel mit Daten:');
@@ -553,7 +555,9 @@ class MatchesController extends AppController {
         $this->log('Status Heimtor erkannt');
         // home team goal -> change result accordingly
         $parts = explode(':', $json['Updates']);
+        $this->log($parts);
         $newscore = rtrim(array_pop($parts), ']');
+        $this->log('Neuer Stand: ' . $newscore);
         $newdata['Match'] = $checkmatch['Match'];
         $newdata['Match']['points_team1'] = $newscore;
         $this->log('Aktualisiere Spiel mit Daten:');

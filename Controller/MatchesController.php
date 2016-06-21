@@ -515,7 +515,7 @@ class MatchesController extends AppController {
         }
         die();
       }
-      $this->$this->log(substr($json['Updates'],0,15) == '[status:[IN_PLA');
+      $this->log(substr($json['Updates'],0,15) == '[status:[IN_PLA');
       $this->log(substr($json->{'Updates'},0,15));
       if (substr($json['Updates'],0,15) == '[status:[IN_PLA') {
         // game is finished -> change game status

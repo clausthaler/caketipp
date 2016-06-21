@@ -501,6 +501,7 @@ class MatchesController extends AppController {
     if ($json =  json_decode(file_get_contents('/var/www/push.tipp4fun.eu/' . $filename), true)) {
       $checkmatch = $this->Match->findById($json['Id'] );
       if (empty($checkmatch)) {
+          $this->log('Spiel nicht bekannt');
           die();
       }
       $this->log('Checkmatch ' . $checkmatch['Match']['id'] . ' gefunden');

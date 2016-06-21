@@ -566,15 +566,13 @@ class MatchesController extends AppController {
     if ($checkmatch == null || $data == null) {
       die();
     }
-    $this->log($checkmatch);
-    die();
     if ($this->Match->save($data)) {
         // calculate tipps
       $realGoals1 = $data['Match']['points_team1'];
       $realGoals2 = $data['Match']['points_team2'];
       foreach ($checkmatch['Tipp'] as $key => $tipp) {
-        $tippGoals1 = $tipp['Tipp']['points_team1'];
-        $tippGoals2 = $tipp['Tipp']['points_team2'];
+        $tippGoals1 = $tipp['points_team1'];
+        $tippGoals2 = $tipp['points_team2'];
         // completely correct score?
         $points = 0;
         if ($realGoals1 == $tippGoals1 && $realGoals2 == $tippGoals2) {
@@ -616,9 +614,8 @@ class MatchesController extends AppController {
         }
         $this->log($tippGoals1 . ' - ' . $realGoals1 . ' - ' . $tippGoals2 . ' - ' . $realGoals2);
         $this->log($tipp);
-        $tipp['Tipp']['points'] = $points;
-        $this->log($tipp);
-        $this->Match->Tipp->save($tipp);
+        $tipp['points'] = $points;
+        $this->Match->Tipp->save(array('Tipp' => $tipp));
       }
 
       if ($checkmatch['Round']['groupstage'] == 1) {

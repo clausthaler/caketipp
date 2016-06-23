@@ -649,9 +649,15 @@ order by sum desc) c');
 
     $this->set('matches', $matches);
     $this->set('users', $users);
+    if (empty($matches)) {
+      $matchcondition = '" "';
+    } else {
+      $matchcondition = join(',', Hash::extract( $matches, '{n}.Match.id'));
+    }
+    
     $userlist = $this->User->query('select * from (select a.id "id", a.username "username", a.photo '
       .'"photo", a.photo_dir "photo_dir", (select sum(b.points) from tipps b where a.id = b.user_id' 
-      .'  and b.match_id in (' . join(',', Hash::extract( $matches, '{n}.Match.id')) . ')) "sum" from users a order by sum desc) c');
+      .'  and b.match_id in (' . $matchcondition . ')) "sum" from users a order by sum desc) c');
     $this->set('userlist', $userlist);
     
     if (time() > $matchlist[0] && time() > ($matchlist[count($matchlist) -1 ] + 7200)) {

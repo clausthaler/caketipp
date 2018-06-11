@@ -100,6 +100,12 @@
                 &nbsp;&nbsp;<?php echo __('Groups');?>
                 </a>
               </li>
+              <li <?php if ($active == 'teams') { echo ' class="active" '; } ?>>
+                <a href="/admin/teams">
+                <i class="fa fa-lock"></i> 
+                &nbsp;&nbsp;<?php echo __('Teams');?>
+                </a>
+              </li>
               <li <?php if ($active == 'rounds') { echo ' class="active" '; } ?>>
                 <a href="/admin/rounds">
                 <i class="fa fa-bullhorn"></i> 

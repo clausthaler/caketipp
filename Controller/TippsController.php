@@ -168,7 +168,8 @@ class TippsController extends AppController {
     $this->Team->recursive = -1;
     $teams = $this->Team->find('list', array(
       'fields' => array('id', 'name'),
-      'conditions' => array('group_id >=' => 1)));
+      'conditions' => array('group_id >=' => 1),
+      'order' => array('name')));
     if ($this->request->is('post')) {
       // validate the entries and clean up the array
       $tippErrors = array();
@@ -318,6 +319,42 @@ class TippsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
+  private function createRoundSelect() {
+    // get all rounds
+    $this->Round->recursive = -1;
+    $rounds = $this->Round->find('all', array('fields' => array('id', 'name', 'groupstage', 'shortname', 'slug')));
+    $selrounds = Hash::combine($rounds, '{n}.Round.id', '{n}.Round'); 
+    $rounds = Hash::combine($rounds, '{n}.Round.id', '{n}.Round.name'); 
+
+    // get all rounds
+    $this->Group->recursive = -1;
+    $groups = $this->Group->find('all', array(
+      'fields' => array('id', 'name', 'shortname', 'slug', 'round_id')));
+    $roundgroups = Hash::combine($groups, '{n}.Group.id', '{n}.Group', '{n}.Group.round_id'); 
+    $groups = Hash::combine($groups, '{n}.Group.id', '{n}.Group'); 
+
+    // generate the round select values
+    $roundsselarr = array('overview' => __('Ranking'));
+//    $roundsselarr['dayranking'] = __('Ranking today');
+//    $roundsselarr['groupstage'] = __('Groupstage');
+//    foreach ($groups as $group) {
+//      $roundsselarr['group_' . $group['id']] =  '  ' . $group['name'];
+//    }
+
+    foreach ($selrounds as $round) {
+      if ($round['groupstage'] == 1) {
+        $roundsselarr[$round['id']] =  '  ' . $round['name'] ; # code...
+      }  else {
+        $roundsselarr[$round['id']] =  $round['name'];
+
+      }
+    }
+
+    $roundsselarr['bonus'] = __('Bonus questions');
+    $roundsselarr['timeline'] = __('Ranking timeline');
+    return $roundsselarr;
+  }
+
 /**
  * 
  */
@@ -376,25 +413,26 @@ order by sum desc) c');
       $roundgroups = Hash::combine($groups, '{n}.Group.id', '{n}.Group', '{n}.Group.round_id'); 
       $groups = Hash::combine($groups, '{n}.Group.id', '{n}.Group'); 
 
+      $roundsselarr = $this->createRoundSelect();
 
-      // generate the round select values
+/*      // generate the round select values
       $roundsselarr = array('overview' => __('Ranking'));
       $roundsselarr['dayranking'] = __('Ranking today');
       foreach ($selrounds as $rkey => $round) {
         if ($round['groupstage'] == 1) {
-          $roundsselarr[$rkey] =  __($round['name']) . ' ' .  __('all');
-          foreach ($roundgroups[$rkey] as $gkey => $rgroup) {
-            $roundsselarr[$rkey . '-' . $gkey] =  '  ' . __($round['name']) . ' ' .  __($rgroup['name']);
-          }
+          $roundsselarr[$rkey] =  __($round['name']); // . ' ' .  __('all');
+//          foreach ($roundgroups[$rkey] as $gkey => $rgroup) {
+//            $roundsselarr[$rkey . '-' . $gkey] =  '  ' . __($round['name']) . ' ' .  __($rgroup['name']);
+//          }
         } else {
           $roundsselarr[$rkey] =  __($round['name']);
         }
       }
       $roundsselarr['bonus'] = __('Bonus questions');
       $roundsselarr['timeline'] = __('Ranking timeline');
-
       $roundselected = 'overview';
-
+*/
+      $roundselected = 'overview';
       $rounds['groupbonus'] = __('Group bonus');
       $rounds['bonus'] = __('Bonus questions');
   
@@ -484,21 +522,8 @@ order by sum desc) c');
     $users = $this->User->find('all', array('fields' => array('id', 'username', 'photo', 'photo_dir')));
     $users = Hash::combine($users, '{n}.User.id', '{n}.User'); 
 
-    // generate the round select values
-    $roundsselarr = array('overview' => __('Ranking'));
-    $roundsselarr['dayranking'] = __('Ranking today');
-    foreach ($rounds as $rkey => $round) {
-      if ($round['groupstage'] == 1) {
-        $roundsselarr[$rkey] =  __($round['name']) . ' ' .  __('all');
-        foreach ($roundgroups[$rkey] as $gkey => $rgroup) {
-          $roundsselarr[$rkey . '-' . $gkey] =  '  ' . __($round['name']) . ' ' .  __($rgroup['name']);
-        }
-      } else {
-        $roundsselarr[$rkey] =  __($round['name']);
-      }
-    }
-    $roundsselarr['bonus'] = __('Bonus questions');
-    $roundsselarr['timeline'] = __('Ranking timeline');
+    $roundsselarr = $this->createRoundSelect();
+
 
     // get the matches and tipps for the round
     $conditions = array('Match.round_id' => $tipproundid);

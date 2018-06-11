@@ -19,25 +19,21 @@
             <table class="table table-condensed">
               <thead>
                 <tr>
-                  <th><?php echo $this->Paginator->sort('id'); ?></th>
                   <th><?php echo $this->Paginator->sort('name'); ?></th>
                   <th><?php echo $this->Paginator->sort('shortname'); ?></th>
-                  <th><?php echo $this->Paginator->sort('round_id'); ?></th>
                   <th class="actions"><?php echo __('Actions'); ?></th>
                 </tr>
               </thead>   
               <tbody>
                 <?php foreach ($groups as $group): ?>
                 <tr>
-                  <td><?php echo h($group['Group']['id']); ?>&nbsp;</td>
-                  <td><?php echo h($group['Group']['name']); ?>&nbsp;</td>
+                  <td>
+                    <?php echo $this->Html->link($group['Group']['name'], array(
+                      'action' => 'edit', $group['Group']['id'])
+                      ); ?></td>
+
                   <td><?php echo h($group['Group']['shortname']); ?>&nbsp;</td>
-                  <td><?php echo h($group['Round']['name']); ?></td>
                   <td class="actions">
-                    <?php echo $this->Html->link(__('Edit'), array(
-                      'action' => 'edit', $group['Group']['id']),
-                      array('class' => 'btn btn-xs btn-info')
-                      ); ?>
                     <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $group['Group']['id']),
                       array('class' => 'btn btn-xs btn-danger'), __('Are you sure you want to delete # %s?', $group['Group']['id'])); ?>
                   </td>

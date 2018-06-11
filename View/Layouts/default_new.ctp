@@ -16,7 +16,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
+$cakeDescription = __d('cake_dev', 'WM 2018 Tippspiel');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -206,7 +206,7 @@ $cakeDescription = __d('cake_dev', 'EM 2016 Tippspiel');
 
   <footer class="footer">
     <div class="container">
-      <p class="pull-left">Copyright &copy; 2016 Ralf Dannhauer.</p>
+      <p class="pull-left">Copyright &copy; 2018 Ralf Dannhauer.</p>
       <p class="pull-right"><a href="/imprint"><?php echo __('Imprint'); ?></a></p>
     </div>
   </footer>

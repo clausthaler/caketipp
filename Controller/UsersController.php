@@ -384,8 +384,6 @@ class UsersController extends AppController {
 	public function admin_edit($userId = null) {
 		try {
 			$result = $this->{$this->modelClass}->edit($userId, $this->request->data);
-			echo "Hi";
-			print_r($result);
 			if ($result === true) {
 				$this->Session->setFlash(__d('users', 'User saved'));
 				$this->redirect(array('action' => 'index'));
@@ -519,8 +517,10 @@ class UsersController extends AppController {
 						'isFirstLogin' => !$this->Auth->user('last_login')
 					)
 				);
+				// set default lang
+				$this->Session->write('Config.language', 'deu');
 
-				$this->getEventManager()->dispatch($Event);
+    			$this->getEventManager()->dispatch($Event);
 
 				$this->{$this->modelClass}->id = $this->Auth->user('id');
 				$this->{$this->modelClass}->saveField('last_login', date('Y-m-d H:i:s'));
@@ -782,7 +782,9 @@ class UsersController extends AppController {
 			'subject' => __d('users', 'Account verification'),
 			'template' => $this->_pluginDot() . 'account_verification',
 			'layout' => 'default',
-			'emailFormat' => CakeEmail::MESSAGE_TEXT
+			'emailFormat' => CakeEmail::MESSAGE_TEXT,
+			'transport' => 'dd24',
+			'log' => true
 		);
 
 		$options = array_merge($defaults, $options);

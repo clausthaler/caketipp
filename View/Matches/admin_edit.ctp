@@ -1,5 +1,5 @@
 <?php 
-  $this->Html->script('bootstrap-datepicker.min', array('block' => 'scriptBottom'));
+  $this->Html->script('libs/bootstrap-datepicker', array('block' => 'scriptBottom'));
   $this->Html->scriptBlock('
     $(".datepicker").datepicker({format:"dd.mm.yyyy"});
   ', array('block' => 'scriptBottom')); 

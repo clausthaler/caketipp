@@ -80,6 +80,13 @@ msgstr "Benutzer gespeichert."
 msgid "User deleted"
 msgstr ""
 
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+
 #: /controllers/users_controller.php:249
 #: /models/user.php:703
 msgid "Invalid User"

@@ -124,7 +124,7 @@ $tippladders = Hash::combine($tippladders, '{n}.Ladder.id', '{n}.Ladder', '{n}.L
                       <td><?php echo $ladders[$groupid][$ladderkey]['pos']; ?></td>
                       <td style="text-align:left">
                       <?php 
-                        echo $this->Html->image($teams[$ladder['team_id']]['iconurl']) . '&nbsp;';
+                        echo $this->Html->image('flags/' . $teams[$ladder['team_id']]['iconurl']) . '&nbsp;';
                         echo $teams[$ladder['team_id']]['name'];
                       ?>
                       </td>
@@ -177,7 +177,7 @@ $tippladders = Hash::combine($tippladders, '{n}.Ladder.id', '{n}.Ladder', '{n}.L
                       ?>
                       <td style="text-align:left">
                       <?php 
-                        echo $this->Html->image($teams[$tippladder['team_id']]['iconurl']) . '&nbsp;';
+                        echo $this->Html->image('flags/' . $teams[$tippladder['team_id']]['iconurl']) . '&nbsp;';
                         echo $teams[$tippladder['team_id']]['name'];
                       ?>
                       </td>

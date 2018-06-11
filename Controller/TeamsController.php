@@ -10,14 +10,18 @@ App::uses('AppController', 'Controller');
 class TeamsController extends AppController {
 
   public $uses = array('Team','Match');
-
+    
+  public $paginate = array(
+        'order' => array('Team.group_id')
+  );
 /**
  * admin_index method
  *
  * @return void
  */
 	public function admin_index() {
-		$this->Team->recursive = 0;
+		$this->Team->recursive = 1;
+		$this->Paginator->settings = $this->paginate;
 		$this->set('teams', $this->Paginator->paginate());
 	}
 

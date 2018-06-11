@@ -32,9 +32,18 @@ msgstr "Punkteabstand zur Spitze"
 msgid "Points timeline"
 msgstr "Punkteverlauf"
 
+
+msgid "Groupstage"
+msgstr "Gruppenphase"
+
 msgid "Results"
 msgstr "Ergebnisse"
 
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Cancel"
+msgstr "Abbrechen"
 
 msgid "Personal ranking"
 msgstr "Platzierungsverlauf"
@@ -577,7 +586,7 @@ msgstr "Teams anzeigen"
 #: View/Teams/admin_index.ctp:46 View/Teams/admin_view.ctp:42
 #: View/Teams/view.ctp:27
 msgid "New Team"
-msgstr "Neuen Team"
+msgstr "Neues Team"
 
 #: View/Groups/admin_view.ctp:40 View/Rounds/admin_view.ctp:53
 #: View/Rounds/view.ctp:53
@@ -1027,7 +1036,7 @@ msgstr "aktiv"
 
 #: View/Users/admin_edit.ctp:91
 msgid "has paid"
-msgstr "bezahtl"
+msgstr "bezahlt"
 
 #: View/Users/admin_index.ctp:55
 msgid "paid"

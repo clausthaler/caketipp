@@ -98,6 +98,54 @@
                 ?>
               </div> <!-- /.col -->
             </div>
+            <!-- show group teams -->
+            <h6><?php echo __('Teams'); ?></h6>
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th><?php echo __('Name'); ?></th>
+                  <th><?php echo __('Flag'); ?></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($this->request->data['Team'] as $team): ?>
+                <tr>
+                  <td>
+                      <?php echo $this->Html->link($team['name'], array(
+                        'controller' => 'teams',
+                      'action' => 'edit', $team['id'])
+                      ); ?></td>
+                  <td>
+                    <?php
+                    echo $this->Html->image('flags/' . $team['iconurl']) ?>&nbsp;</td>
+                </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>                
+            <h6><?php echo __('Matches'); ?></h6>
+             <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th><?php echo __('Date'); ?></th>
+                  <th><?php echo __('Game'); ?></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($this->request->data['Match'] as $match): ?>
+                <tr>
+                  <td><?php echo date("d.m", $match['kickoff']) . '&nbsp;<small>' . date('H:i', $match['kickoff']) .   '</small>'; ?>
+                  </td>
+                  <td>
+                      <?php echo $this->Html->link($match['name'], array(
+                        'controller' => 'matches',
+                      'action' => 'edit', $match['id'])
+                      ); ?>
+                  </td>
+                </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+
             <?php echo $this->Form->end(); ?>
           </div> <!-- /.tab-pane -->
         </div> <!-- /.tab-content -->

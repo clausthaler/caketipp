@@ -13,6 +13,13 @@ class Team extends AppModel {
  */
 	public $displayField = 'name';
 
+  public $belongsTo = array(
+    'Group' => array(
+        'className' => 'Group',
+        'foreignKey' => 'group_id'
+    )
+  );
+
 /**
  * Validation rules
  *

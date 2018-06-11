@@ -38,20 +38,20 @@
                 <td>
                 <?php 
                     if (!empty($match['Team1']['iconurl'])) {
-                      echo $this->Html->image($match['Team1']['iconurl']);
+                      echo $this->Html->image('flags/' . $match['Team1']['iconurl'], array('class' => 'teamflag'));
                     }
                     echo "&nbsp;";
-                    echo $this->Html->link($match['Team1']['name'], array('controller' => 'teams', 'action' => 'view',  $match['Team1']['id'])); 
+                    echo $this->Html->link($match['Team1']['name'], array('controller' => 'teams', 'action' => 'edit',  $match['Team1']['id'])); 
                 ?>
                 </td>
                 <td>-</td>
                 <td>
                 <?php 
                     if (!empty($match['Team1']['iconurl'])) {
-                      echo $this->Html->image($match['Team2']['iconurl']);
+                      echo $this->Html->image('flags/' . $match['Team2']['iconurl'], array('class' => 'teamflag'));
                     }
                     echo "&nbsp;";
-                    echo $this->Html->link($match['Team2']['name'], array('controller' => 'teams', 'action' => 'view',  $match['Team2']['id'])); 
+                    echo $this->Html->link($match['Team2']['name'], array('controller' => 'teams', 'action' => 'edit',  $match['Team2']['id'])); 
                 ?>
                 </td>
                 <td>

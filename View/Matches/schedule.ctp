@@ -37,14 +37,14 @@
                   echo '</td>';
                   echo '<td>';
                   if (!empty($teams[$match['team1_id']]['iconurl'])) {
-                    echo $this->Html->image($teams[$match['team1_id']]['iconurl']) . '&nbsp;';
+                    echo $this->Html->image('flags/' . $teams[$match['team1_id']]['iconurl']) . '&nbsp;';
                   }
                   echo $teams[$match['team1_id']]['name'];
                   echo '</td>';
                   echo '<td>-</td>';
                   echo '<td>';
                   if (!empty($teams[$match['team2_id']]['iconurl'])) {
-                    echo $this->Html->image($teams[$match['team2_id']]['iconurl']) . '&nbsp;';
+                    echo $this->Html->image('flags/' . $teams[$match['team2_id']]['iconurl']) . '&nbsp;';
                   }
                   echo $teams[$match['team2_id']]['name'];
                   echo '</td>';

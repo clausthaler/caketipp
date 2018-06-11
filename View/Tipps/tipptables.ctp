@@ -25,13 +25,13 @@
                   </td>
                   <td>
                   <?php 
-                   echo $this->Html->image($teams[$match['team1_id']]['iconurl']) 
+                   echo $this->Html->image('flags/' . $teams[$match['team1_id']]['iconurl']) 
                     . '&nbsp;' 
                     . $teams[$match['team1_id']]['name']
                     . ' - '
                     . $teams[$match['team2_id']]['name']
                     . '&nbsp;' 
-                    . $this->Html->image($teams[$match['team2_id']]['iconurl']);
+                    . $this->Html->image('flags/' . $teams[$match['team2_id']]['iconurl']);
                   ?>
                   <td style="text-align:center">
                   <?php 
@@ -73,7 +73,7 @@
                   <td><?php echo $group['Ladder'][$ladderkey]['pos']; ?></td>
                   <td style="text-align:left">
                   <?php 
-                   echo $this->Html->image($teams[$ladder['team_id']]['iconurl']) . '&nbsp;';
+                   echo $this->Html->image('flags/' . $teams[$ladder['team_id']]['iconurl']) . '&nbsp;';
                     echo $teams[$ladder['team_id']]['name'];
                   ?>
                   </td>

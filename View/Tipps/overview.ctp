@@ -66,14 +66,14 @@
               echo '</td>';
               echo '<td>';
               if (!empty($teams[$match['Match']['team1_id']]['iconurl'])) {
-                echo $this->Html->image($teams[$match['Match']['team1_id']]['iconurl']) . '&nbsp;';
+                echo $this->Html->image('flags/' . $teams[$match['Match']['team1_id']]['iconurl']) . '&nbsp;';
               }
               echo $teams[$match['Match']['team1_id']]['name'];
               echo '</td>';
               echo '<td>-</td>';
               echo '<td>';
               if (!empty($teams[$match['Match']['team2_id']]['iconurl'])) {
-                echo $this->Html->image($teams[$match['Match']['team2_id']]['iconurl']) . '&nbsp;';
+                echo $this->Html->image('flags/' . $teams[$match['Match']['team2_id']]['iconurl']) . '&nbsp;';
               }
               echo $teams[$match['Match']['team2_id']]['name'];
               echo '</td>';

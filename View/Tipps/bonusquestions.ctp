@@ -32,7 +32,7 @@
                   <td>
                     <?php 
                     if ($question['team_id'] <> 0) {
-                      echo $this->Html->image($teams[$question['team_id']]['iconurl']) . '&nbsp;';
+                      echo $this->Html->image('flags/' . $teams[$question['team_id']]['iconurl']) . '&nbsp;';
                       echo $teams[$question['team_id']]['name'] ;
                     } else {
                       echo('-');
@@ -88,7 +88,7 @@
                   echo '<td style="' . $style . '">';
                   if ($userhastipps && isset($usertipps[$question['id']])) {
                     if (!empty($teams[$usertipps[$question['id']]['team_id']]['iconurl'])) {
-                      echo $this->Html->image($teams[$usertipps[$question['id']]['team_id']]['iconurl']) . '&nbsp;';
+                      echo $this->Html->image('flags/' . $teams[$usertipps[$question['id']]['team_id']]['iconurl']) . '&nbsp;';
                     }
                     echo $teams[$usertipps[$question['id']]['team_id']]['name'];
                     $points = $points + $usertipps[$question['id']]['points'];

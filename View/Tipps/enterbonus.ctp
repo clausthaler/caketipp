@@ -46,7 +46,7 @@
                 'value' => isset($tipps[$question['Question']['id']]['Tipp']['team_id']) ? $tipps[$question['Question']['id']]['Tipp']['team_id'] : false));
             } else {
               if (isset($tipps[$question['Question']['id']]['Tipp']['team_id'])) {
-                echo $this->Html->image($tipps[$question['Question']['id']]['Team']['iconurl']) . '&nbsp;';
+                echo $this->Html->image('flags/' . $tipps[$question['Question']['id']]['Team']['iconurl']) . '&nbsp;';
                 echo  $tipps[$question['Question']['id']]['Team']['name'];
               } else {
                 echo ' ';

@@ -126,7 +126,7 @@
                       <td>
                       <?php 
                         if (!empty($match['Team1']['iconurl'])) {
-                          echo $this->Html->image($match['Team1']['iconurl']);
+                          echo $this->Html->image('flags/' . $match['Team1']['iconurl']);
                         }
                         echo "&nbsp;";
                         echo $match['Team1']['name']; 
@@ -136,7 +136,7 @@
                       <td>
                       <?php 
                         if (!empty($match['Team2']['iconurl'])) {
-                          echo $this->Html->image($match['Team2']['iconurl']);
+                          echo $this->Html->image('flags/' . $match['Team2']['iconurl']);
                         }
                         echo "&nbsp;";
                         echo $match['Team2']['name']; 

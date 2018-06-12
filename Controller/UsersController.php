@@ -800,6 +800,20 @@ class UsersController extends AppController {
 				'user' => $userData
 			))
 			->send();
+
+		// Send info to me
+		$Email = $this->_getMailInstance();
+		$Email->to('post@dannhauer.eu')
+			->from($options['from'])
+			->emailFormat($options['emailFormat'])
+			->subject($options['subject'])
+			->template('account_created_info', $options['layout'])
+			->viewVars(array(
+			'model' => $this->modelClass,
+				'user' => $userData
+			))
+			->send();
+
 	}
 
 /**

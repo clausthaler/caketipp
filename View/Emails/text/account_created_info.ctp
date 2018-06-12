@@ -9,4 +9,4 @@
  * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-echo 'User ' . $user[$model]['username'] . ' email: ' .$user[$model]['username'] . ' just entered the game';
+echo 'User ' . $user[$model]['username'] . ' email: ' .$user[$model]['email'] . ' just entered the game';

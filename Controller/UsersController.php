@@ -806,7 +806,7 @@ class UsersController extends AppController {
 		$Email->to('post@dannhauer.eu')
 			->from($options['from'])
 			->emailFormat($options['emailFormat'])
-			->subject($options['subject'])
+			->subject('New user joined the game')
 			->template('account_created_info', $options['layout'])
 			->viewVars(array(
 			'model' => $this->modelClass,

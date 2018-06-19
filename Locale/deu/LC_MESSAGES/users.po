@@ -729,3 +729,17 @@ msgstr "Resette Dein Passwort"
 msgid "Search for users"
 msgstr "Nach Benutzern suchen"
 
+#: /views/emails/text/tippreminder
+msgid "Hi %s"
+msgstr "Hallo %s,"
+
+msgid "You have not tipped the following games within the next two days yet:"
+msgstr "für folgende Spiele in den nächsten zwei Tagen fehlen noch Tipps:"
+
+msgid "You can enter tipps here:"
+msgstr "Hier schnell die fehlenden Tipps abgeben:"
+
+msgid "If you do not wish to recieve these emails, please uncheck the option in your profile or drop me a line."
+msgstr "Falls du keine weiteren E-Mails bekommen möchtest, einfach dein Profile aktualisieren oder mir eine Nachricht schicken."
+
+

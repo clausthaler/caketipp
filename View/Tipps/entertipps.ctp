@@ -30,7 +30,7 @@
           foreach ($matches2tipp as $round => $matches) {
             echo '<h4>' . $rounds[$round]['name']  . '</h4>';
 
-            echo '<table class="table table-condensed" cellpadding="0" cellspacing="0">';
+            echo '<div class="table-responsive"><table class="table table-condensed" cellpadding="0" cellspacing="0">';
             echo '<tr>';
             echo '<th>' . __('Date') . '</th>';
             echo '<th>' . __('Team 1') . '</th>';
@@ -100,7 +100,7 @@
               }
   
             }
-            echo "</table>";
+            echo "</table></div>";
           }
           echo $this->Form->end(); 
           ?>

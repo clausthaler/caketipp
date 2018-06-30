@@ -619,12 +619,15 @@ order by sum desc) c');
     $users = $this->User->find('all', array('fields' => array('id', 'username', 'photo', 'photo_dir')));
     $users = Hash::combine($users, '{n}.User.id', '{n}.User'); 
 
+    $roundsselarr = $this->createRoundSelect();
     // generate the round select values
-    $roundsselarr = array('overview' => __('Ranking'));
+    /*$roundsselarr = array('overview' => __('Ranking'));
     $roundsselarr['dayranking'] = __('Ranking today');
     foreach ($rounds as $rkey => $round) {
       if ($round['groupstage'] == 1) {
         $roundsselarr[$rkey] =  __($round['name']) . ' ' .  __('all');
+        print_r($roundgroups);
+        die();
         foreach ($roundgroups[$rkey] as $gkey => $rgroup) {
           $roundsselarr[$rkey . '-' . $gkey] =  '  ' . __($round['name']) . ' ' .  __($rgroup['name']);
         }
@@ -634,7 +637,7 @@ order by sum desc) c');
     }
     $roundsselarr['bonus'] = __('Bonus questions');
     $roundsselarr['timeline'] = __('Ranking timeline');
-    $roundselected = 'dayranking';
+    $roundselected = 'dayranking';*/
 
     // generate the from and to match select list
     $this->Match->recursive = -1;

@@ -826,7 +826,7 @@ order by sum desc) c');
         'fields' => array('id'),
         'conditions' => array('round_id' => 1)));
       foreach ($groups as $group) {
-        // get all group team first
+        // get all group teams first
         $this->Team->recursive = -1;
         $groupteams = $this->Team->find('list', array('conditions' => array('Team.group_id' => $group)));
 
@@ -906,11 +906,32 @@ order by sum desc) c');
           'Ladder.group_id' => $group,
           'Ladder.type' => 'tipp',
           'Ladder.user_id' =>  $userid), false);
-
         foreach ($arrladder as $poskey => $newlader) {
           $this->Ladder->create();
           $newLadder['Ladder'] = $newlader;
           $this->Ladder->save($newLadder);
+        }
+      }
+      /* update the tipp ladder positions */
+      foreach ($groups as $group) {
+        /* get the ladders for the group */
+        $this->Ladder->recursive = -1;
+        $tippladders = $this->Ladder->find(
+          'all', 
+          array(
+            'order' => array(
+              'Ladder.group_id', 
+              'Ladder.points desc',
+              'Ladder.goodgoals - Ladder.badgoals desc',
+              'Ladder.goodgoals desc'),
+            'conditions' => array(
+              'Ladder.type' => 'tipp',
+              'Ladder.group_id' => $group,
+              'Ladder.user_id' => $user['User']['id'])));
+        foreach ($tippladders as $ladderid => $tippladder) {
+          $this->Ladder->read(null, $tippladder['Ladder']['id']);
+          $this->Ladder->set('pos', $ladderid+1);
+          $this->Ladder->save();
         }
       }
     }
